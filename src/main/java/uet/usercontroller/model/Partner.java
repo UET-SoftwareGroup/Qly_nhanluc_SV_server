@@ -16,7 +16,7 @@ public class Partner {
     private String partner_name;
     @Column(name = "website")
     private String website;
-    @Column(name = "adddress")
+    @Column(name = "address")
     private String address;
     @Column(name = "phone")
     private String phone;

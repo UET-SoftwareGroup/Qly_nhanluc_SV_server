@@ -3,6 +3,7 @@ package uet.usercontroller.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.model.Partner;
+import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
 import uet.usercontroller.service.UserService;
 
@@ -35,6 +36,9 @@ public class UserController {
     public List<Partner> getPartners(){
         return userService.getPartners();
     }
+    //Hiển thị tất cả các thông tin về sinh viên
+    @RequestMapping(value="/students", method = RequestMethod.GET)
+    public List<Student> geStudents(){ return userService.getStudents(); }
     //Kiểm tra tài khoản user đó là admin, đối tác hay sinh viên
     @RequestMapping(value = "users/{id}/type",method = RequestMethod.GET)
     public String checkType(@PathVariable("id") int id){

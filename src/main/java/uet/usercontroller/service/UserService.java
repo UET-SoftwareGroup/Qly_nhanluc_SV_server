@@ -3,9 +3,12 @@ package uet.usercontroller.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.model.Partner;
+import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
 import uet.usercontroller.repository.PartnerRepository;
+import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
+
 
 import java.util.List;
 
@@ -36,6 +39,13 @@ public class UserService {
     public List<Partner> getPartners(){
         List<Partner> allPartners = (List<Partner>) partnerRepository.findAll();
         return allPartners;
+    }
+
+    @Autowired
+    private StudentRepository studentRepository;
+    public List<Student> getStudents(){
+        List<Student> allStudents = (List<Student>) studentRepository.findAll();
+        return allStudents;
     }
 
     public String checkType(int id){
