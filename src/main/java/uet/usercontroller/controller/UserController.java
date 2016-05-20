@@ -15,30 +15,30 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    //Show tất cả các tài khoản người dùng(bao gồm cả sv, admin, đối tác)
     @RequestMapping(value="/users",method = RequestMethod.GET)
     public List<User> getUsers(){
         return userService.getUsers();
     }
-
+    //Tạo 1 user mới
     @RequestMapping(value="/users",method = RequestMethod.POST)
     public User createUser(@RequestBody User user){
         return userService.createUser(user);
     }
-
+    //Tìm kiếm 1 user theo id
     @RequestMapping(value="/users/{id}",method = RequestMethod.GET)
     public User showUser(@PathVariable("id") int id) {
         return userService.findUser(id);
     }
-
-    @RequestMapping(value="/partner", method = RequestMethod.GET)
+    //Hiển thị tất cả các thông tin về đối tác
+    @RequestMapping(value="/partners", method = RequestMethod.GET)
     public List<Partner> getPartners(){
         return userService.getPartners();
     }
-
-    @RequestMapping(value = "users/{id}/admin",method = RequestMethod.GET)
-    public String checkAdmin(@PathVariable("id") int id){
-        return userService.checkAdmin(id);
+    //Kiểm tra tài khoản user đó là admin, đối tác hay sinh viên
+    @RequestMapping(value = "users/{id}/type",method = RequestMethod.GET)
+    public String checkType(@PathVariable("id") int id){
+        return userService.checkType(id);
     }
     
 }

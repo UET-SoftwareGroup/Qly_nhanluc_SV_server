@@ -38,14 +38,17 @@ public class UserService {
         return allPartners;
     }
 
-    public String checkAdmin(int id){
+    public String checkType(int id){
         User user = userRepository.findOne(id);
-        int check = user.getAdmin();
-        if(check==1){
+        int check = user.getType();
+        if(check==3){
             return("This user is an admin.");
         }
+        if(check==2){
+            return("This user is a partner.");
+        }
         else{
-            return("This user is not an admin.");
+            return("This user is a student.");
         }
     }
 
