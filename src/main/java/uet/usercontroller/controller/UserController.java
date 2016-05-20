@@ -40,4 +40,5 @@ public class UserController {
     public String checkAdmin(@PathVariable("id") int id){
         return userService.checkAdmin(id);
     }
+    
 }
