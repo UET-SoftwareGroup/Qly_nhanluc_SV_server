@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Tu on 03-May-16.
  */
 @Entity
-@Table(name="partner_detail")
+@Table(name="Partner")
 public class Partner {
     @Id
     @Column(name = "id")

@@ -43,6 +43,7 @@ public class UserService {
 
     @Autowired
     private StudentRepository studentRepository;
+
     public List<Student> getStudents(){
         List<Student> allStudents = (List<Student>) studentRepository.findAll();
         return allStudents;

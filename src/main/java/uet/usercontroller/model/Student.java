@@ -6,28 +6,40 @@ import javax.persistence.*;
  * Created by Tu on 20-May-16.
  */
 @Entity
-@Table(name="student_detail")
+@Table(name="Student")
 public class Student {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "full_name")
-    private String full_name;
-    @Column(name = "age")
-    private int age;
-    @Column(name = "course")
-    private String course;
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int user_id;
+    @Column(name = "student_name")
+    private String student_name;
+    @Column(name = "birthday")
+    private String birthday;
+    @Column(name = "phone_number")
+    private String phone_number;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "skype")
+    private String skype;
     @Column(name = "email")
     private String email;
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "desire")
+    private String desire;
+
 
     public int getId() { return id; }
-    public String getFull_name() { return full_name; }
-    public int getAge() { return age; }
-    public String getCourse() { return course; }
+    public int getUser_id() { return user_id; }
+    public String getStudent_name() { return student_name; }
+    public String getBirthday() { return birthday; }
+    public String getPhone_number() { return phone_number; }
+    public String getAddress() { return address; }
+    public String getSkype() { return skype; }
     public String getEmail() { return email; }
-    public String getPhone() { return phone; }
+    public String getDesire() { return desire; }
+
 
 }
