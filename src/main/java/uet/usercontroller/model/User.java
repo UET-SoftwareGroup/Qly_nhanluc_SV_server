@@ -18,20 +18,25 @@ public class User {
     private String password;
     @Column(name = "role")
     private int role;
+    @Column(name = "token")
+    private String token;
+    @Column(name = "expiry_time")
+    private String expiry_time;
 
     public int getId() {
         return id;
     }
-
-    public String getUsername() {
-        return user_name;
-    }
-
+    public String getUsername() { return user_name; }
     public String getPassword() {
         return password;
     }
-
     public int getRole() {
         return role;
+    }
+    public String getToken() {
+        return token;
+    }
+    public String getExpiry_time() {
+        return expiry_time;
     }
 }
