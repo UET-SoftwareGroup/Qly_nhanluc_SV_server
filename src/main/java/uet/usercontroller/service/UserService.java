@@ -50,7 +50,7 @@ public class UserService {
 
     public String checkType(int id){
         User user = userRepository.findOne(id);
-        int check = user.getType();
+        int check = user.getRole();
         if(check==3){
             return("This user is an admin.");
         }

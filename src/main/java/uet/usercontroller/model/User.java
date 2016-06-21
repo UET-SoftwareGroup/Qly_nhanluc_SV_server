@@ -12,26 +12,26 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "username")
-    private String username;
+    @Column(name = "user_name")
+    private String user_name;
     @Column(name = "password")
     private String password;
-    @Column(name = "type")
-    private int type;
+    @Column(name = "role")
+    private int role;
 
     public int getId() {
         return id;
     }
 
     public String getUsername() {
-        return username;
+        return user_name;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public int getType() {
-        return type;
+    public int getRole() {
+        return role;
     }
 }
