@@ -13,7 +13,6 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
     @Column(name = "student_name")
     private String student_name;
@@ -29,7 +28,6 @@ public class Student {
     private String email;
     @Column(name = "desire")
     private String desire;
-
 
     public int getId() { return id; }
     public int getUser_id() { return user_id; }

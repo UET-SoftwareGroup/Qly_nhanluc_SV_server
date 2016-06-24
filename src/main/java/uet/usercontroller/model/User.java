@@ -1,6 +1,7 @@
 package uet.usercontroller.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Tu on 02-May-16.
@@ -23,9 +24,7 @@ public class User {
     @Column(name = "expiry_time")
     private String expiry_time;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
     public String getUsername() { return user_name; }
     public String getPassword() {
         return password;
