@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/Internship.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/JobSkill.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/PartnerContact.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/Post.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/StudentInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/Internship.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/JobSkill.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/PartnerContact.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/Post.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/StudentInfo.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/DTO/UserDTO.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/DTO/UserDTO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/InfoBySchool.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/InfoBySchool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/User.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/repository/UserRepository.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/repository/UserRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/UserService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/DTO/UserDTO.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/DTO/UserDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/InfoBySchool.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/InfoBySchool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/repository/UserRepository.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/repository/UserRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" />
     </list>
     <ignored path="Qly_SV.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,7 +41,7 @@
       <file leaf-file-name="UserDTO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/DTO/UserDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69545454">
+            <state vertical-scroll-proportion="0.81136364">
               <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
               <folding />
             </state>
@@ -1006,12 +983,19 @@
       <workItem from="1467783250528" duration="15673000" />
       <workItem from="1467814009348" duration="3552000" />
       <workItem from="1467858212873" duration="6321000" />
-      <workItem from="1467944817138" duration="4215000" />
+      <workItem from="1467944817138" duration="4297000" />
     </task>
+    <task id="LOCAL-00001" summary="first commit for develop&#10;">
+      <created>1467949537855</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1467949537855</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130450000" />
+    <option name="totallyTimeSpent" value="130532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1085,6 +1069,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit for develop&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit for develop&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1520,7 +1508,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/DTO/UserDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69545454">
+        <state vertical-scroll-proportion="0.81136364">
           <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
