@@ -1,5 +1,7 @@
 package uet.usercontroller.DTO;
 
+import java.util.Date;
+
 /**
  * Created by Tu on 05-Jul-16.
  */
@@ -9,15 +11,7 @@ public class UserDTO {
     private String password;
     private int role;
     private String token;
-    private String expiryTime;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
+    private Date expiryTime;
 
     public int getId() {
         return id;
@@ -35,14 +29,6 @@ public class UserDTO {
         this.userName = userName;
     }
 
-    public String getExpiryTime() {
-        return expiryTime;
-    }
-
-    public void setExpiryTime(String expiryTime) {
-        this.expiryTime = expiryTime;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -57,5 +43,21 @@ public class UserDTO {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Date getExpiryTime() {
+        return expiryTime;
+    }
+
+    public void setExpiryTime(Date expiryTime) {
+        this.expiryTime = expiryTime;
     }
 }

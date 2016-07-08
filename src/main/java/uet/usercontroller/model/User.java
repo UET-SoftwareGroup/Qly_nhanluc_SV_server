@@ -1,6 +1,7 @@
 package uet.usercontroller.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Tu on 02-May-16.
@@ -21,39 +22,7 @@ public class User {
     @Column(name = "token")
     private String token;
     @Column(name = "expiryTime")
-    private String expiryTime;
-
-    public String getExpiryTime() {
-        return expiryTime;
-    }
-
-    public void setExpiryTime(String expiryTime) {
-        this.expiryTime = expiryTime;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
+    private Date expiryTime;
 
     public int getId() {
         return id;
@@ -79,12 +48,28 @@ public class User {
         this.password = password;
     }
 
+    public int getRole() {
+        return role;
+    }
 
+    public void setRole(int role) {
+        this.role = role;
+    }
 
-    @OneToOne
-    Student student;
+    public String getToken() {
+        return token;
+    }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
 
+    public Date getExpiryTime() {
+        return expiryTime;
+    }
 
+    public void setExpiryTime(Date expiryTime) {
+        this.expiryTime = expiryTime;
+    }
 
 }

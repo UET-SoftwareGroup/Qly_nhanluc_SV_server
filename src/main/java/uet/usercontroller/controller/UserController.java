@@ -8,6 +8,7 @@ import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
 import uet.usercontroller.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -18,9 +19,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //Show tất cả các tài khoản người dùng(bao gồm cả sv, admin, đối tác)
-    @RequestMapping(value="/users",method = RequestMethod.GET)
-    public List<User> getUsers(){
+    //Show all user
+    @RequestMapping(value="/user",method = RequestMethod.GET)
+    public List<User> getUsers() {
         return userService.getUsers();
     }
 
@@ -32,28 +33,31 @@ public class UserController {
 
     //login
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public User checkLogin(@RequestBody UserDTO userDTO) { return userService.doLogin(userDTO); }
+    public User Login(@RequestBody UserDTO userDTO) {
+        return userService.Login(userDTO);
+    }
 
-    //Tìm kiếm 1 user theo id
-    @RequestMapping(value="/users/{id}",method = RequestMethod.GET)
-    public User showUser(@PathVariable("id") int id) {
-        return userService.findUser(id);
+    //logout
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    public void Logout(HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        userService.Logout(token);
+    }
+
+    //editUser
+    @RequestMapping(value="user/{id}", method = RequestMethod.PUT)
+    public User editUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO) {
+        return userService.editUser(id, userDTO);
+    }
+
+    //deleteUser
+    @RequestMapping(value="user/{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable("id") int id){
+        userService.deleteUser(id);
     }
 
 
 
-    //Kiểm tra tài khoản user đó là admin, đối tác hay sinh viên
-    @RequestMapping(value = "users/{id}/type",method = RequestMethod.GET)
-    public String checkType(@PathVariable("id") int id){
-        return userService.checkType(id);
-    }
 
-    @RequestMapping(value="/users/student/{user_id}",method = RequestMethod.POST)
-//    public String show(){
-//        return "abc";
-//    }
-    public User createStudent(@PathVariable("user_id") int user_id, @RequestBody Student student) {
-        return userService.createStudent(user_id,student);
-    }
-    
+
 }

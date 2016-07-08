@@ -1,7 +1,6 @@
 package uet.usercontroller.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.support.NullValue;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.Partner;
@@ -12,9 +11,12 @@ import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
 
+
 import javax.jws.soap.SOAPBinding;
 import javax.validation.constraints.Null;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Tu on 02-May-16.
@@ -24,57 +26,64 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    //Show tất cả các tài khoản người dùng(bao gồm cả sv, admin, đối tác)
+    //Show all user
     public List<User> getUsers(){
         List<User> allUsers = (List<User>) userRepository.findAll();
         return allUsers;
     }
 
     //signup
-    public User createUser(UserDTO userDTO){
+    public User createUser(UserDTO userDTO) {
         User user = new User();
-
-        if ( userRepository.findByUserName(userDTO.getUserName()).equals("") ){
-            user.setUserName(userDTO.getUserName());
-            user.setPassword(userDTO.getPassword());
-            user.setRole(userDTO.getRole());
+        user.setUserName(userDTO.getUserName());
+        if (userRepository.findByUserName(user.getUserName()) == null) {
+            if (userDTO.getRole() == 1 || userDTO.getRole() == 2) {
+                user.setUserName(userDTO.getUserName());
+                user.setPassword(userDTO.getPassword());
+                user.setRole(userDTO.getRole());
+            }
         }
         return userRepository.save(user);
     }
 
     //login
-    public User doLogin(UserDTO userDTO){
+    public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        return userRepository.save(user);
+        if ( userDTO.getPassword().equals(user.getPassword())){
+            if ( user.getToken()==null ) {
+                user.setToken(UUID.randomUUID().toString());
+                user.setExpiryTime(new Date(System.currentTimeMillis()+1000*60*15));
+            }
+            else{
+                user.setExpiryTime(new Date(System.currentTimeMillis()+1000*60*15));
+            }
+        }
+        user = userRepository.save(user);
+        User result = new User();
+        result.setUserName(user.getUserName());
+        result.setRole(user.getRole());
+        result.setToken(user.getToken());
+        return result;
     }
 
-
-    //Tìm kiếm 1 user theo id
-    public User findUser(int id) {
-        return userRepository.findOne(id);
+    //logout
+    public void Logout(String token){
+        User user = userRepository.findByToken(token);
+        user.setToken(null);
+        userRepository.save(user);
     }
 
-    public String checkType(int id){
+    //editUser
+    public User editUser(int id, UserDTO userDTO){
         User user = userRepository.findOne(id);
-        int check = user.getRole();
-        if(check==3){
-            return("This user is an admin.");
-        }
-        if(check==2){
-            return("This user is a partner.");
-        }
-        else{
-            return("This user is a student.");
-        }
+        user.setUserName(userDTO.getUserName());
+        user.setPassword(userDTO.getPassword());
+        return userRepository.save(user);
+
     }
 
-    @Autowired
-    private StudentRepository studentRepository;
-    public User createStudent(int user_id,Student student) {
-        User user = new User();
-        user = userRepository.findOne(user_id);
-        user.setStudent(student);
-        studentRepository.save(student);
-        return user;
+    //deleteUser
+    public void deleteUser(int id){
+        userRepository.delete(id);
     }
 }
