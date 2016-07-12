@@ -76,8 +76,12 @@ public class UserService {
     //editUser
     public User editUser(int id, UserDTO userDTO){
         User user = userRepository.findOne(id);
-        user.setUserName(userDTO.getUserName());
-        user.setPassword(userDTO.getPassword());
+        if(userDTO.getUserName()!=null){
+            user.setUserName(userDTO.getUserName());
+        }
+        if(userDTO.getPassword()!=null) {
+            user.setPassword(userDTO.getPassword());
+        }
         return userRepository.save(user);
 
     }

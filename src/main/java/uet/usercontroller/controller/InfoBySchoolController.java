@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.InfoBySchoolDTO;
 import uet.usercontroller.model.InfoBySchool;
-import uet.usercontroller.repository.InfoBySchoolRepository;
 import uet.usercontroller.service.InfoBySchoolService;
 
 import java.util.List;
