@@ -1109,7 +1109,7 @@
       <workItem from="1468129744179" duration="267000" />
       <workItem from="1468253842537" duration="726000" />
       <workItem from="1468306599686" duration="594000" />
-      <workItem from="1468326322757" duration="3054000" />
+      <workItem from="1468326322757" duration="3098000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for develop&#10;">
       <created>1467949537855</created>
@@ -1135,11 +1135,17 @@
       <option name="project" value="LOCAL" />
       <updated>1468330207223</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Bảng student&#10;">
+      <created>1468330337542</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1468330337542</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141693000" />
+    <option name="totallyTimeSpent" value="141737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1216,7 +1222,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit for develop&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit for develop&#10;" />
+    <MESSAGE value="Bảng student&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bảng student&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
