@@ -3,8 +3,9 @@ package uet.usercontroller.model;
 import javax.persistence.*;
 
 /**
- * Created by Tu on 20-May-16.
+ * Created by Trung on 7-8-2016.
  */
+
 @Entity
 @Table(name="Student")
 public class Student {
@@ -12,32 +13,30 @@ public class Student {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "user_id")
-    private int user_id;
-    @Column(name = "student_name")
-    private String student_name;
-    @Column(name = "birthday")
-    private String birthday;
-    @Column(name = "phone_number")
-    private String phone_number;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "skype")
-    private String skype;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "desire")
-    private String desire;
+    @Column(name = "userId")
+    private int userId;
+    @Column(name = "studentName")
+    private String studentName;
 
-    public int getId() { return id; }
-    public int getUser_id() { return user_id; }
-    public String getStudent_name() { return student_name; }
-    public String getBirthday() { return birthday; }
-    public String getPhone_number() { return phone_number; }
-    public String getAddress() { return address; }
-    public String getSkype() { return skype; }
-    public String getEmail() { return email; }
-    public String getDesire() { return desire; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public int getId() {    return id; }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
 }
