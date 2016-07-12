@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="first commit for develop&#10;">
+    <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/User.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/InfoBySchoolService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/InfoBySchoolService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/UserService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/InfoBySchoolController.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/InfoBySchoolController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" />
     </list>
     <ignored path="Qly_SV.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -983,7 +980,7 @@
       <workItem from="1468073365878" duration="598000" />
       <workItem from="1468129744179" duration="425000" />
       <workItem from="1468204064170" duration="4682000" />
-      <workItem from="1468302505531" duration="1015000" />
+      <workItem from="1468302505531" duration="1054000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for develop&#10;">
       <created>1467949537855</created>
@@ -1009,11 +1006,17 @@
       <option name="project" value="LOCAL" />
       <updated>1468130031471</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="User + InfoBySchool chỉnh sửa chức năng edit">
+      <created>1468303556127</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1468303556128</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143174000" />
+    <option name="totallyTimeSpent" value="143213000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
@@ -1090,7 +1093,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit for develop&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit for develop&#10;" />
+    <MESSAGE value="User + InfoBySchool chỉnh sửa chức năng edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="User + InfoBySchool chỉnh sửa chức năng edit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
