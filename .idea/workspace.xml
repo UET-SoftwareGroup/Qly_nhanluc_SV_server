@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/Application.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/Application.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/InfoBySchool.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/InfoBySchool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/Partner.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/Partner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/PartnerInfo.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/PartnerInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/Student.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/Student.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/User.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/controller/InfoBySchoolController.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/controller/InfoBySchoolController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/controller/StudentController.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/controller/StudentController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/InfoBySchoolService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/InfoBySchoolService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/StudentService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/StudentService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Qly_SV.iml" afterPath="$PROJECT_DIR$/Qly_SV.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/InfoBySchoolController.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/InfoBySchoolController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentController.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/InfoBySchool.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/InfoBySchool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/Partner.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/Partner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/PartnerInfo.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/PartnerInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/Student.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/Student.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
     </list>
     <ignored path="Qly_SV.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1044,7 +1030,7 @@
       <workItem from="1468306599686" duration="594000" />
       <workItem from="1468326322757" duration="3104000" />
       <workItem from="1468468937164" duration="161000" />
-      <workItem from="1468474170661" duration="3029000" />
+      <workItem from="1468474170661" duration="3755000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for develop&#10;">
       <created>1467949537855</created>
@@ -1082,21 +1068,27 @@
       <option name="project" value="LOCAL" />
       <updated>1468330348929</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="nối bảng user+student và student+infobyschool&#10;">
+      <created>1468477243876</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1468477243876</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144933000" />
+    <option name="totallyTimeSpent" value="145659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31740615" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33123028" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2662116" sideWeight="0.50455236" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37030718" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
@@ -1109,7 +1101,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2662116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2662116" sideWeight="0.49544764" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1164,7 +1156,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit for develop&#10;" />
     <MESSAGE value="Bảng student&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bảng student&#10;" />
+    <MESSAGE value="nối bảng user+student và student+infobyschool&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="nối bảng user+student và student+infobyschool&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
