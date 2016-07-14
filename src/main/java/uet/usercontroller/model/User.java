@@ -24,6 +24,17 @@ public class User {
     @Column(name = "expiryTime")
     private Date expiryTime;
 
+    @OneToOne
+    Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public int getId() {
         return id;
     }

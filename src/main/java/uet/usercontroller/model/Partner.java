@@ -1,7 +1,5 @@
 package uet.usercontroller.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 
 /**
@@ -14,16 +12,19 @@ public class Partner {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "user_id")
-    private int user_id;
+//    @Column(name = "user_id")
+//    private int user_id;
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
     }
-    public int getUser_id() {
-        return user_id;
-    }
+//    public int getUser_id() {
+//        return user_id;
+//    }
 }
 

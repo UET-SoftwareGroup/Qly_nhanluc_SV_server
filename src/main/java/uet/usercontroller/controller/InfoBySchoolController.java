@@ -23,26 +23,26 @@ public class InfoBySchoolController {
     }
 
     //create info
-    @RequestMapping(value="info/{studentId}", method = RequestMethod.POST)
+    @RequestMapping(value="/student/{studentId}/info", method = RequestMethod.POST)
     public InfoBySchool createInfo(@PathVariable("studentId") int studentId, @RequestBody InfoBySchoolDTO infoBySchoolDTO){
         return infoBySchoolService.createInfo(studentId, infoBySchoolDTO);
     }
 
     //show info of a student
-    @RequestMapping(value="info/{id}", method = RequestMethod.GET)
-    public InfoBySchool getInfo(@PathVariable("id") int id){
-        return infoBySchoolService.getInfo(id);
+    @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.GET)
+    public InfoBySchool getInfo(@PathVariable("infoId") int infoId){
+        return infoBySchoolService.getInfo(infoId);
     }
 
     //edit info of a student
-    @RequestMapping(value="info/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.PUT)
     public InfoBySchool editInfo(@PathVariable("id") int id, InfoBySchoolDTO infoBySchoolDTO){
         return infoBySchoolService.editInfo(id, infoBySchoolDTO);
     }
 
     //delte info of a student
-    @RequestMapping(value="info/{id}", method = RequestMethod.DELETE)
-    public void deletaInfo(@PathVariable("id") int id){
-        infoBySchoolService.deleteInfo(id);
+    @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.DELETE)
+    public void deletaInfo(@PathVariable("infoId") int infoId){
+        infoBySchoolService.deleteInfo(infoId);
     }
 }

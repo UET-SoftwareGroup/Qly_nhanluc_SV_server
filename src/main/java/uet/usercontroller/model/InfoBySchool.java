@@ -13,8 +13,8 @@ public class InfoBySchool {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name="studentId")
-    private int studentId;
+//    @Column(name="studentId")
+//    private int studentId;
     @Column(name="studentCode")
     private int studentCode;
     @Column(name="major")
@@ -38,13 +38,13 @@ public class InfoBySchool {
         this.id = id;
     }
 
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
+//    public int getStudentId() {
+//        return studentId;
+//    }
+//
+//    public void setStudentId(int studentId) {
+//        this.studentId = studentId;
+//    }
 
     public int getStudentCode() {
         return studentCode;

@@ -6,6 +6,7 @@ import uet.usercontroller.DTO.StudentDTO;
 import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
 import uet.usercontroller.repository.StudentRepository;
+import uet.usercontroller.repository.UserRepository;
 
 import java.util.List;
 
@@ -14,6 +15,10 @@ import java.util.List;
  */
 @Service
 public class StudentService {
+
+    @Autowired
+    UserRepository userRepository;
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -35,4 +40,12 @@ public class StudentService {
 
     }
     public void delStudent(int studentId) { studentRepository.delete(studentId); }
+
+    public Student createStudent(int userId, StudentDTO studentDTO) {
+        User user = userRepository.findOne(userId);
+        Student student = new Student();
+        student.setStudentName(studentDTO.getStudentName());
+        user.setStudent(student);
+        return studentRepository.save(student);
+    }
 }

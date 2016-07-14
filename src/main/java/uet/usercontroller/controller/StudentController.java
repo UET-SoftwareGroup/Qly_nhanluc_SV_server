@@ -16,23 +16,29 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     //Show
-    @RequestMapping(value="/student",method = RequestMethod.GET)
+    @RequestMapping(value="user/student",method = RequestMethod.GET)
     public List<Student> getStudents() { return studentService.getStudents();}
 
+    //Post
+    @RequestMapping(value="/user/{userId}/student", method = RequestMethod.POST)
+    public Student createStudent(@PathVariable("userId") int userId, @RequestBody StudentDTO studentDTO){
+        return studentService.createStudent(userId, studentDTO);
+    }
+
     //Search
-    @RequestMapping(value="/student/{studentId}",method = RequestMethod.GET)
+    @RequestMapping(value="/user/{userId}/student/{studentId}",method = RequestMethod.GET)
     public Student findStudent(@PathVariable("studentId") int studentId) {
         return studentService.findStudent(studentId);
     }
 
     //Edit
-    @RequestMapping(value="/student/{studentId}", method = RequestMethod.PUT)
+    @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.PUT)
     public Student editStudent(@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO){
         return studentService.editStudent(studentId, studentDTO);
     }
 
     //Delete
-    @RequestMapping(value="/student/{studentId}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.DELETE)
     public void delStudent(@PathVariable("studentId") int studentId){
         studentService.delStudent(studentId);
     }

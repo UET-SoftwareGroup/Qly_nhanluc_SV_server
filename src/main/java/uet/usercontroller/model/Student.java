@@ -13,18 +13,29 @@ public class Student {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "userId")
-    private int userId;
+//    @Column(name = "userId")
+//    private int userId;
     @Column(name = "studentName")
     private String studentName;
+
+    @OneToOne
+    InfoBySchool infoBySchool;
+
+    public InfoBySchool getInfoBySchool() {
+        return infoBySchool;
+    }
+
+    public void setInfoBySchool(InfoBySchool infoBySchool) {
+        this.infoBySchool = infoBySchool;
+    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
@@ -32,9 +43,9 @@ public class Student {
 
     public int getId() {    return id; }
 
-    public int getUserId() {
-        return userId;
-    }
+//    public int getUserId() {
+//        return userId;
+//    }
 
     public String getStudentName() {
         return studentName;

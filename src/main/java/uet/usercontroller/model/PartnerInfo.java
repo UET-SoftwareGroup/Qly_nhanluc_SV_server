@@ -13,8 +13,8 @@ public class PartnerInfo {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "partner_id")
-    private int partner_id;
+//    @Column(name = "partner_id")
+//    private int partner_id;
     @Column(name = "partner_name")
     private String partner_name;
     @Column(name = "tax_code")
@@ -37,9 +37,47 @@ public class PartnerInfo {
     public int getId() {
         return id;
     }
-    public int getPartner_id() {
-        return partner_id;
+
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public void setPartner_name(String partner_name) {
+        this.partner_name = partner_name;
+    }
+
+    public void setTax_code(String tax_code) {
+        this.tax_code = tax_code;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setField_work(String field_work) {
+        this.field_work = field_work;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPartner_name() {
         return partner_name;
     }

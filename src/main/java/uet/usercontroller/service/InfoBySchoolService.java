@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.InfoBySchoolDTO;
 import uet.usercontroller.model.InfoBySchool;
+import uet.usercontroller.model.Student;
 import uet.usercontroller.repository.InfoBySchoolRepository;
+import uet.usercontroller.repository.StudentRepository;
 
 import java.util.List;
 
@@ -13,6 +15,9 @@ import java.util.List;
  */
 @Service
 public class InfoBySchoolService {
+    @Autowired
+    StudentRepository studentRepository;
+
     @Autowired
     private InfoBySchoolRepository infoBySchoolRepository;
 
@@ -24,15 +29,20 @@ public class InfoBySchoolService {
 
     //create info
     public InfoBySchool createInfo(int studentId, InfoBySchoolDTO infoBySchoolDTO){
-        InfoBySchool info = infoBySchoolRepository.findOne(studentId);
-        info.setStudentCode(infoBySchoolDTO.getStudentCode());
-        info.setMajor(infoBySchoolDTO.getMajor());
-        info.setGPA(infoBySchoolDTO.getGPA());
-        info.setDiploma(infoBySchoolDTO.getDiploma());
-        info.setGrade(infoBySchoolDTO.getGrade());
-        info.setGraduationYear(infoBySchoolDTO.getGraduationYear());
-        info.setStudentClass(infoBySchoolDTO.getStudentClass());
-        return infoBySchoolRepository.save(info);
+//        InfoBySchool info = infoBySchoolRepository.findOne(studentId);
+//        info.setStudentCode(infoBySchoolDTO.getStudentCode());
+//        info.setMajor(infoBySchoolDTO.getMajor());
+//        info.setGPA(infoBySchoolDTO.getGPA());
+//        info.setDiploma(infoBySchoolDTO.getDiploma());
+//        info.setGrade(infoBySchoolDTO.getGrade());
+//        info.setGraduationYear(infoBySchoolDTO.getGraduationYear());
+//        info.setStudentClass(infoBySchoolDTO.getStudentClass());
+        Student student = studentRepository.findOne(studentId);
+        InfoBySchool infoBySchool = new InfoBySchool();
+        infoBySchool.setDiploma(infoBySchoolDTO.getDiploma());
+        infoBySchool.setGrade(infoBySchoolDTO.getGrade());
+        student.setInfoBySchool(infoBySchool);
+        return infoBySchoolRepository.save(infoBySchool);
     }
 
     //show info of a student
