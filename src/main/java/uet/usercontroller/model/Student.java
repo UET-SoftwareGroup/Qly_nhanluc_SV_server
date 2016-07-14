@@ -39,4 +39,26 @@ public class Student {
     public String getStudentName() {
         return studentName;
     }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private InfoBySchool infoBySchool;
+
+        public InfoBySchool getInfoBySchool() {
+        return infoBySchool;
+    }
+
+    public void setInfoBySchool(InfoBySchool infoBySchool) {
+        this.infoBySchool = infoBySchool;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Internship internship;
+
+    public Internship getInternship() {
+        return internship;
+    }
+
+    public void setInternship(Internship internship) {
+        this.internship = internship;
+    }
 }
