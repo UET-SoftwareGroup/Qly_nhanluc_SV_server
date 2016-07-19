@@ -3,10 +3,9 @@ package uet.usercontroller.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.UserDTO;
-import uet.usercontroller.model.Partner;
-import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
 import uet.usercontroller.service.UserService;
+import uet.usercontroller.stereotype.NoAuthentication;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -26,12 +25,14 @@ public class UserController {
     }
 
     //signup
+    @NoAuthentication
     @RequestMapping(value="/signup",method = RequestMethod.POST)
     public User createUser(@RequestBody UserDTO userDTO){
         return userService.createUser(userDTO);
     }
 
     //login
+    @NoAuthentication
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public User Login(@RequestBody UserDTO userDTO) {
         return userService.Login(userDTO);

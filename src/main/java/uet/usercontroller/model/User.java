@@ -13,15 +13,15 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "userName")
+
     private String userName;
-    @Column(name = "password")
+
     private String password;
-    @Column(name = "role")
-    private int role;
-    @Column(name = "token")
+
+    private Role role;
+
     private String token;
-    @Column(name = "expiryTime")
+
     private Date expiryTime;
 
     @OneToOne
@@ -59,11 +59,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

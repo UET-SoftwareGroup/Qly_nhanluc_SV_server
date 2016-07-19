@@ -18,17 +18,6 @@ public class Student {
     @Column(name = "studentName")
     private String studentName;
 
-    @OneToOne
-    InfoBySchool infoBySchool;
-
-    public InfoBySchool getInfoBySchool() {
-        return infoBySchool;
-    }
-
-    public void setInfoBySchool(InfoBySchool infoBySchool) {
-        this.infoBySchool = infoBySchool;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -54,7 +43,7 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     private InfoBySchool infoBySchool;
 
-        public InfoBySchool getInfoBySchool() {
+    public InfoBySchool getInfoBySchool() {
         return infoBySchool;
     }
 
@@ -72,4 +61,6 @@ public class Student {
     public void setInternship(Internship internship) {
         this.internship = internship;
     }
+
+
 }

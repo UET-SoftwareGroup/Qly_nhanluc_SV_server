@@ -3,17 +3,9 @@ package uet.usercontroller.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.UserDTO;
-import uet.usercontroller.model.Partner;
-import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
-import uet.usercontroller.repository.PartnerRepository;
-import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
-
-
-import javax.jws.soap.SOAPBinding;
-import javax.validation.constraints.Null;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -34,16 +26,16 @@ public class UserService {
 
     //signup
     public User createUser(UserDTO userDTO) {
-        User user = new User();
-        user.setUserName(userDTO.getUserName());
-        if (userRepository.findByUserName(user.getUserName()) == null) {
-            if (userDTO.getRole() == 1 || userDTO.getRole() == 2) {
-                user.setUserName(userDTO.getUserName());
-                user.setPassword(userDTO.getPassword());
-                user.setRole(userDTO.getRole());
-            }
+        User user1 = userRepository.findByUserName(userDTO.getUserName());
+        if (user1 == null) {
+            User user = new User();
+            user.setUserName(userDTO.getUserName());
+            user.setPassword(userDTO.getPassword());
+            user.setRole(userDTO.getRole());
+            return userRepository.save(user);
+        }else{
+            throw new NullPointerException("username da ton tai!");
         }
-        return userRepository.save(user);
     }
 
     //login
@@ -60,6 +52,7 @@ public class UserService {
         }
         user = userRepository.save(user);
         User result = new User();
+        result.setId(user.getId());
         result.setUserName(user.getUserName());
         result.setRole(user.getRole());
         result.setToken(user.getToken());

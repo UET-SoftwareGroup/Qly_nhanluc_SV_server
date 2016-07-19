@@ -3,8 +3,10 @@ package uet.usercontroller.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.StudentDTO;
+import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
 import uet.usercontroller.service.StudentService;
+import uet.usercontroller.stereotype.RequiredRoles;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class StudentController {
     public List<Student> getStudents() { return studentService.getStudents();}
 
     //Post
+    @RequiredRoles(Role.STUDENT)
     @RequestMapping(value="/user/{userId}/student", method = RequestMethod.POST)
     public Student createStudent(@PathVariable("userId") int userId, @RequestBody StudentDTO studentDTO){
         return studentService.createStudent(userId, studentDTO);

@@ -24,8 +24,8 @@ public class InternshipController {
 
     //Create a Internship
     @RequestMapping(value = "/student/{studentId}/intern", method = RequestMethod.POST)
-    public Internship createIntern(@RequestBody InternshipDTO internshipDTO) {
-        return internshipService.createIntern(internshipDTO);
+    public Internship createIntern(@PathVariable("studentId") int studentId,@RequestBody InternshipDTO internshipDTO) {
+        return internshipService.createIntern(studentId, internshipDTO);
     }
 
     //find By Id

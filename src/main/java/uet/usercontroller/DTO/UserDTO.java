@@ -1,5 +1,7 @@
 package uet.usercontroller.DTO;
 
+import uet.usercontroller.model.Role;
+
 import java.util.Date;
 
 /**
@@ -9,7 +11,7 @@ public class UserDTO {
     private int id;
     private String userName;
     private String password;
-    private int role;
+    private Role role;
     private String token;
     private Date expiryTime;
 
@@ -37,11 +39,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

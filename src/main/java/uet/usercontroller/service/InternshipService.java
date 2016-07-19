@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.InternshipDTO;
 import uet.usercontroller.model.Internship;
+import uet.usercontroller.model.Student;
 import uet.usercontroller.repository.InternshipRepository;
+import uet.usercontroller.repository.StudentRepository;
 
 import java.util.List;
 
@@ -14,6 +16,9 @@ import java.util.List;
  */
 @Service
 public class InternshipService {
+    @Autowired
+    StudentRepository studentRepository;
+
     @Autowired
     private InternshipRepository internshipRepository;
 
@@ -37,8 +42,8 @@ public class InternshipService {
     public Internship changeById(int id, InternshipDTO internshipDTO){
         Internship internship = internshipRepository.findById(id);
         internship.setId(internshipDTO.getId());
-        internship.setPartnerId(internshipDTO.getPartnerId());
-        internship.setStudentId(internshipDTO.getStudentId());
+//        internship.setPartnerId(internshipDTO.getPartnerId());
+//        internship.setStudentId(internshipDTO.getStudentId());
         internship.setCompany(internshipDTO.getCompany());
         internship.setStartDate(internshipDTO.getStartDate());
         internship.setEndDate(internshipDTO.getEndDate());
@@ -47,17 +52,15 @@ public class InternshipService {
         return internship;
     }
     //create 1 internship
-    public Internship createIntern(InternshipDTO internshipDTO){
+    public Internship createIntern(int studentId,InternshipDTO internshipDTO){
+        Student student = studentRepository.findOne(studentId);
         Internship internship = new Internship();
-        internship.setId(internshipDTO.getId());
-        internship.setStudentId(internshipDTO.getPartnerId());
-        internship.setPartnerId(internshipDTO.getPartnerId());
         internship.setStartDate(internshipDTO.getStartDate());
         internship.setEndDate(internshipDTO.getEndDate());
         internship.setCompany(internshipDTO.getCompany());
         internship.setSupervisor(internshipDTO.getSupervisor());
-        internshipRepository.save(internship);
-        return  internship;
+        student.setInternship(internship);
+        return  internshipRepository.save(internship);
     }
 
 }
