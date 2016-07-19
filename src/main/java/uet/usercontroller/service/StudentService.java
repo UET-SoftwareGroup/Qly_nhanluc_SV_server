@@ -27,19 +27,41 @@ public class StudentService {
         return allStudents;
     }
 
-    public Student findStudent(int studentId) {
-        return studentRepository.findOne(studentId);
-    }
-
-    public Student editStudent(int studentId, StudentDTO studentDTO){
+    public Student findStudent(int userId, int studentId) {
+        User user = userRepository.findOne(userId);
         Student student = studentRepository.findOne(studentId);
-        if(studentDTO.getStudentName()!=null){
-            student.setStudentName(studentDTO.getStudentName());
+        if (user.getStudent().equals(student)){
+            return student;
         }
-        return studentRepository.save(student);
-
+        else{
+            throw new NullPointerException("No result.");
+        }
     }
-    public void delStudent(int studentId) { studentRepository.delete(studentId); }
+
+    public Student editStudent(int userId, int studentId, StudentDTO studentDTO){
+        User user = userRepository.findOne(userId);
+        Student student = studentRepository.findOne(studentId);
+        if ( user.getStudent().equals(student)) {
+            if (studentDTO.getStudentName() != null) {
+                student.setStudentName(studentDTO.getStudentName());
+            }
+            return studentRepository.save(student);
+        }
+        else{
+            throw new NullPointerException("Edit failed.");
+        }
+    }
+
+    public void delStudent(int userId, int studentId) {
+        User user = userRepository.findOne(userId);
+        Student student = studentRepository.findOne(studentId);
+        if ( user.getStudent().equals(student)) {
+            studentRepository.delete(studentId);
+        }
+        else{
+            throw new NullPointerException("Delete failed.");
+        }
+    }
 
     public Student createStudent(int userId, StudentDTO studentDTO) {
         User user = userRepository.findOne(userId);

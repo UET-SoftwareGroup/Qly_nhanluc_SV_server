@@ -30,19 +30,19 @@ public class StudentController {
 
     //Search
     @RequestMapping(value="/user/{userId}/student/{studentId}",method = RequestMethod.GET)
-    public Student findStudent(@PathVariable("studentId") int studentId) {
-        return studentService.findStudent(studentId);
+    public Student findStudent(@PathVariable("userId") int userId,@PathVariable("studentId") int studentId) {
+        return studentService.findStudent(userId, studentId);
     }
 
     //Edit
     @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.PUT)
-    public Student editStudent(@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO){
-        return studentService.editStudent(studentId, studentDTO);
+    public Student editStudent(@PathVariable("userId") int userId ,@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO){
+        return studentService.editStudent(userId, studentId, studentDTO);
     }
 
     //Delete
     @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.DELETE)
-    public void delStudent(@PathVariable("studentId") int studentId){
-        studentService.delStudent(studentId);
+    public void delStudent(@PathVariable("userId") int userId, @PathVariable("studentId") int studentId){
+        studentService.delStudent(userId, studentId);
     }
 }

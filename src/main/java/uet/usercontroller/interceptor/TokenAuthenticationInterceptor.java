@@ -23,18 +23,7 @@ public class TokenAuthenticationInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private UserRepository userRepository;
 
-//    private Map<String, String> sampleTokenRoleMapping = new HashMap<String, String>();
-
-//    @Autowired
-//    private UserService userService;
-//
-//    private String role;
     public TokenAuthenticationInterceptor() {
-       // sampleTokenRoleMapping.put(userService.findUserToken(token),"Register");
-//        sampleTokenRoleMapping.put("0001", "Registered");
-//        sampleTokenRoleMapping.put("0002", "Administrator");
-        // Phải lấy các thông tin này từ database, đây là dữ liệu mẫu fixed
-      //  sampleTokenRoleMapping.put("")
     }
 
     @Override

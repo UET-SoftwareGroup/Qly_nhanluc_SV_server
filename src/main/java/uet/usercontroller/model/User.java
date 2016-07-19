@@ -17,7 +17,7 @@ public class User {
     private String userName;
 
     private String password;
-
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     private String token;
@@ -26,14 +26,6 @@ public class User {
 
     @OneToOne
     Student student;
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 
     public int getId() {
         return id;
@@ -83,4 +75,11 @@ public class User {
         this.expiryTime = expiryTime;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

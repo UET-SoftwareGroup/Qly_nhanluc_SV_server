@@ -3,7 +3,10 @@ package uet.usercontroller.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.UserDTO;
+import uet.usercontroller.model.Role;
+import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
+import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
 import java.util.Date;
@@ -15,6 +18,9 @@ import java.util.UUID;
  */
 @Service
 public class UserService {
+
+    @Autowired
+    StudentRepository studentRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -32,6 +38,12 @@ public class UserService {
             user.setUserName(userDTO.getUserName());
             user.setPassword(userDTO.getPassword());
             user.setRole(userDTO.getRole());
+            if (user.getRole()== Role.STUDENT){
+                Student student = new Student();
+                student.setStudentName(user.getUserName());
+                user.setStudent(student);
+                studentRepository.save(student);
+            }
             return userRepository.save(user);
         }else{
             throw new NullPointerException("username da ton tai!");
