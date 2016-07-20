@@ -17,11 +17,12 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    //Show
+    //Show all
+    @RequiredRoles({Role.STUDENT,Role.PARTNER1})
     @RequestMapping(value="user/student",method = RequestMethod.GET)
     public List<Student> getStudents() { return studentService.getStudents();}
 
-    //Post
+    //Create
     @RequiredRoles(Role.STUDENT)
     @RequestMapping(value="/user/{userId}/student", method = RequestMethod.POST)
     public Student createStudent(@PathVariable("userId") int userId, @RequestBody StudentDTO studentDTO){
@@ -29,18 +30,21 @@ public class StudentController {
     }
 
     //Search
+    @RequiredRoles({Role.STUDENT,Role.PARTNER1})
     @RequestMapping(value="/user/{userId}/student/{studentId}",method = RequestMethod.GET)
     public Student findStudent(@PathVariable("userId") int userId,@PathVariable("studentId") int studentId) {
         return studentService.findStudent(userId, studentId);
     }
 
     //Edit
+    @RequiredRoles(Role.STUDENT)
     @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.PUT)
     public Student editStudent(@PathVariable("userId") int userId ,@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO){
         return studentService.editStudent(userId, studentId, studentDTO);
     }
 
     //Delete
+    @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.DELETE)
     public void delStudent(@PathVariable("userId") int userId, @PathVariable("studentId") int studentId){
         studentService.delStudent(userId, studentId);

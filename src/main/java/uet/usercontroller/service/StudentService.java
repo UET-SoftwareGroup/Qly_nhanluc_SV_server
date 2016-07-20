@@ -21,12 +21,12 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
-
+    //Show all
     public List<Student> getStudents() {
         List<Student> allStudents = (List<Student>) studentRepository.findAll();
         return allStudents;
     }
-
+    //Search
     public Student findStudent(int userId, int studentId) {
         User user = userRepository.findOne(userId);
         Student student = studentRepository.findOne(studentId);
@@ -37,7 +37,7 @@ public class StudentService {
             throw new NullPointerException("No result.");
         }
     }
-
+    //Edit
     public Student editStudent(int userId, int studentId, StudentDTO studentDTO){
         User user = userRepository.findOne(userId);
         Student student = studentRepository.findOne(studentId);
@@ -51,7 +51,7 @@ public class StudentService {
             throw new NullPointerException("Edit failed.");
         }
     }
-
+    //Delete
     public void delStudent(int userId, int studentId) {
         User user = userRepository.findOne(userId);
         Student student = studentRepository.findOne(studentId);
@@ -62,7 +62,7 @@ public class StudentService {
             throw new NullPointerException("Delete failed.");
         }
     }
-
+    //Create
     public Student createStudent(int userId, StudentDTO studentDTO) {
         User user = userRepository.findOne(userId);
         Student student = new Student();

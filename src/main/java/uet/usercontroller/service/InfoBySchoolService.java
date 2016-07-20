@@ -46,40 +46,59 @@ public class InfoBySchoolService {
     }
 
     //show info of a student
-    public InfoBySchool getInfo(int id){
-        InfoBySchool info = infoBySchoolRepository.findOne(id);
-        return info;
+    public InfoBySchool getInfo(int studentId, int infoId){
+        Student student = studentRepository.findOne(studentId);
+        InfoBySchool info = infoBySchoolRepository.findOne(infoId);
+        if (student.getInfoBySchool().equals(info)){
+            return info;
+        }
+        else{
+            throw new NullPointerException("No result.");
+        }
     }
 
     //edit info of a student
-    public InfoBySchool editInfo(int id, InfoBySchoolDTO infoBySchoolDTO){
-        InfoBySchool info = infoBySchoolRepository.findOne(id);
-        if(infoBySchoolDTO.getStudentCode()!=0) {
-            info.setStudentCode(infoBySchoolDTO.getStudentCode());
+    public InfoBySchool editInfo(int studentId, int infoId, InfoBySchoolDTO infoBySchoolDTO){
+        Student student = studentRepository.findOne(studentId);
+        InfoBySchool info = infoBySchoolRepository.findOne(infoId);
+        if (student.getInfoBySchool().equals(info)) {
+            if (infoBySchoolDTO.getStudentCode() != 0) {
+                info.setStudentCode(infoBySchoolDTO.getStudentCode());
+            }
+            if (infoBySchoolDTO.getMajor() != null) {
+                info.setMajor(infoBySchoolDTO.getMajor());
+            }
+            if (infoBySchoolDTO.getGPA() != 0) {
+                info.setGPA(infoBySchoolDTO.getGPA());
+            }
+            if (infoBySchoolDTO.getDiploma() != null) {
+                info.setDiploma(infoBySchoolDTO.getDiploma());
+            }
+            if (infoBySchoolDTO.getGrade() != null) {
+                info.setGrade(infoBySchoolDTO.getGrade());
+            }
+            if (infoBySchoolDTO.getGraduationYear() != null) {
+                info.setGraduationYear(infoBySchoolDTO.getGraduationYear());
+            }
+            if (infoBySchoolDTO.getStudentClass() != null) {
+                info.setStudentClass(infoBySchoolDTO.getStudentClass());
+            }
         }
-        if(infoBySchoolDTO.getMajor()!=null) {
-            info.setMajor(infoBySchoolDTO.getMajor());
-        }
-        if(infoBySchoolDTO.getGPA()!=0) {
-            info.setGPA(infoBySchoolDTO.getGPA());
-        }
-        if(infoBySchoolDTO.getDiploma()!=null) {
-            info.setDiploma(infoBySchoolDTO.getDiploma());
-        }
-        if(infoBySchoolDTO.getGrade()!=null) {
-            info.setGrade(infoBySchoolDTO.getGrade());
-        }
-        if(infoBySchoolDTO.getGraduationYear()!=null) {
-            info.setGraduationYear(infoBySchoolDTO.getGraduationYear());
-        }
-        if(infoBySchoolDTO.getStudentClass()!=null) {
-            info.setStudentClass(infoBySchoolDTO.getStudentClass());
+        else{
+            throw new NullPointerException("Edit failed.");
         }
         return infoBySchoolRepository.save(info);
     }
 
     //delete info of a student
-    public void deleteInfo(int id){
-        infoBySchoolRepository.delete(id);
+    public void deleteInfo(int studentId, int infoId){
+        Student student = studentRepository.findOne(studentId);
+        InfoBySchool info = infoBySchoolRepository.findOne(infoId);
+        if( student.getInfoBySchool().equals(info) ) {
+            infoBySchoolRepository.delete(infoId);
+        }
+        else{
+            throw new NullPointerException("Delete failed.");
+        }
     }
 }
