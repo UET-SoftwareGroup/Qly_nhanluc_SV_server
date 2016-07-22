@@ -12,10 +12,12 @@ public class Internship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO )
     private int id;
-//    @Column(name="studentId")
-//    private int studentId;
-//    @Column(name="partnerId")
-//    private int partnerId;
+    @Column(name="studentId")
+    private int studentId;
+
+    @Column(name="partnerId")
+
+    private int partnerId;
     @Column(name="company")
     private String company;
     @Column(name="startDate")
@@ -32,22 +34,6 @@ public class Internship {
     public void setId(int id) {
         this.id = id;
     }
-
-//    public int getStudentId() {
-//        return studentId;
-//    }
-//
-//    public void setStudentId(int studentId) {
-//        this.studentId = studentId;
-//    }
-//
-//    public int getPartnerId() {
-//        return partnerId;
-//    }
-//
-//    public void setPartnerId(int partnerId) {
-//        this.partnerId = partnerId;
-//    }
 
     public String getCompany() {
         return company;
@@ -80,4 +66,20 @@ public class Internship {
     public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
+    public int getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(int partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
 }

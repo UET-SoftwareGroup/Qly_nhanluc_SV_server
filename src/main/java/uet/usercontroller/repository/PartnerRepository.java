@@ -8,6 +8,6 @@ import uet.usercontroller.model.Partner;
  * Created by Tu on 03-May-16.
  */
 @Repository
-public interface PartnerRepository extends CrudRepository<Partner, String>{
+public interface PartnerRepository extends CrudRepository<Partner,Integer>{
 
 }

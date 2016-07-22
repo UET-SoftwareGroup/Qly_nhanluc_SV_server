@@ -30,17 +30,17 @@ public class InternshipController {
 
     //find By Id
     @RequestMapping(value = "/student/{studentId}/intern/{internId}", method = RequestMethod.GET)
-    public Internship findInternById(@PathVariable("internId") int id) {
-        return internshipService.findInternById(id);
+    public Internship findInternById(@PathVariable("studentId") int studentId,@PathVariable("internId") int id) {
+        return internshipService.findInternById(studentId,id);
     }
 
     //change 1 internship
     @RequestMapping(value = "/student/{studentId}/intern/{internId}", method = RequestMethod.PUT)
-    public Internship changeInternById(@PathVariable("internId") int id, @RequestBody InternshipDTO internshipDTO) {
-        return internshipService.changeById(id,internshipDTO);
+    public Internship changeInternById(@PathVariable("studentId")int studentId,@PathVariable("internId") int id, @RequestBody InternshipDTO internshipDTO) {
+        return internshipService.changeById(studentId,id,internshipDTO);
     }
     @RequestMapping(value="/student/{studentId}/intern/{internId}", method = RequestMethod.DELETE)
-    public String deleteById(@PathVariable("internId") int id){
-        return internshipService.deleteById(id);
+    public String deleteById(@PathVariable("studentId")int studentId,@PathVariable("internId") int id){
+        return internshipService.deleteById(studentId,id);
     }
 }

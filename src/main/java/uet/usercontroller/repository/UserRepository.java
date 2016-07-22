@@ -2,8 +2,8 @@ package uet.usercontroller.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.User;
+
 
 /**
  * Created by Tu on 02-May-16.
