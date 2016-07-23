@@ -1,6 +1,7 @@
 package uet.usercontroller.model;
 
 import javax.persistence.*;
+import java.awt.font.FontRenderContext;
 
 /**
  * Created by Trung on 7-8-2016.
@@ -62,5 +63,16 @@ public class Student {
         this.internship = internship;
     }
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private StudentInfo studentInfo;
+
+    public StudentInfo getStudentInfo() {
+        return studentInfo;
+    }
+
+    public void setStudentInfo(StudentInfo studentInfo){
+        this.studentInfo = studentInfo;
+    }
 
 }
