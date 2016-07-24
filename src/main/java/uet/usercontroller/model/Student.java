@@ -14,8 +14,6 @@ public class Student {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-//    @Column(name = "userId")
-//    private int userId;
     @Column(name = "studentName")
     private String studentName;
 
@@ -23,19 +21,11 @@ public class Student {
         this.id = id;
     }
 
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
-
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
     public int getId() {    return id; }
-
-//    public int getUserId() {
-//        return userId;
-//    }
 
     public String getStudentName() {
         return studentName;

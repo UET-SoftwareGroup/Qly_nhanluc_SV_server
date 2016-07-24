@@ -19,7 +19,6 @@ public class StudentInfoController {
     @Autowired
     private StudentInfoService studentinfoService;
 
-
     //show all student information
     // @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.PARTNER2})
     @NoAuthentication

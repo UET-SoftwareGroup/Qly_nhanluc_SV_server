@@ -42,12 +42,12 @@ public class UserController {
 
     //logout
     @NoAuthentication
-    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
     public void Logout(HttpServletRequest request){
         String token = request.getHeader("auth-token");
         userService.Logout(token);
     }
-
+//dc roi day ok nay an nham auth  tokkn :))dc dau, vi m dang debug, bh bo diem debug, va cho no pass qua
     //editUser
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="user/{id}", method = RequestMethod.PUT)
