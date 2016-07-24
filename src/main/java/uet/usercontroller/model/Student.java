@@ -63,7 +63,6 @@ public class Student {
         this.internship = internship;
     }
 
-
     @OneToOne(cascade = CascadeType.ALL)
     private StudentInfo studentInfo;
 
