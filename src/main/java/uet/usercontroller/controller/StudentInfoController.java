@@ -19,9 +19,7 @@ public class StudentInfoController {
     @Autowired
     private StudentInfoService studentinfoService;
 
-
     //show all student information
-    // @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.PARTNER2})
     @NoAuthentication
     @RequestMapping(value = "/student/studentInfo",method = RequestMethod.GET)
     public List<StudentInfo> getAllStudentInfo(){
@@ -29,14 +27,13 @@ public class StudentInfoController {
     }
 
     //show info of a student
-//  @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN,Role.PARTNER2})
     @NoAuthentication
     @RequestMapping(value = "student/{studentId}/studentInfo/studentInfoId}",method = RequestMethod.GET)
     public StudentInfo getStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentInfoId") int id){
         return studentinfoService.getStudentInfo(studentId,id);
     }
 
-//    create info
+    //create info
     @RequiredRoles(Role.STUDENT)
     @RequestMapping(value = "/student/{studentId}/studentInfo",method = RequestMethod.POST)
     public StudentInfo createStudentInfo(@PathVariable("studentId") int studentId, @RequestBody StudentInfoDTO studentInfoDTO){
@@ -51,7 +48,7 @@ public class StudentInfoController {
     }
 
    //delete info of a student
-    @RequiredRoles(Role.STUDENT)
+    @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value = "/student/{studentId}/studentInfo/{studentInfoId}",method = RequestMethod.DELETE)
     public void deleteStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentinfoId") int id){
         studentinfoService.deleteStudentInfo(studentId,id);

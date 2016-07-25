@@ -18,12 +18,11 @@ import java.util.UUID;
  */
 @Service
 public class UserService {
-
     @Autowired
     StudentRepository studentRepository;
-
     @Autowired
     private UserRepository userRepository;
+
     //Show all user
     public List<User> getUsers(){
         List<User> allUsers = (List<User>) userRepository.findAll();
@@ -46,7 +45,7 @@ public class UserService {
             }
             return userRepository.save(user);
         }else{
-            throw new NullPointerException("username da ton tai!");
+            throw new NullPointerException("User existed.");
         }
     }
 

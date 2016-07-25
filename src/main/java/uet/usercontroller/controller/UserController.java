@@ -43,7 +43,7 @@ public class UserController {
 
     //logout
     @NoAuthentication
-    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
     public void Logout(HttpServletRequest request){
         String token = request.getHeader("auth-token");
         userService.Logout(token);
