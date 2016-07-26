@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.InfoBySchoolDTO;
 import uet.usercontroller.model.InfoBySchool;
+import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
+import uet.usercontroller.model.User;
 import uet.usercontroller.repository.InfoBySchoolRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
@@ -32,27 +34,41 @@ public class InfoBySchoolService {
     //create info
     public InfoBySchool createInfo(int studentId, InfoBySchoolDTO infoBySchoolDTO){
         Student student = studentRepository.findOne(studentId);
-        InfoBySchool infoBySchool = new InfoBySchool();
-        infoBySchool.setStudentCode(infoBySchoolDTO.getStudentCode());
-        infoBySchool.setMajor(infoBySchoolDTO.getMajor());
-        infoBySchool.setGPA(infoBySchoolDTO.getGPA());
-        infoBySchool.setDiploma(infoBySchoolDTO.getDiploma());
-        infoBySchool.setGrade(infoBySchoolDTO.getGrade());
-        infoBySchool.setGraduationYear(infoBySchoolDTO.getGraduationYear());
-        infoBySchool.setStudentClass(infoBySchoolDTO.getStudentClass());
-        student.setInfoBySchool(infoBySchool);
-        return infoBySchoolRepository.save(infoBySchool);
+            InfoBySchool infoBySchool = new InfoBySchool();
+            infoBySchool.setStudentCode(infoBySchoolDTO.getStudentCode());
+            infoBySchool.setMajor(infoBySchoolDTO.getMajor());
+            infoBySchool.setGPA(infoBySchoolDTO.getGPA());
+            infoBySchool.setDiploma(infoBySchoolDTO.getDiploma());
+            infoBySchool.setGrade(infoBySchoolDTO.getGrade());
+            infoBySchool.setGraduationYear(infoBySchoolDTO.getGraduationYear());
+            infoBySchool.setStudentClass(infoBySchoolDTO.getStudentClass());
+            student.setInfoBySchool(infoBySchool);
+            return infoBySchoolRepository.save(infoBySchool);
     }
 
     //show info of a student
-    public InfoBySchool getInfo(int studentId, int infoId){
+    public InfoBySchool getInfo(int studentId, int infoId, String token){
+        User user = userRepository.findByToken(token);
         Student student = studentRepository.findOne(studentId);
-        InfoBySchool info = infoBySchoolRepository.findOne(infoId);
-        if (student.getInfoBySchool().equals(info)){
-            return info;
+        if ( user.getRole() == Role.STUDENT ) {
+            if (user.getStudent().equals(student)) {
+                InfoBySchool info = infoBySchoolRepository.findOne(infoId);
+                if (student.getInfoBySchool().equals(info)) {
+                    return info;
+                } else {
+                    throw new NullPointerException("No result.");
+                }
+            } else {
+                throw new NullPointerException("No result.");
+            }
         }
-        else{
-            throw new NullPointerException("No result.");
+        else {
+            InfoBySchool info = infoBySchoolRepository.findOne(infoId);
+            if (student.getInfoBySchool().equals(info)) {
+                return info;
+            } else {
+                throw new NullPointerException("No result.");
+            }
         }
     }
 
