@@ -32,15 +32,21 @@ public class JobSkillController {
     //create 1 jobskill
     @RequiredRoles({Role.STUDENT})
     @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.POST)
-    public JobSkill createJs(@PathVariable("studentId") int studentid ,@RequestBody JobSkillDTO jobSkillDTO){
-        return jobSkillService.createJs(studentid,jobSkillDTO);
+    public JobSkill createJs(@PathVariable("studentId") int studentId ,@RequestBody JobSkillDTO jobSkillDTO){
+        return jobSkillService.createJs(studentId,jobSkillDTO);
     }
 
+    //show toan bo jobskill cua 1 student
+    @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
+    @RequestMapping(value="student/{studentId}/jobSkill/ALL",method = RequestMethod.GET)
+    public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId){
+        return jobSkillService.getallInStudent(studentId);
+    }
     //show 1 jobskill by id
     @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}", method = RequestMethod.GET)
     @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
     public JobSkill showById(@PathVariable("jobSkillId") int jobskillId,@PathVariable("studentId") int studentId){
-        return jobSkillService.showJobSkill(jobskillId,studentId);
+        return jobSkillService.showJobSkill(studentId,jobskillId);
     }
     //thay doi 1 jobskill by id
     @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}", method = RequestMethod.PUT)
@@ -49,11 +55,10 @@ public class JobSkillController {
         return jobSkillService.ChangeJsById(studentId,id,jobSkillDTO);
     }
     //delete 1 jobskill
-    @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}/remove", method = RequestMethod.DELETE)
+    @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}", method = RequestMethod.DELETE)
     @RequiredRoles({Role.STUDENT})
     public String deleteJs(@PathVariable("studentId") int studentId,@PathVariable("jobSkillId") int id){
         return jobSkillService.deleteJobSkill(studentId,id);
     }
-
 
 }

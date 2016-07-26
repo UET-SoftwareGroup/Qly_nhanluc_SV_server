@@ -2,6 +2,8 @@ package uet.usercontroller.model;
 
 import javax.persistence.*;
 import java.awt.font.FontRenderContext;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Trung on 7-8-2016.
@@ -63,5 +65,14 @@ public class Student {
     public void setStudentInfo(StudentInfo studentInfo){
         this.studentInfo = studentInfo;
     }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<JobSkill> jobSkills  = new ArrayList<JobSkill>();
 
+    public List<JobSkill> getJobSkills() {
+        return jobSkills;
+    }
+
+    public void setJobSkills(List<JobSkill> jobSkills) {
+        this.jobSkills = jobSkills;
+    }
 }

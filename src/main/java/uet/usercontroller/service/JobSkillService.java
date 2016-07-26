@@ -25,6 +25,11 @@ public class JobSkillService {
         List<JobSkill> getAll = (List<JobSkill>) jobSkillRepository.findAll();
         return getAll;
     }
+//    show list jobskill cua 1 student
+    public List<JobSkill> getallInStudent(int studentId){
+            Student student = studentRepository.findById(studentId);
+            return student.getJobSkills();
+    }
     //create jobskill
     public JobSkill createJs( int studentId,JobSkillDTO jobSkillDTO){
         Student student = studentRepository.findById(studentId);
@@ -36,6 +41,8 @@ public class JobSkillService {
             jobSkill.setSkill(jobSkillDTO.getSkill());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
             jobSkillRepository.save(jobSkill);
+            student.getJobSkills().add(jobSkill);
+            studentRepository.save(student);
             return jobSkill;
         }
         else{
@@ -68,6 +75,7 @@ public class JobSkillService {
     }
     //change 1 Jobskill by id
     public JobSkill ChangeJsById(int studentId,int id, JobSkillDTO jobSkillDTO){
+        Student student =studentRepository.findById(studentId);
         JobSkill jobSkill = jobSkillRepository.findById(id);
         if(jobSkillDTO.getStudentId()==studentId && jobSkill.getId()==id){
             jobSkill.setId(jobSkillDTO.getId());
@@ -76,6 +84,8 @@ public class JobSkillService {
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
             jobSkill.setSkill(jobSkillDTO.getSkill());
             jobSkillRepository.save(jobSkill);
+            student.getJobSkills().add(jobSkill);
+            studentRepository.save(student);
             return jobSkill;
         }
         else{
