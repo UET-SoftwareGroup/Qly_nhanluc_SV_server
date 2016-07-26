@@ -22,13 +22,13 @@ public class StudentInfoService {
     private StudentInfoRepository studentInfoRepository;
 
     // show all student information
-    public List<StudentInfo> getAllStudentInfo() {
+    public List<StudentInfo> getAllStudentInfo(String token) {
         List<StudentInfo> allInfo = (List<StudentInfo>) studentInfoRepository.findAll();
         return allInfo;
     }
 
     // show info of a student
-    public StudentInfo getStudentInfo(int studentId, int id){
+    public StudentInfo getStudentInfo(int studentId, int id, String token){
         Student student = studentRepository.findOne(studentId);
         StudentInfo info = studentInfoRepository.findOne(id);
         if (student.getStudentInfo().equals(info)){
@@ -40,7 +40,7 @@ public class StudentInfoService {
     }
 
     //create info
-    public StudentInfo createStudentInfo(int studentId, StudentInfoDTO studentInfoDTO){
+    public StudentInfo createStudentInfo(int studentId, StudentInfoDTO studentInfoDTO,String token){
         Student student = studentRepository.findOne(studentId);
         StudentInfo studentInfo = new StudentInfo();
         studentInfo.setBirthday(studentInfoDTO.getBirthday());
@@ -54,7 +54,7 @@ public class StudentInfoService {
     }
 
     //edit info of a student
-    public StudentInfo editStudentInfo(int studentId, int id, StudentInfoDTO studentInfoDTO) {
+    public StudentInfo editStudentInfo(int studentId, int id, StudentInfoDTO studentInfoDTO, String token) {
         Student student = studentRepository.findOne(studentId);
         StudentInfo info = studentInfoRepository.findOne(id);
         if (student.getStudentInfo().equals(info)){
@@ -87,10 +87,11 @@ public class StudentInfoService {
 
 
     //delete info of a student
-    public void deleteStudentInfo(int studentId, int id) {
+    public void deleteStudentInfo(int studentId, int id,String token) {
         Student student = studentRepository.findOne(studentId);
         StudentInfo info = studentInfoRepository.findOne(id);
         if (student.getStudentInfo().equals(info)){
+            student.setStudentInfo(null);
             studentInfoRepository.delete(info);
         }
         else{
@@ -100,4 +101,3 @@ public class StudentInfoService {
 
 }
 
-//co cai git gui thi up de hon, co ma ko co cung ko sao. doi ti toi tim

@@ -19,26 +19,26 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     //Show all
-    @RequiredRoles({Role.STUDENT,Role.PARTNER1})
+    @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="user/student",method = RequestMethod.GET)
     public List<Student> getStudents() { return studentService.getStudents();}
 
     //Create
-    @RequiredRoles(Role.STUDENT)
+    @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value="/user/{userId}/student", method = RequestMethod.POST)
     public Student createStudent(@PathVariable("userId") int userId, @RequestBody StudentDTO studentDTO){
         return studentService.createStudent(userId, studentDTO);
     }
 
     //Search
-    @RequiredRoles({Role.STUDENT,Role.PARTNER1})
+    @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="/user/{userId}/student/{studentId}",method = RequestMethod.GET)
     public Student findStudent(@PathVariable("userId") int userId,@PathVariable("studentId") int studentId) {
         return studentService.findStudent(userId, studentId);
     }
 
     //Edit
-    @RequiredRoles(Role.STUDENT)
+    @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.PUT)
     public Student editStudent(@PathVariable("userId") int userId ,@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO){
         return studentService.editStudent(userId, studentId, studentDTO);

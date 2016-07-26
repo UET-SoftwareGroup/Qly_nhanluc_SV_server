@@ -9,6 +9,7 @@ import uet.usercontroller.service.InfoBySchoolService;
 import uet.usercontroller.stereotype.NoAuthentication;
 import uet.usercontroller.stereotype.RequiredRoles;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class InfoBySchoolController {
     private InfoBySchoolService infoBySchoolService;
 
     //Show all student information
-    @NoAuthentication
+    @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="/student/info", method = RequestMethod.GET)
     public List<InfoBySchool> getAllInfo(){
         return infoBySchoolService.getAllInfo();
@@ -34,23 +35,25 @@ public class InfoBySchoolController {
     }
 
     //show info of a student
-    @RequiredRoles({Role.STUDENT,Role.PARTNER1})
+    @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.GET)
-    public InfoBySchool getInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId){
-        return infoBySchoolService.getInfo(studentId, infoId);
+    public InfoBySchool getInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId, HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        return infoBySchoolService.getInfo(studentId, infoId, token);
     }
 
     //edit info of a student
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.PUT)
-    public InfoBySchool editInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId, InfoBySchoolDTO infoBySchoolDTO){
-        return infoBySchoolService.editInfo(studentId, infoId, infoBySchoolDTO);
+    public InfoBySchool editInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId,@RequestBody InfoBySchoolDTO infoBySchoolDTO,HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        return infoBySchoolService.editInfo(studentId, infoId, infoBySchoolDTO, token);
     }
 
-    //delte info of a student
+    //delete info of a student
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.DELETE)
-    public void deletaInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId){
+    public void deleteInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId){
         infoBySchoolService.deleteInfo(studentId, infoId);
     }
 }
