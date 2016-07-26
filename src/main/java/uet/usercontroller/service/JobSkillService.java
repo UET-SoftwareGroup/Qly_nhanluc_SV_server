@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.JobSkillDTO;
 import uet.usercontroller.model.JobSkill;
 import uet.usercontroller.model.Student;
+import uet.usercontroller.model.User;
 import uet.usercontroller.repository.JobSkillRepository;
 import uet.usercontroller.repository.StudentRepository;
+import uet.usercontroller.repository.UserRepository;
 
 import java.util.List;
 
@@ -19,21 +21,26 @@ public class JobSkillService {
     private JobSkillRepository jobSkillRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     //show list jobskill
-    public List<JobSkill> getJobSkills(){
+    public List<JobSkill> getJobSkills(String token){
+        User user = userRepository.findByToken(token);
         List<JobSkill> getAll = (List<JobSkill>) jobSkillRepository.findAll();
         return getAll;
     }
 //    show list jobskill cua 1 student
-    public List<JobSkill> getallInStudent(int studentId){
+    public List<JobSkill> getallInStudent(int studentId,String token){
+            User user =userRepository.findByToken(token);
             Student student = studentRepository.findById(studentId);
             return student.getJobSkills();
     }
     //create jobskill
-    public JobSkill createJs( int studentId,JobSkillDTO jobSkillDTO){
+    public JobSkill createJs( int studentId,JobSkillDTO jobSkillDTO,String token){
+        User user = userRepository.findByToken(token);
         Student student = studentRepository.findById(studentId);
-        if(student.getId()== studentId && studentId==jobSkillDTO.getStudentId()) {
+        if(user.getStudent().equals(student) && student.getId()== studentId && studentId==jobSkillDTO.getStudentId()) {
             JobSkill jobSkill = new JobSkill();
             jobSkill.setId(jobSkillDTO.getId());
             jobSkill.setStudentId(jobSkillDTO.getStudentId());
@@ -51,10 +58,11 @@ public class JobSkillService {
     }
 
     //delete 1 jobskill by id
-    public String deleteJobSkill(int studentId,int id){
+    public String deleteJobSkill(int studentId,int id,String token){
+        User user = userRepository.findByToken(token);
         Student student = studentRepository.findById(studentId);
         JobSkill jobSkill = jobSkillRepository.findById(id);
-        if(student.getId()==studentId && jobSkill.getId()==id) {
+        if(user.getStudent().equals(student) && student.getId()==studentId && jobSkill.getId()==id) {
             jobSkillRepository.delete(jobSkill);
             return "deleted";
         }
@@ -63,7 +71,8 @@ public class JobSkillService {
         }
     }
     //show 1 jobskill
-    public JobSkill showJobSkill(int studentId, int id){
+    public JobSkill showJobSkill(int studentId, int id,String token){
+        User user = userRepository.findByToken(token);
         Student student = studentRepository.findById(studentId);
         JobSkill jobSkill = jobSkillRepository.findById(id);
         if(student.getId()==studentId && jobSkill.getId()==id) {
@@ -74,18 +83,17 @@ public class JobSkillService {
         }
     }
     //change 1 Jobskill by id
-    public JobSkill ChangeJsById(int studentId,int id, JobSkillDTO jobSkillDTO){
+    public JobSkill ChangeJsById(int studentId,int id, JobSkillDTO jobSkillDTO,String token){
+        User user = userRepository.findByToken(token);
         Student student =studentRepository.findById(studentId);
         JobSkill jobSkill = jobSkillRepository.findById(id);
-        if(jobSkillDTO.getStudentId()==studentId && jobSkill.getId()==id){
+        if(user.getStudent().equals(student) && jobSkillDTO.getStudentId()==student.getId() && jobSkill.getId()==id){
             jobSkill.setId(jobSkillDTO.getId());
             jobSkill.setCompany(jobSkillDTO.getCompany());
             jobSkill.setStudentId(jobSkillDTO.getStudentId());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
             jobSkill.setSkill(jobSkillDTO.getSkill());
             jobSkillRepository.save(jobSkill);
-            student.getJobSkills().add(jobSkill);
-            studentRepository.save(student);
             return jobSkill;
         }
         else{

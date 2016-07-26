@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.InternshipDTO;
 import uet.usercontroller.model.Internship;
 import uet.usercontroller.model.Student;
+import uet.usercontroller.model.User;
 import uet.usercontroller.repository.InternshipRepository;
 import uet.usercontroller.repository.StudentRepository;
+import uet.usercontroller.repository.UserRepository;
 
 import java.util.List;
 
@@ -18,29 +20,33 @@ import java.util.List;
 public class InternshipService {
     @Autowired
     StudentRepository studentRepository;
-
     @Autowired
     private InternshipRepository internshipRepository;
-
+    @Autowired
+    private UserRepository userRepository;
     //show all Internships
-    public List<Internship> getAllIntern(){
+    public List<Internship> getAllIntern(String token){
+        User user =userRepository.findByToken(token);
         List<Internship> All = (List<Internship>) internshipRepository.findAll();
         return  All;
     }
     //find Internship By Id
-    public Internship findInternById(int studentId,int id) {
+    public Internship findInternById(int studentId,int id,String token) {
+        User user = userRepository.findByToken(token);
         Internship internship = internshipRepository.findById(id);
         if (internship.getStudentId() == studentId) {
             return internship;
         }
         else{
-            throw new NullPointerException(" studentId sai ");
+            throw new NullPointerException(" khong thuc hien dc ");
         }
     }
     //Delete by Id
-    public String deleteById(int studentId,int id){
+    public String deleteById(int studentId,int id,String token){
+        User user = userRepository.findByToken(token);
         Internship internship = internshipRepository.findById(id);
-        if(internship.getStudentId()==studentId) {
+        Student student = studentRepository.findById(studentId);
+        if(internship.getStudentId()==student.getId()&& internship.getId()==id) {
             internshipRepository.delete(internship);
             return "delete";
         }
@@ -49,9 +55,11 @@ public class InternshipService {
         }
     }
     //change 1 internship By Id
-    public Internship changeById( int studentId,int id, InternshipDTO internshipDTO){
+    public Internship changeById( int studentId,int id, InternshipDTO internshipDTO,String token){
+        User user = userRepository.findByToken(token);
         Internship internship = internshipRepository.findById(id);
-        if(internship.getStudentId()==studentId) {
+        Student student = studentRepository.findById(studentId);
+        if(internship.getStudentId()==student.getId()) {
             internship.setId(internshipDTO.getId());
             internship.setPartnerId(internshipDTO.getPartnerId());
             internship.setStudentId(internshipDTO.getStudentId());
@@ -60,6 +68,8 @@ public class InternshipService {
             internship.setEndDate(internshipDTO.getEndDate());
             internship.setSupervisor(internshipDTO.getSupervisor());
             internshipRepository.save(internship);
+            student.setInternship(internship);
+            studentRepository.save(student);
             return internship;
         }
         else {
@@ -67,7 +77,8 @@ public class InternshipService {
         }
     }
     //create 1 internship
-    public Internship createIntern(int studentId,InternshipDTO internshipDTO){
+    public Internship createIntern(int studentId,InternshipDTO internshipDTO,String token){
+        User user =userRepository.findByToken(token);
         Student student = studentRepository.findOne(studentId);
         Internship internship = new Internship();
         internship.setStudentId(internshipDTO.getStudentId());
@@ -77,6 +88,7 @@ public class InternshipService {
         internship.setCompany(internshipDTO.getCompany());
         internship.setSupervisor(internshipDTO.getSupervisor());
         student.setInternship(internship);
+        studentRepository.save(student);
         return  internshipRepository.save(internship);
     }
 
