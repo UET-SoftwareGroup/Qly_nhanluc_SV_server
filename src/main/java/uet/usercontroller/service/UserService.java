@@ -95,3 +95,5 @@ public class UserService {
         userRepository.delete(id);
     }
 }
+//dau nhi, hinh nhu phải tim 1 user co id bang id kia và delete(user) ma
+//đây là xóa 1 user luôn, ý t đang bảo t xóa user thì mất trong db còn hàm bên kia thì ko
