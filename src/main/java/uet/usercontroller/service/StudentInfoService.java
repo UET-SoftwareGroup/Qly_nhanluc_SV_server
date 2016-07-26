@@ -91,6 +91,7 @@ public class StudentInfoService {
         Student student = studentRepository.findOne(studentId);
         StudentInfo info = studentInfoRepository.findOne(id);
         if (student.getStudentInfo().equals(info)){
+            student.setStudentInfo(null);
             studentInfoRepository.delete(info);
         }
         else{
