@@ -38,7 +38,7 @@ public class StudentService {
         }
     }
     //Edit
-    public Student editStudent(int userId, int studentId, StudentDTO studentDTO){
+    public Student editStudent(String token,int userId, int studentId, StudentDTO studentDTO){
         User user = userRepository.findOne(userId);
         Student student = studentRepository.findOne(studentId);
         if ( user.getStudent().equals(student)) {
@@ -51,17 +51,7 @@ public class StudentService {
             throw new NullPointerException("Edit failed.");
         }
     }
-    //Delete
-    public void delStudent(int userId, int studentId) {
-        User user = userRepository.findOne(userId);
-        Student student = studentRepository.findOne(studentId);
-        if ( user.getStudent().equals(student)) {
-            studentRepository.delete(studentId);
-        }
-        else{
-            throw new NullPointerException("Delete failed.");
-        }
-    }
+
     //Create
     public Student createStudent(int userId, StudentDTO studentDTO) {
         User user = userRepository.findOne(userId);
@@ -69,5 +59,18 @@ public class StudentService {
         student.setStudentName(studentDTO.getStudentName());
         user.setStudent(student);
         return studentRepository.save(student);
+    }
+
+    //Delete
+    public void delStudent(int userId, int studentId) {
+        User user = userRepository.findOne(userId);
+        Student student = studentRepository.findOne(studentId);
+        if ( user.getStudent().equals(student)) {
+            user.setStudent(null);
+            studentRepository.delete(studentId);
+        }
+        else{
+            throw new NullPointerException("Delete failed.");
+        }
     }
 }
