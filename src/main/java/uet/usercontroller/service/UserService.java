@@ -33,18 +33,24 @@ public class UserService {
     public User createUser(UserDTO userDTO) {
         User user1 = userRepository.findByUserName(userDTO.getUserName());
         if (user1 == null) {
-            User user = new User();
-            user.setUserName(userDTO.getUserName());
-            user.setPassword(userDTO.getPassword());
-            user.setRole(userDTO.getRole());
-            if (user.getRole()== Role.STUDENT){
-                Student student = new Student();
-                student.setStudentName(user.getUserName());
-                user.setStudent(student);
-                studentRepository.save(student);
+            if ( userDTO.getUserName() != null && userDTO.getPassword() != null && userDTO.getRole() != null ) {
+                User user = new User();
+                user.setUserName(userDTO.getUserName());
+                user.setPassword(userDTO.getPassword());
+                user.setRole(userDTO.getRole());
+                if (user.getRole() == Role.STUDENT) {
+                    Student student = new Student();
+                    student.setStudentName(user.getUserName());
+                    user.setStudent(student);
+                    studentRepository.save(student);
+                }
+                return userRepository.save(user);
             }
-            return userRepository.save(user);
-        }else{
+            else {
+                throw new NullPointerException("Missing information.");
+            }
+        }
+        else{
             throw new NullPointerException("User existed.");
         }
     }
