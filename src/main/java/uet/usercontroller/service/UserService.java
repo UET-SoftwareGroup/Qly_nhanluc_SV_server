@@ -77,10 +77,11 @@ public class UserService {
     }
 
     //logout
-    public void Logout(String token){
+    public User Logout(String token){
         User user = userRepository.findByToken(token);
         user.setToken(null);
-        userRepository.save(user);
+        user.setExpiryTime(null);
+        return userRepository.save(user);
     }
 
     //editUser
