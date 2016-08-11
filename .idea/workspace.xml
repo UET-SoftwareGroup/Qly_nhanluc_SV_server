@@ -1094,7 +1094,7 @@
       <workItem from="1470588916744" duration="422000" />
       <workItem from="1470623113549" duration="1124000" />
       <workItem from="1470710683022" duration="745000" />
-      <workItem from="1470882761308" duration="3989000" />
+      <workItem from="1470882761308" duration="4038000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for develop&#10;">
       <created>1467949537855</created>
@@ -1252,11 +1252,17 @@
       <option name="project" value="LOCAL" />
       <updated>1470887895639</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="- UserController:&#10;thêm @NoAuthentication vào hàm show all user.&#10;sửa hàm signup: bây giờ signup sẽ tự tạo id để nối xuống cả student, studentInfo và infoBySchool&#10;&#10;- UserService:&#10;sửa lỗi logout chỉ xóa token và chưa xóa expiryTime&#10;&#10;- model/StudentInfo + StudentInfoDTO:&#10;đổi kiểu dữ liệu của birthday từ Date sang String">
+      <created>1470887970200</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1470887970200</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247523000" />
+    <option name="totallyTimeSpent" value="247572000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
