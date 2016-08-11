@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/UserService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Qly_SV.iws" />
@@ -1095,7 +1094,7 @@
       <workItem from="1470588916744" duration="422000" />
       <workItem from="1470623113549" duration="1124000" />
       <workItem from="1470710683022" duration="745000" />
-      <workItem from="1470882761308" duration="3913000" />
+      <workItem from="1470882761308" duration="3989000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for develop&#10;">
       <created>1467949537855</created>
@@ -1247,11 +1246,17 @@
       <option name="project" value="LOCAL" />
       <updated>1470887824916</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="- UserController:&#10;thêm @NoAuthentication vào hàm show all user.&#10;sửa hàm signup: bây giờ signup sẽ tự tạo id để nối xuống cả student, studentInfo và infoBySchool&#10;&#10;- UserService:&#10;sửa lỗi logout chỉ xóa token và chưa xóa expiryTime&#10;&#10;- model/StudentInfo + StudentInfoDTO:&#10;đổi kiểu dữ liệu của birthday từ Date sang String">
+      <created>1470887895639</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1470887895639</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247447000" />
+    <option name="totallyTimeSpent" value="247523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
