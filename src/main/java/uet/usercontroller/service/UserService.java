@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
+import uet.usercontroller.model.StudentInfo;
 import uet.usercontroller.model.User;
+import uet.usercontroller.repository.StudentInfoRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
@@ -22,6 +24,8 @@ public class UserService {
     StudentRepository studentRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private StudentInfoRepository studentInfoRepository;
 
     //Show all user
     public List<User> getUsers(){
@@ -102,5 +106,3 @@ public class UserService {
         userRepository.delete(id);
     }
 }
-//dau nhi, hinh nhu phải tim 1 user co id bang id kia và delete(user) ma
-//đây là xóa 1 user luôn, ý t đang bảo t xóa user thì mất trong db còn hàm bên kia thì ko
