@@ -3,10 +3,8 @@ package uet.usercontroller.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.UserDTO;
-import uet.usercontroller.model.Role;
-import uet.usercontroller.model.Student;
-import uet.usercontroller.model.StudentInfo;
-import uet.usercontroller.model.User;
+import uet.usercontroller.model.*;
+import uet.usercontroller.repository.InfoBySchoolRepository;
 import uet.usercontroller.repository.StudentInfoRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
@@ -25,7 +23,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private StudentInfoRepository studentInfoRepository;
+    StudentInfoRepository studentInfoRepository;
+    @Autowired
+    InfoBySchoolRepository infoBySchoolRepository;
 
     //Show all user
     public List<User> getUsers(){
@@ -46,6 +46,12 @@ public class UserService {
                     Student student = new Student();
                     student.setStudentName(user.getUserName());
                     user.setStudent(student);
+                    StudentInfo studentInfo = new StudentInfo();
+                    student.setStudentInfo(studentInfo);
+                    studentInfoRepository.save(studentInfo);
+                    InfoBySchool infoBySchool = new InfoBySchool();
+                    student.setInfoBySchool(infoBySchool);
+                    infoBySchoolRepository.save(infoBySchool);
                     studentRepository.save(student);
                 }
                 return userRepository.save(user);
