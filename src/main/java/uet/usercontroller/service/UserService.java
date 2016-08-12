@@ -83,6 +83,7 @@ public class UserService {
         result.setUserName(user.getUserName());
         result.setRole(user.getRole());
         result.setToken(user.getToken());
+        result.setStudent(user.getStudent());
         return result;
     }
 
