@@ -60,7 +60,7 @@ public class StudentInfoController {
    //delete info of a student
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value = "/student/{studentId}/studentInfo/{studentInfoId}",method = RequestMethod.DELETE)
-    public void deleteStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentinfoId") int id, HttpServletRequest request){
+    public void deleteStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentInfoId") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         studentinfoService.deleteStudentInfo(studentId,id,token);
     }
