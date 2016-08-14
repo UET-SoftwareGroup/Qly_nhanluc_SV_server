@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class StudentInfoDTO {
     private int id;
-    private Date birthday;
+    private String birthday;
     private String phoneNumber;
     private String address;
     private String skype;
@@ -22,11 +22,11 @@ public class StudentInfoDTO {
         this.id = id;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

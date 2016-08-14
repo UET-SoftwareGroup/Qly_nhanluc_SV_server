@@ -18,7 +18,7 @@ public class StudentInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private Date birthday;
+    private String birthday;
 
     private String phoneNumber;
 
@@ -38,11 +38,11 @@ public class StudentInfo {
         this.id = id;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

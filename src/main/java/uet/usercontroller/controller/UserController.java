@@ -22,6 +22,7 @@ public class UserController {
     private UserService userService;
 
     //Show all user
+    @NoAuthentication
     @RequestMapping(value="/user",method = RequestMethod.GET)
     public List<User> getUsers() {
         return userService.getUsers();
@@ -44,9 +45,9 @@ public class UserController {
     //logout
     @NoAuthentication
     @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public void Logout(HttpServletRequest request){
+    public User Logout(HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        userService.Logout(token);
+        return userService.Logout(token);
     }
 
     //editUser

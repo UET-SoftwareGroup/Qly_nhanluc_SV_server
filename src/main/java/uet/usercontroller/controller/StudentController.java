@@ -9,6 +9,7 @@ import uet.usercontroller.model.Student;
 import uet.usercontroller.service.StudentService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -40,8 +41,9 @@ public class StudentController {
     //Edit
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value="/user/{userId}/student/{studentId}", method = RequestMethod.PUT)
-    public Student editStudent(@PathVariable("userId") int userId ,@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO){
-        return studentService.editStudent(userId, studentId, studentDTO);
+    public Student editStudent(@PathVariable("userId") int userId ,@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO, HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        return studentService.editStudent(token,userId, studentId, studentDTO);
     }
 
     //Delete

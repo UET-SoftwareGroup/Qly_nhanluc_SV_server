@@ -55,10 +55,12 @@ public class InfoBySchoolService {
                 InfoBySchool info = infoBySchoolRepository.findOne(infoId);
                 if (student.getInfoBySchool().equals(info)) {
                     return info;
-                } else {
+                }
+                else {
                     throw new NullPointerException("No result.");
                 }
-            } else {
+            }
+            else {
                 throw new NullPointerException("No result.");
             }
         }
@@ -66,7 +68,8 @@ public class InfoBySchoolService {
             InfoBySchool info = infoBySchoolRepository.findOne(infoId);
             if (student.getInfoBySchool().equals(info)) {
                 return info;
-            } else {
+            }
+            else {
                 throw new NullPointerException("No result.");
             }
         }
