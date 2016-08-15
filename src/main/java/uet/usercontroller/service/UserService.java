@@ -96,20 +96,20 @@ public class UserService {
     }
 
     //editUser
-    public User editUser(int id, UserDTO userDTO){
+    public User editUser(int id, UserDTO userDTO, String token){
         User user = userRepository.findOne(id);
-        if(userDTO.getUserName()!=null){
-            user.setUserName(userDTO.getUserName());
-        }
-        if(userDTO.getPassword()!=null) {
-            user.setPassword(userDTO.getPassword());
+        if ( user.getToken() == token ) {
+            if (user.getRole()==Role.ADMIN || user.getRole()==Role.STUDENT){
+                if(userDTO.getPassword()!=null) {
+                    user.setPassword(userDTO.getPassword());
+                }
+            }
         }
         return userRepository.save(user);
-
     }
 
-    //deleteUser
+    //deleteUser (o ham nay, user co id va user co token la 2 user khac nhau.)
     public void deleteUser(int id){
-        userRepository.delete(id);
+            userRepository.delete(id);
     }
 }

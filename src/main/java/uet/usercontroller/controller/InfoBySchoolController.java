@@ -20,40 +20,39 @@ public class InfoBySchoolController {
     @Autowired
     private InfoBySchoolService infoBySchoolService;
 
-    //Show all student information
-    @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
-    @RequestMapping(value="/student/info", method = RequestMethod.GET)
+    //Show all student information by school
+    @RequiredRoles({Role.PARTNER1,Role.ADMIN})
+    @RequestMapping(value="/infobyschool", method = RequestMethod.GET)
     public List<InfoBySchool> getAllInfo(){
         return infoBySchoolService.getAllInfo();
     }
 
     //create info
     @RequiredRoles(Role.ADMIN)
-    @RequestMapping(value="/student/{studentId}/info", method = RequestMethod.POST)
+    @RequestMapping(value="/student/{studentId}/infobyschool", method = RequestMethod.POST)
     public InfoBySchool createInfo(@PathVariable("studentId") int studentId, @RequestBody InfoBySchoolDTO infoBySchoolDTO){
         return infoBySchoolService.createInfo(studentId, infoBySchoolDTO);
     }
 
     //show info of a student
     @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
-    @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.GET)
-    public InfoBySchool getInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId, HttpServletRequest request){
+    @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.GET)
+    public InfoBySchool getInfo(@PathVariable("infoId") int infoId, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return infoBySchoolService.getInfo(studentId, infoId, token);
+        return infoBySchoolService.getInfo(infoId, token);
     }
 
     //edit info of a student
     @RequiredRoles(Role.ADMIN)
-    @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.PUT)
-    public InfoBySchool editInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId,@RequestBody InfoBySchoolDTO infoBySchoolDTO,HttpServletRequest request){
-        String token = request.getHeader("auth-token");
-        return infoBySchoolService.editInfo(studentId, infoId, infoBySchoolDTO, token);
+    @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.PUT)
+    public InfoBySchool editInfo(@PathVariable("infoId") int infoId,@RequestBody InfoBySchoolDTO infoBySchoolDTO){
+        return infoBySchoolService.editInfo(infoId, infoBySchoolDTO);
     }
 
     //delete info of a student
     @RequiredRoles(Role.ADMIN)
-    @RequestMapping(value="/student/{studentId}/info/{infoId}", method = RequestMethod.DELETE)
-    public void deleteInfo(@PathVariable("studentId") int studentId, @PathVariable("infoId") int infoId){
-        infoBySchoolService.deleteInfo(studentId, infoId);
+    @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.DELETE)
+    public void deleteInfo(@PathVariable("infoId") int infoId){
+        infoBySchoolService.deleteInfo(infoId);
     }
 }

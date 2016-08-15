@@ -47,24 +47,10 @@ public class InfoBySchoolService {
     }
 
     //show info of a student
-    public InfoBySchool getInfo(int studentId, int infoId, String token){
+    public InfoBySchool getInfo(int infoId, String token){
         User user = userRepository.findByToken(token);
-        Student student = studentRepository.findOne(studentId);
         if ( user.getRole() == Role.STUDENT ) {
-            if (user.getStudent().equals(student)) {
-                InfoBySchool info = infoBySchoolRepository.findOne(infoId);
-                if (student.getInfoBySchool().equals(info)) {
-                    return info;
-                }
-                else {
-                    throw new NullPointerException("No result.");
-                }
-            }
-            else {
-                throw new NullPointerException("No result.");
-            }
-        }
-        else {
+            Student student = user.getStudent();
             InfoBySchool info = infoBySchoolRepository.findOne(infoId);
             if (student.getInfoBySchool().equals(info)) {
                 return info;
@@ -73,51 +59,50 @@ public class InfoBySchoolService {
                 throw new NullPointerException("No result.");
             }
         }
+        else {
+            InfoBySchool info = infoBySchoolRepository.findOne(infoId);
+            ;return info;
+        }
     }
 
     //edit info of a student
-    public InfoBySchool editInfo(int studentId, int infoId, InfoBySchoolDTO infoBySchoolDTO, String token) {
-        Student student = studentRepository.findOne(studentId);
+    public InfoBySchool editInfo(int infoId, InfoBySchoolDTO infoBySchoolDTO) {
         InfoBySchool info = infoBySchoolRepository.findOne(infoId);
-        if (student.getInfoBySchool().equals(info)) {
-            if (infoBySchoolDTO.getStudentCode() != 0) {
-                info.setStudentCode(infoBySchoolDTO.getStudentCode());
-            }
-            if (infoBySchoolDTO.getMajor() != null) {
-                info.setMajor(infoBySchoolDTO.getMajor());
-            }
-            if (infoBySchoolDTO.getGPA() != 0) {
-                info.setGPA(infoBySchoolDTO.getGPA());
-            }
-            if (infoBySchoolDTO.getDiploma() != null) {
-                info.setDiploma(infoBySchoolDTO.getDiploma());
-            }
-            if (infoBySchoolDTO.getGrade() != null) {
-                info.setGrade(infoBySchoolDTO.getGrade());
-            }
-            if (infoBySchoolDTO.getGraduationYear() != null) {
-                info.setGraduationYear(infoBySchoolDTO.getGraduationYear());
-            }
-            if (infoBySchoolDTO.getStudentClass() != null) {
-                info.setStudentClass(infoBySchoolDTO.getStudentClass());
-            }
-        } else {
-            throw new NullPointerException("Edit failed.");
+        if (infoBySchoolDTO.getStudentCode() != 0) {
+            info.setStudentCode(infoBySchoolDTO.getStudentCode());
+        }
+        if (infoBySchoolDTO.getMajor() != null) {
+            info.setMajor(infoBySchoolDTO.getMajor());
+        }
+        if (infoBySchoolDTO.getGPA() != 0) {
+            info.setGPA(infoBySchoolDTO.getGPA());
+        }
+        if (infoBySchoolDTO.getDiploma() != null) {
+            info.setDiploma(infoBySchoolDTO.getDiploma());
+        }
+        if (infoBySchoolDTO.getGrade() != null) {
+            info.setGrade(infoBySchoolDTO.getGrade());
+        }
+        if (infoBySchoolDTO.getGraduationYear() != null) {
+            info.setGraduationYear(infoBySchoolDTO.getGraduationYear());
+        }
+        if (infoBySchoolDTO.getStudentClass() != null) {
+            info.setStudentClass(infoBySchoolDTO.getStudentClass());
         }
         return infoBySchoolRepository.save(info);
     }
 
     //delete info of a student
-    public void deleteInfo(int studentId, int infoId){
-        Student student = studentRepository.findOne(studentId);
+    public void deleteInfo(int infoId){
         InfoBySchool info = infoBySchoolRepository.findOne(infoId);
-        if( student.getInfoBySchool().equals(info) ) {
-            student.setInfoBySchool(null);
-            infoBySchoolRepository.delete(infoId);
-        }
-        else{
-            throw new NullPointerException("Delete failed.");
-        }
+        info.setStudentClass(null);
+        info.setGrade(null);
+        info.setDiploma(null);
+        info.setMajor(null);
+        info.setGPA(0);
+        info.setGraduationYear(null);
+        info.setStudentCode(0);
+        infoBySchoolRepository.save(info);
     }
 }
 

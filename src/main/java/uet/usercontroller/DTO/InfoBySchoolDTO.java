@@ -7,14 +7,13 @@ import java.util.Date;
  */
 public class InfoBySchoolDTO {
     private int id;
-    private int studentId;
     private int studentCode;
     private String major;
     private String studentClass;
     private double GPA;
     private String diploma;
     private String grade;
-    private Date graduationYear;
+    private String graduationYear;
 
     public int getId() {
         return id;
@@ -22,14 +21,6 @@ public class InfoBySchoolDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
     }
 
     public int getStudentCode() {
@@ -80,11 +71,11 @@ public class InfoBySchoolDTO {
         this.grade = grade;
     }
 
-    public Date getGraduationYear() {
+    public String getGraduationYear() {
         return graduationYear;
     }
 
-    public void setGraduationYear(Date graduationYear) {
+    public void setGraduationYear(String graduationYear) {
         this.graduationYear = graduationYear;
     }
 }

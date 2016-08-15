@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //Show all user
+    //Show all user, ham nay chi de chạy thu khi test code, khong co trong he thong
     @NoAuthentication
     @RequestMapping(value="/user",method = RequestMethod.GET)
     public List<User> getUsers() {
@@ -51,10 +51,11 @@ public class UserController {
     }
 
     //editUser
-    @RequiredRoles(Role.ADMIN)
+    @RequiredRoles({Role.ADMIN,Role.STUDENT})
     @RequestMapping(value="user/{id}", method = RequestMethod.PUT)
-    public User editUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO) {
-        return userService.editUser(id, userDTO);
+    public User editUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO, HttpServletRequest request) {
+        String token = request.getHeader("auth-token");
+        return userService.editUser(id, userDTO, token);
     }
 
     //deleteUser

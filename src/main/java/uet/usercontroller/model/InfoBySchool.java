@@ -13,8 +13,6 @@ public class InfoBySchool {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-//    @Column(name="studentId")
-//    private int studentId;
     @Column(name="studentCode")
     private int studentCode;
     @Column(name="major")
@@ -28,7 +26,7 @@ public class InfoBySchool {
     @Column(name="grade")
     private String grade;
     @Column(name="graduationYear")
-    private Date graduationYear;
+    private String graduationYear;
 
     public int getId() {
         return id;
@@ -37,14 +35,6 @@ public class InfoBySchool {
     public void setId(int id) {
         this.id = id;
     }
-
-//    public int getStudentId() {
-//        return studentId;
-//    }
-//
-//    public void setStudentId(int studentId) {
-//        this.studentId = studentId;
-//    }
 
     public int getStudentCode() {
         return studentCode;
@@ -86,11 +76,11 @@ public class InfoBySchool {
         this.grade = grade;
     }
 
-    public Date getGraduationYear() {
+    public String getGraduationYear() {
         return graduationYear;
     }
 
-    public void setGraduationYear(Date graduationYear) {
+    public void setGraduationYear(String graduationYear) {
         this.graduationYear = graduationYear;
     }
 
