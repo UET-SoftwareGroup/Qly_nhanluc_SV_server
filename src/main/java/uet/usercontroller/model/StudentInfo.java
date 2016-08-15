@@ -3,20 +3,20 @@ package uet.usercontroller.model;
 
 import sun.util.calendar.BaseCalendar;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by root on 7/20/16.
  */
 @Entity
+@Table(name = "StudentInfo")
 public class StudentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    private String fullName;
 
     private String birthday;
 
@@ -37,6 +37,10 @@ public class StudentInfo {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setFullName(String fullName){ this.fullName = fullName; }
+
+    public String getFullName() { return fullName; }
 
     public String getBirthday() {
         return birthday;

@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class StudentInfoDTO {
     private int id;
+    private String fullName;
     private String birthday;
     private String phoneNumber;
     private String address;
@@ -21,6 +22,10 @@ public class StudentInfoDTO {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setFullName(String fullName){ this.fullName = fullName; }
+
+    public String getFullName() { return fullName; }
 
     public String getBirthday() {
         return birthday;
