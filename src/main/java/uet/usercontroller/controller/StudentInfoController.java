@@ -35,7 +35,7 @@ public class StudentInfoController {
 
     //show info of a student
     @NoAuthentication
-    @RequestMapping(value = "student/{studentId}/studentInfo/studentInfoId}",method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/studentInfo/{studentInfoId}",method = RequestMethod.GET)
     public StudentInfo getStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentInfoId") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return studentinfoService.getStudentInfo(studentId,id,token);
