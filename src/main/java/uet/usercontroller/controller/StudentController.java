@@ -34,8 +34,9 @@ public class StudentController {
     //Show student
     @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="student/{studentId}",method = RequestMethod.GET)
-    public Student findStudent(@PathVariable("studentId") int studentId) {
-        return studentService.findStudent(studentId);
+    public Student findStudent(@PathVariable("studentId") int studentId, HttpServletRequest request) {
+        String token = request.getHeader("auth-token");
+        return studentService.findStudent(studentId, token);
     }
 
     //Edit
@@ -43,7 +44,7 @@ public class StudentController {
     @RequestMapping(value="/student/{studentId}", method = RequestMethod.PUT)
     public Student editStudent(@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return studentService.editStudent(token,studentId, studentDTO);
+        return studentService.editStudent(studentId, studentDTO, token);
     }
 
     //Delete
