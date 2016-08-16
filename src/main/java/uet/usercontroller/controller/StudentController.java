@@ -31,25 +31,25 @@ public class StudentController {
 //        return studentService.createStudent(userId, studentDTO);
 //    }
 
-    //Search
+    //Show student
     @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
-    @RequestMapping(value="/student/{studentId}",method = RequestMethod.GET)
-    public Student findStudent(@PathVariable("userId") int userId,@PathVariable("studentId") int studentId) {
-        return studentService.findStudent(userId, studentId);
+    @RequestMapping(value="student/{studentId}",method = RequestMethod.GET)
+    public Student findStudent(@PathVariable("studentId") int studentId) {
+        return studentService.findStudent(studentId);
     }
 
     //Edit
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value="/student/{studentId}", method = RequestMethod.PUT)
-    public Student editStudent(@PathVariable("userId") int userId ,@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO, HttpServletRequest request){
+    public Student editStudent(@PathVariable("studentId") int studentId, @RequestBody StudentDTO studentDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return studentService.editStudent(token,userId, studentId, studentDTO);
+        return studentService.editStudent(token,studentId, studentDTO);
     }
 
     //Delete
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/student/{studentId}", method = RequestMethod.DELETE)
-    public void delStudent(@PathVariable("userId") int userId, @PathVariable("studentId") int studentId){
-        studentService.delStudent(userId, studentId);
+    public void delStudent(@PathVariable("studentId") int studentId){
+        studentService.delStudent(studentId);
     }
 }

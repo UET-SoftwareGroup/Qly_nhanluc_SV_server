@@ -26,11 +26,10 @@ public class StudentService {
         List<Student> allStudents = (List<Student>) studentRepository.findAll();
         return allStudents;
     }
-    //Search
-    public Student findStudent(int userId, int studentId) {
-        User user = userRepository.findOne(userId);
+    //Show
+    public Student findStudent(int studentId) {
         Student student = studentRepository.findOne(studentId);
-        if (user.getStudent().equals(student)){
+        if (true){
             return student;
         }
         else{
@@ -38,10 +37,9 @@ public class StudentService {
         }
     }
     //Edit
-    public Student editStudent(String token,int userId, int studentId, StudentDTO studentDTO){
-        User user = userRepository.findOne(userId);
+    public Student editStudent(String token,int studentId, StudentDTO studentDTO){
         Student student = studentRepository.findOne(studentId);
-        if ( user.getStudent().equals(student)) {
+        if (true) {
             if (studentDTO.getStudentName() != null) {
                 student.setStudentName(studentDTO.getStudentName());
             }
@@ -62,15 +60,13 @@ public class StudentService {
 //    }
 
     //Delete
-    public void delStudent(int userId, int studentId) {
-        User user = userRepository.findOne(userId);
+    public void delStudent(int studentId) {
         Student student = studentRepository.findOne(studentId);
-        if ( user.getStudent().equals(student)) {
-            user.setStudent(null);
-            studentRepository.delete(studentId);
-        }
-        else{
-            throw new NullPointerException("Delete failed.");
-        }
+        student.setInfoBySchool(null);
+        student.setInternship(null);
+        student.setStudentInfo(null);
+        student.setStudentName(null);
+        studentRepository.save(student);
+
     }
 }
