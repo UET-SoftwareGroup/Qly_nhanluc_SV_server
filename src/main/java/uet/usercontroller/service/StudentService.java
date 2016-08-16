@@ -52,14 +52,14 @@ public class StudentService {
         }
     }
 
-    //Create
-    public Student createStudent(int userId, StudentDTO studentDTO) {
-        User user = userRepository.findOne(userId);
-        Student student = new Student();
-        student.setStudentName(studentDTO.getStudentName());
-        user.setStudent(student);
-        return studentRepository.save(student);
-    }
+//    //Create
+//    public Student createStudent(int userId, StudentDTO studentDTO) {
+//        User user = userRepository.findOne(userId);
+//        Student student = new Student();
+//        student.setStudentName(studentDTO.getStudentName());
+//        user.setStudent(student);
+//        return studentRepository.save(student);
+//    }
 
     //Delete
     public void delStudent(int userId, int studentId) {
