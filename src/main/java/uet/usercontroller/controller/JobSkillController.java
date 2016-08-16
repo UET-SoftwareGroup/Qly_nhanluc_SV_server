@@ -25,7 +25,7 @@ public class JobSkillController {
 
     //xem tat ca cac jobskill
     @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
-    @RequestMapping(value = "/student/jobSkill",method = RequestMethod.GET)
+    @RequestMapping(value = "/jobSkill",method = RequestMethod.GET)
     public List<JobSkill> getalljobskill(HttpServletRequest request){
         String token =request.getHeader("auth-token");
         return jobSkillService.getJobSkills(token);
@@ -33,39 +33,39 @@ public class JobSkillController {
 
     //create 1 jobskill
     @RequiredRoles({Role.STUDENT})
-    @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.POST)
-    public JobSkill createJs(@PathVariable("studentId") int studentId ,@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
+    @RequestMapping(value="/jobSkill",method = RequestMethod.POST)
+    public JobSkill createJs(@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
         String token =request.getHeader("auth-token");
-        return jobSkillService.createJs(studentId,jobSkillDTO,token);
+        return jobSkillService.createJs(jobSkillDTO,token);
     }
 
     //show toan bo jobskill cua 1 student
     @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.GET)
-    public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId,HttpServletRequest request){
+    public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId ,HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return jobSkillService.getallInStudent(studentId,token);
     }
     //show 1 jobskill by id
     @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
-    @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}", method = RequestMethod.GET)
-    public JobSkill showById(@PathVariable("jobSkillId") int jobskillId,@PathVariable("studentId") int studentId,HttpServletRequest request){
+    @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.GET)
+    public JobSkill showById(@PathVariable("jobSkillId") int jobskillId,HttpServletRequest request){
         String token= request.getHeader("auth-token");
-        return jobSkillService.showJobSkill(studentId,jobskillId,token);
+        return jobSkillService.showJobSkill(jobskillId,token);
     }
     //thay doi 1 jobskill by id
     @RequiredRoles({Role.STUDENT})
-    @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}", method = RequestMethod.PUT)
-    public JobSkill ChangeJs(@PathVariable("studentId") int studentId,@PathVariable("jobSkillId") int id, @RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
+    @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.PUT)
+    public JobSkill ChangeJs(@PathVariable("jobSkillId") int id, @RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return jobSkillService.ChangeJsById(studentId,id,jobSkillDTO,token);
+        return jobSkillService.ChangeJsById(id,jobSkillDTO,token);
     }
     //delete 1 jobskill
-    @RequestMapping(value="student/{studentId}/jobSkill/{jobSkillId}", method = RequestMethod.DELETE)
-    @RequiredRoles({Role.STUDENT})
-    public String deleteJs(@PathVariable("studentId") int studentId,@PathVariable("jobSkillId") int id,HttpServletRequest request){
+    @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.DELETE)
+    @RequiredRoles({Role.STUDENT,Role.ADMIN})
+    public String deleteJs(@PathVariable("jobSkillId") int id,HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return jobSkillService.deleteJobSkill(studentId,id,token);
+        return jobSkillService.deleteJobSkill(id,token);
     }
 
 }

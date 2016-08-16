@@ -14,8 +14,8 @@ public class JobSkill {
     @GeneratedValue(strategy = GenerationType.AUTO )
     @Column(name = "id")
     private int id;
-    @Column(name = "studentId")
-    private int studentId;
+    @Column(name="StudentId")
+    private int StudentId;
     @Column(name = "skill")
     private String skill;
     @Column(name = "company")
@@ -23,14 +23,14 @@ public class JobSkill {
     @Column(name = "updateTime")
     private Date updateTime;
 
-    public JobSkill(){
+
+
+    public int getStudentId() {
+        return StudentId;
     }
-    public JobSkill(int id, int studentId, String skill, String company, Date updateTime){
-        this.id=id;
-        this.studentId=studentId;
-        this.skill=skill;
-        this.company=company;
-        this.updateTime=updateTime;
+
+    public void setStudentId(int studentId) {
+        StudentId = studentId;
     }
 
     public int getId() {
@@ -39,14 +39,6 @@ public class JobSkill {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
     }
 
     public String getSkill() {

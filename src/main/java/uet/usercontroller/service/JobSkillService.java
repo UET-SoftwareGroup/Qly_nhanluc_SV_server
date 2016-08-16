@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.JobSkillDTO;
 import uet.usercontroller.model.JobSkill;
+import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
 import uet.usercontroller.model.User;
 import uet.usercontroller.repository.JobSkillRepository;
@@ -34,13 +35,14 @@ public class JobSkillService {
     public List<JobSkill> getallInStudent(int studentId,String token){
             User user =userRepository.findByToken(token);
             Student student = studentRepository.findById(studentId);
-            return student.getJobSkills();
+             return student.getJobSkills();
+
     }
     //create jobskill
-    public JobSkill createJs( int studentId,JobSkillDTO jobSkillDTO,String token){
+    public JobSkill createJs(JobSkillDTO jobSkillDTO,String token){
         User user = userRepository.findByToken(token);
-        Student student = studentRepository.findById(studentId);
-        if(user.getStudent().equals(student) && student.getId()== studentId && studentId==jobSkillDTO.getStudentId()) {
+        Student student = user.getStudent();
+        if(student.getId()==jobSkillDTO.getStudentId()) {
             JobSkill jobSkill = new JobSkill();
             jobSkill.setId(jobSkillDTO.getId());
             jobSkill.setStudentId(jobSkillDTO.getStudentId());
@@ -52,53 +54,52 @@ public class JobSkillService {
             studentRepository.save(student);
             return jobSkill;
         }
-        else{
-            throw  new NullPointerException("Id ko chinh xac");
+        else {
+            throw new NullPointerException("can't create");
         }
     }
 
     //delete 1 jobskill by id
-    public String deleteJobSkill(int studentId,int id,String token){
+    public String deleteJobSkill(int id,String token){
         User user = userRepository.findByToken(token);
-        Student student = studentRepository.findById(studentId);
+        Student student = user.getStudent();
         JobSkill jobSkill = jobSkillRepository.findById(id);
-        if(user.getStudent().equals(student) && student.getId()==studentId && jobSkill.getId()==id) {
+        if(user.getRole()==Role.STUDENT) {
+            if (student.getId() == jobSkill.getStudentId()) {
+                jobSkillRepository.delete(jobSkill);
+                return "deleted";
+            } else {
+                throw new NullPointerException("can't delete");
+            }
+        }else{
             jobSkillRepository.delete(jobSkill);
             return "deleted";
         }
-        else{
-            throw  new NullPointerException("can't delete");
-        }
     }
     //show 1 jobskill
-    public JobSkill showJobSkill(int studentId, int id,String token){
+    public JobSkill showJobSkill( int id,String token){
         User user = userRepository.findByToken(token);
-        Student student = studentRepository.findById(studentId);
         JobSkill jobSkill = jobSkillRepository.findById(id);
-        if(student.getId()==studentId && jobSkill.getId()==id) {
-            return jobSkill;
-        }
-        else{
-            throw new NullPointerException("can't create jobskill");
-        }
+        return jobSkill;
     }
     //change 1 Jobskill by id
-    public JobSkill ChangeJsById(int studentId,int id, JobSkillDTO jobSkillDTO,String token){
+    public JobSkill ChangeJsById(int id, JobSkillDTO jobSkillDTO,String token){
         User user = userRepository.findByToken(token);
-        Student student =studentRepository.findById(studentId);
         JobSkill jobSkill = jobSkillRepository.findById(id);
-        if(user.getStudent().equals(student) && jobSkillDTO.getStudentId()==student.getId() && jobSkill.getId()==id){
+        Student student = user.getStudent();
+        if (student.getId() == jobSkill.getStudentId()) {
             jobSkill.setId(jobSkillDTO.getId());
+            jobSkill.setStudentId(jobSkill.getStudentId());
             jobSkill.setCompany(jobSkillDTO.getCompany());
-            jobSkill.setStudentId(jobSkillDTO.getStudentId());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
             jobSkill.setSkill(jobSkillDTO.getSkill());
             jobSkillRepository.save(jobSkill);
             return jobSkill;
-        }
-        else{
-            throw new NullPointerException("can't change this jobskill");
-        }
+            } else {
+                throw new NullPointerException("can't change this jobskill");
+            }
     }
+
+
 }
 
