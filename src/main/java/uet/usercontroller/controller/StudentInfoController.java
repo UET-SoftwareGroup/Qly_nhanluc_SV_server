@@ -26,42 +26,32 @@ public class StudentInfoController {
     
 
     //show all student information
-    @NoAuthentication
-    @RequestMapping(value = "/student/studentInfo",method = RequestMethod.GET)
-    public List<StudentInfo> getAllStudentInfo(HttpServletRequest request){
-        String token = request.getHeader("auth-token");
-        return studentinfoService.getAllStudentInfo(token);
+    @RequiredRoles({Role.PARTNER1,Role.ADMIN})
+    @RequestMapping(value = "/studentinfo",method = RequestMethod.GET)
+    public List<StudentInfo> getAllStudentInfo(){
+        return studentinfoService.getAllStudentInfo();
     }
 
     //show info of a student
-    @NoAuthentication
-    @RequestMapping(value = "student/{studentId}/studentInfo/studentInfoId}",method = RequestMethod.GET)
-    public StudentInfo getStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentInfoId") int id, HttpServletRequest request){
+    @RequiredRoles({Role.ADMIN,Role.STUDENT,Role.PARTNER1})
+    @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.GET)
+    public StudentInfo getStudentInfo(@PathVariable("infoid") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return studentinfoService.getStudentInfo(studentId,id,token);
-    }
-
-    //create info
-    @RequiredRoles(Role.STUDENT)
-    @RequestMapping(value = "/student/{studentId}/studentInfo",method = RequestMethod.POST)
-    public StudentInfo createStudentInfo(@PathVariable("studentId") int studentId, @RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
-        String token = request.getHeader("auth-token");
-        return studentinfoService.createStudentInfo(studentId,studentInfoDTO,token);
+        return studentinfoService.getStudentInfo(id,token);
     }
 
     //edit info of a student
-    @RequiredRoles(Role.STUDENT)
-    @RequestMapping(value = "/student/{studentId}/studentInfo/{studentInfoId}",method = RequestMethod.PUT)
-    public StudentInfo editStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentInfoId") int id,@RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
+    @RequiredRoles({Role.STUDENT,Role.ADMIN})
+    @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.PUT)
+    public StudentInfo editStudentInfo(@PathVariable("id") int id, @RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return studentinfoService.editStudentInfo(studentId,id,studentInfoDTO,token);
+        return studentinfoService.editStudentInfo(id,studentInfoDTO,token);
     }
 
    //delete info of a student
-    @RequiredRoles({Role.STUDENT,Role.ADMIN})
-    @RequestMapping(value = "/student/{studentId}/studentInfo/{studentInfoId}",method = RequestMethod.DELETE)
-    public void deleteStudentInfo(@PathVariable("studentId") int studentId, @PathVariable("studentInfoId") int id, HttpServletRequest request){
-        String token = request.getHeader("auth-token");
-        studentinfoService.deleteStudentInfo(studentId,id,token);
+    @RequiredRoles({Role.ADMIN})
+    @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.DELETE)
+    public void deleteStudentInfo(@PathVariable("id") int id){
+        studentinfoService.deleteStudentInfo(id);
     }
 }

@@ -1,12 +1,16 @@
 package uet.usercontroller.service;
 
+import com.sun.corba.se.impl.logging.InterceptorsSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.StudentInfoDTO;
+import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
 import uet.usercontroller.model.StudentInfo;
+import uet.usercontroller.model.User;
 import uet.usercontroller.repository.StudentInfoRepository;
 import uet.usercontroller.repository.StudentRepository;
+import uet.usercontroller.repository.UserRepository;
 
 import java.util.List;
 
@@ -16,87 +20,63 @@ import java.util.List;
 @Service
 public class StudentInfoService {
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
     @Autowired
     private StudentInfoRepository studentInfoRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     // show all student information
-    public List<StudentInfo> getAllStudentInfo(String token) {
+    public List<StudentInfo> getAllStudentInfo() {
         List<StudentInfo> allInfo = (List<StudentInfo>) studentInfoRepository.findAll();
         return allInfo;
     }
 
     // show info of a student
-    public StudentInfo getStudentInfo(int studentId, int id, String token){
-        Student student = studentRepository.findOne(studentId);
-        StudentInfo info = studentInfoRepository.findOne(id);
-        if (student.getStudentInfo().equals(info)){
-            return info;
-        }
-        else{
-            throw new NullPointerException("No result.");
-        }
-    }
-
-    //create info
-    public StudentInfo createStudentInfo(int studentId, StudentInfoDTO studentInfoDTO,String token){
-        Student student = studentRepository.findOne(studentId);
-        StudentInfo studentInfo = new StudentInfo();
-        studentInfo.setBirthday(studentInfoDTO.getBirthday());
-        studentInfo.setAddress(studentInfoDTO.getAddress());
-        studentInfo.setPhoneNumber(studentInfoDTO.getPhoneNumber());
-        studentInfo.setEmail(studentInfoDTO.getEmail());
-        studentInfo.setSkype(studentInfoDTO.getSkype());
-        studentInfo.setDesire(studentInfoDTO.getDesire());
-        student.setStudentInfo(studentInfo);
-        return studentInfoRepository.save(studentInfo);
+    public StudentInfo getStudentInfo( int id, String token) {
+        User user = userRepository.findByToken(token);
+        Student student = user.getStudent();
+        StudentInfo studentinfo = studentInfoRepository.findOne(id);
+        if (student.getStudentInfo().equals(studentinfo)) {
+            return studentinfo;
+        } else
+            throw new NullPointerException("No result");
     }
 
     //edit info of a student
-    public StudentInfo editStudentInfo(int studentId, int id, StudentInfoDTO studentInfoDTO, String token) {
-        Student student = studentRepository.findOne(studentId);
-        StudentInfo info = studentInfoRepository.findOne(id);
-        if (student.getStudentInfo().equals(info)){
-            if (studentInfoDTO.getBirthday() != null){
-                info.setBirthday(studentInfoDTO.getBirthday());
-            }
-            if (studentInfoDTO.getAddress() != null){
-                info.setAddress(studentInfoDTO.getAddress());
-            }
-            if (studentInfoDTO.getEmail() != null){
-                info.setEmail(studentInfoDTO.getEmail());
-            }
-            if (studentInfoDTO.getPhoneNumber() != null){
-                info.setPhoneNumber(studentInfoDTO.getPhoneNumber());
-            }
-            if (studentInfoDTO.getSkype() != null){
-                info.setSkype(studentInfoDTO.getSkype());
-            }
-            if (studentInfoDTO.getDesire() != null){
-                info.setDesire(studentInfoDTO.getDesire());
-            }
-        }
-        else{
-            throw new NullPointerException("Edit failed.");
-        }
-        return studentInfoRepository.save(info);
+    public StudentInfo editStudentInfo(int id, StudentInfoDTO studentInfoDTO, String token) {
+        User user = userRepository.findByToken(token);
+        Student student = user.getStudent();
+        StudentInfo studentinfo = studentInfoRepository.findOne(id);
+        if (student.getStudentInfo().equals(studentinfo)){
+            studentinfo.setFullName(studentInfoDTO.getFullName());
+            studentinfo.setBirthday(studentInfoDTO.getBirthday());
+            studentinfo.setAddress(studentInfoDTO.getAddress());
+            studentinfo.setEmail(studentInfoDTO.getEmail());
+            studentinfo.setPhoneNumber(studentInfoDTO.getPhoneNumber());
+            studentinfo.setSkype(studentInfoDTO.getSkype());
+            studentinfo.setDesire(studentInfoDTO.getDesire());
+            return studentInfoRepository.save(studentinfo);
+        } else
+            throw new NullPointerException("Error ");
     }
 
 
 
 
     //delete info of a student
-    public void deleteStudentInfo(int studentId, int id,String token) {
-        Student student = studentRepository.findOne(studentId);
-        StudentInfo info = studentInfoRepository.findOne(id);
-        if (student.getStudentInfo().equals(info)){
-            student.setStudentInfo(null);
-            studentInfoRepository.delete(info);
-        }
-        else{
-            throw new NullPointerException("Delete failed.");
-        }
+    public void deleteStudentInfo(int id) {
+        StudentInfo studentinfo = studentInfoRepository.findOne(id);
+        studentinfo.setFullName(null);
+        studentinfo.setBirthday(null);
+        studentinfo.setPhoneNumber(null);
+        studentinfo.setAddress(null);
+        studentinfo.setEmail(null);
+        studentinfo.setSkype(null);
+        studentinfo.setDesire(null);
+        studentInfoRepository.save(studentinfo);
     }
 
 }
