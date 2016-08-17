@@ -7,7 +7,6 @@ import java.util.Date;
  */
 public class InternshipDTO {
     private int id;
-    private int studentId;
     private int partnerId;
     private String company;
     private Date startDate;
@@ -20,14 +19,6 @@ public class InternshipDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
     }
 
     public int getPartnerId() {
