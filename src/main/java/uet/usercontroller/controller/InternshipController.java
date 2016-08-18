@@ -1,6 +1,7 @@
 package uet.usercontroller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.InternshipDTO;
 import uet.usercontroller.model.Internship;
@@ -22,8 +23,9 @@ public class InternshipController {
     //show all Internships
     @RequiredRoles({Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value = "/intern", method = RequestMethod.GET)
-    public List<Internship> getAllInterns() {
-        return internshipService.getAllIntern();
+    public List<Internship> getAllInterns(HttpServletRequest request) {
+        String token= request.getHeader("auth-token");
+        return internshipService.getAllIntern(token);
     }
 
     //Create a Internship
@@ -44,12 +46,14 @@ public class InternshipController {
     //change 1 internship
     @RequiredRoles({Role.ADMIN})
     @RequestMapping(value = "/intern/{internId}", method = RequestMethod.PUT)
-    public Internship changeInternById(@PathVariable("internId") int id, @RequestBody InternshipDTO internshipDTO) {
-        return internshipService.changeById(id,internshipDTO);
+    public Internship changeInternById(@PathVariable("internId") int id, @RequestBody InternshipDTO internshipDTO, HttpServletRequest request) {
+        String token = request.getHeader("auth-token");
+        return internshipService.changeById(id,internshipDTO,token);
     }
     @RequiredRoles({Role.ADMIN})
     @RequestMapping(value="/intern/{internId}", method = RequestMethod.DELETE)
-    public String deleteById(@PathVariable("internId") int id){
-        return internshipService.deleteById(id);
+    public String deleteById(@PathVariable("internId") int id,HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        return internshipService.deleteById(id,token);
     }
 }
