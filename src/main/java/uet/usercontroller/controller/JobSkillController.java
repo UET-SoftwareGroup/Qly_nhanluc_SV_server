@@ -26,9 +26,8 @@ public class JobSkillController {
     //xem tat ca cac jobskill
     @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value = "/jobSkill",method = RequestMethod.GET)
-    public List<JobSkill> getalljobskill(HttpServletRequest request){
-        String token =request.getHeader("auth-token");
-        return jobSkillService.getJobSkills(token);
+    public List<JobSkill> getalljobskill(){
+        return jobSkillService.getJobSkills();
     }
 
     //create 1 jobskill
@@ -42,16 +41,14 @@ public class JobSkillController {
     //show toan bo jobskill cua 1 student
     @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.GET)
-    public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId ,HttpServletRequest request){
-        String token = request.getHeader("auth-token");
-        return jobSkillService.getallInStudent(studentId,token);
+    public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId){
+        return jobSkillService.getallInStudent(studentId);
     }
     //show 1 jobskill by id
     @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.GET)
-    public JobSkill showById(@PathVariable("jobSkillId") int jobskillId,HttpServletRequest request){
-        String token= request.getHeader("auth-token");
-        return jobSkillService.showJobSkill(jobskillId,token);
+    public JobSkill showById(@PathVariable("jobSkillId") int jobskillId){
+        return jobSkillService.showJobSkill(jobskillId);
     }
     //thay doi 1 jobskill by id
     @RequiredRoles({Role.STUDENT})

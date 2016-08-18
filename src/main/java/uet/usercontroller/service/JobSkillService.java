@@ -26,14 +26,12 @@ public class JobSkillService {
     private UserRepository userRepository;
 
     //show list jobskill
-    public List<JobSkill> getJobSkills(String token){
-        User user = userRepository.findByToken(token);
+    public List<JobSkill> getJobSkills(){
         List<JobSkill> getAll = (List<JobSkill>) jobSkillRepository.findAll();
         return getAll;
     }
 //    show list jobskill cua 1 student
-    public List<JobSkill> getallInStudent(int studentId,String token){
-            User user =userRepository.findByToken(token);
+    public List<JobSkill> getallInStudent(int studentId){
             Student student = studentRepository.findById(studentId);
              return student.getJobSkills();
 
@@ -77,8 +75,7 @@ public class JobSkillService {
         }
     }
     //show 1 jobskill
-    public JobSkill showJobSkill( int id,String token){
-        User user = userRepository.findByToken(token);
+    public JobSkill showJobSkill( int id){
         JobSkill jobSkill = jobSkillRepository.findById(id);
         return jobSkill;
     }
