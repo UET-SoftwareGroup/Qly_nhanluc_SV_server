@@ -38,11 +38,18 @@ public class StudentInfoService {
     public StudentInfo getStudentInfo( int id, String token) {
         User user = userRepository.findByToken(token);
         Student student = user.getStudent();
-        StudentInfo studentinfo = studentInfoRepository.findOne(id);
-        if (student.getStudentInfo().equals(studentinfo)) {
-            return studentinfo;
-        } else
-            throw new NullPointerException("No result");
+        StudentInfo studentInfo = studentInfoRepository.findOne(id);
+        if (user.getRole()==Role.STUDENT) {
+            if (student.getStudentInfo().equals(studentInfo)) {
+                return studentInfo;
+            } else{
+                throw new NullPointerException("No result");
+            }
+        }
+        else {
+            return studentInfo;
+        }
+
     }
 
     //edit info of a student
@@ -59,23 +66,35 @@ public class StudentInfoService {
             studentinfo.setSkype(studentInfoDTO.getSkype());
             studentinfo.setDesire(studentInfoDTO.getDesire());
             return studentInfoRepository.save(studentinfo);
-        } else
+        } else {
             throw new NullPointerException("Error ");
+        }
     }
 
-
-
-
     //delete info of a student
-    public void deleteStudentInfo(int id) {
+    public void deleteStudentInfo(int id, String token) {
+        User user = userRepository.findByToken(token);
+        Student student = user.getStudent();
         StudentInfo studentinfo = studentInfoRepository.findOne(id);
-        studentinfo.setFullName(null);
-        studentinfo.setBirthday(null);
-        studentinfo.setPhoneNumber(null);
-        studentinfo.setAddress(null);
-        studentinfo.setEmail(null);
-        studentinfo.setSkype(null);
-        studentinfo.setDesire(null);
+        if (user.getRole()==Role.STUDENT) {
+            if (student.getStudentInfo().equals(studentinfo)) {
+                studentinfo.setFullName(null);
+                studentinfo.setBirthday(null);
+                studentinfo.setPhoneNumber(null);
+                studentinfo.setAddress(null);
+                studentinfo.setEmail(null);
+                studentinfo.setSkype(null);
+                studentinfo.setDesire(null);
+            }
+        } else {
+            studentinfo.setFullName(null);
+            studentinfo.setBirthday(null);
+            studentinfo.setPhoneNumber(null);
+            studentinfo.setAddress(null);
+            studentinfo.setEmail(null);
+            studentinfo.setSkype(null);
+            studentinfo.setDesire(null);
+        }
         studentInfoRepository.save(studentinfo);
     }
 

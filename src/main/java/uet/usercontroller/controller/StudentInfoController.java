@@ -41,7 +41,7 @@ public class StudentInfoController {
     }
 
     //edit info of a student
-    @RequiredRoles({Role.STUDENT,Role.ADMIN})
+    @RequiredRoles(Role.STUDENT)
     @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.PUT)
     public StudentInfo editStudentInfo(@PathVariable("id") int id, @RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
@@ -49,9 +49,10 @@ public class StudentInfoController {
     }
 
    //delete info of a student
-    @RequiredRoles({Role.ADMIN})
+    @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.DELETE)
-    public void deleteStudentInfo(@PathVariable("id") int id){
-        studentinfoService.deleteStudentInfo(id);
+    public void deleteStudentInfo(@PathVariable("id") int id, HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        studentinfoService.deleteStudentInfo(id, token);
     }
 }
