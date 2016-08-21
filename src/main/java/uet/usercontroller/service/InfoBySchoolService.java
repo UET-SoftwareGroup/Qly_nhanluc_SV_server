@@ -99,9 +99,9 @@ public class InfoBySchoolService {
         info.setGrade(null);
         info.setDiploma(null);
         info.setMajor(null);
-        info.setGPA(0);
+        info.setGPA(null);
         info.setGraduationYear(null);
-        info.setStudentCode(0);
+        info.setStudentCode(null);
         infoBySchoolRepository.save(info);
     }
 }

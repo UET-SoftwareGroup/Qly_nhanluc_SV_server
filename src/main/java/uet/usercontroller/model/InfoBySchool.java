@@ -14,13 +14,13 @@ public class InfoBySchool {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name="studentCode")
-    private int studentCode;
+    private Integer studentCode;
     @Column(name="major")
     private String major;
     @Column(name="studentClass")
     private String studentClass;
     @Column(name="GPA")
-    private double GPA;
+    private Double GPA;
     @Column(name="diploma")
     private String diploma;
     @Column(name="grade")
@@ -36,11 +36,11 @@ public class InfoBySchool {
         this.id = id;
     }
 
-    public int getStudentCode() {
+    public Integer getStudentCode() {
         return studentCode;
     }
 
-    public void setStudentCode(int studentCode) {
+    public void setStudentCode(Integer studentCode) {
         this.studentCode = studentCode;
     }
 
@@ -52,11 +52,11 @@ public class InfoBySchool {
         this.major = major;
     }
 
-    public double getGPA() {
+    public Double getGPA() {
         return GPA;
     }
 
-    public void setGPA(double GPA) {
+    public void setGPA(Double GPA) {
         this.GPA = GPA;
     }
 
