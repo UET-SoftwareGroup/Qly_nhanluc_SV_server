@@ -35,7 +35,7 @@ public class StudentInfoController {
     //show info of a student
     @RequiredRoles({Role.ADMIN,Role.STUDENT,Role.PARTNER1})
     @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.GET)
-    public StudentInfo getStudentInfo(@PathVariable("infoid") int id, HttpServletRequest request){
+    public StudentInfo getStudentInfo(@PathVariable("id") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return studentinfoService.getStudentInfo(id,token);
     }

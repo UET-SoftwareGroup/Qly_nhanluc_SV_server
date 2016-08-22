@@ -58,13 +58,27 @@ public class StudentInfoService {
         Student student = user.getStudent();
         StudentInfo studentinfo = studentInfoRepository.findOne(id);
         if (student.getStudentInfo().equals(studentinfo)){
-            studentinfo.setFullName(studentInfoDTO.getFullName());
-            studentinfo.setBirthday(studentInfoDTO.getBirthday());
-            studentinfo.setAddress(studentInfoDTO.getAddress());
-            studentinfo.setEmail(studentInfoDTO.getEmail());
-            studentinfo.setPhoneNumber(studentInfoDTO.getPhoneNumber());
-            studentinfo.setSkype(studentInfoDTO.getSkype());
-            studentinfo.setDesire(studentInfoDTO.getDesire());
+            if (studentInfoDTO.getFullName()!=null) {
+                studentinfo.setFullName(studentInfoDTO.getFullName());
+            }
+            if (studentInfoDTO.getBirthday()!=null){
+                studentinfo.setBirthday(studentInfoDTO.getBirthday());
+            }
+            if (studentInfoDTO.getAddress()!=null) {
+                studentinfo.setAddress(studentInfoDTO.getAddress());
+            }
+            if (studentInfoDTO.getEmail()!=null) {
+                studentinfo.setEmail(studentInfoDTO.getEmail());
+            }
+            if (studentInfoDTO.getPhoneNumber()!=null) {
+                studentinfo.setPhoneNumber(studentInfoDTO.getPhoneNumber());
+            }
+            if (studentInfoDTO.getSkype()!=null) {
+                studentinfo.setSkype(studentInfoDTO.getSkype());
+            }
+            if (studentInfoDTO.getDesire()!=null) {
+                studentinfo.setDesire(studentInfoDTO.getDesire());
+            }
             return studentInfoRepository.save(studentinfo);
         } else {
             throw new NullPointerException("Error ");

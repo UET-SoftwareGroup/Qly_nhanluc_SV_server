@@ -68,13 +68,13 @@ public class InfoBySchoolService {
     //edit info of a student
     public InfoBySchool editInfo(int infoId, InfoBySchoolDTO infoBySchoolDTO) {
         InfoBySchool info = infoBySchoolRepository.findOne(infoId);
-        if (infoBySchoolDTO.getStudentCode() != 0) {
+        if (infoBySchoolDTO.getStudentCode() != null) {
             info.setStudentCode(infoBySchoolDTO.getStudentCode());
         }
         if (infoBySchoolDTO.getMajor() != null) {
             info.setMajor(infoBySchoolDTO.getMajor());
         }
-        if (infoBySchoolDTO.getGPA() != 0) {
+        if (infoBySchoolDTO.getGPA() != null) {
             info.setGPA(infoBySchoolDTO.getGPA());
         }
         if (infoBySchoolDTO.getDiploma() != null) {
