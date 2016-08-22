@@ -68,23 +68,56 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if ( userDTO.getPassword().equals(user.getPassword())){
-            if ( user.getToken()==null ) {
-                user.setToken(UUID.randomUUID().toString());
-                user.setExpiryTime(new Date(System.currentTimeMillis()+1000*60*15));
+        if ( user.getRole()==Role.STUDENT ) {
+            if (userDTO.getPassword().equals(user.getPassword())) {
+                if (user.getToken() == null) {
+                    user.setToken(UUID.randomUUID().toString());
+                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                } else {
+                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                }
             }
-            else{
-                user.setExpiryTime(new Date(System.currentTimeMillis()+1000*60*15));
-            }
+            user = userRepository.save(user);
+            User result = new User();
+            result.setId(user.getId());
+            result.setUserName(user.getUserName());
+            result.setRole(user.getRole());
+            result.setToken(user.getToken());
+            result.setStudent(user.getStudent());
+            return result;
         }
-        user = userRepository.save(user);
-        User result = new User();
-        result.setId(user.getId());
-        result.setUserName(user.getUserName());
-        result.setRole(user.getRole());
-        result.setToken(user.getToken());
-        result.setStudent(user.getStudent());
-        return result;
+        else if ( user.getRole()==Role.PARTNER1 ) {
+            throw new NullPointerException("chua viet partner");
+        }
+        else {
+            throw new NullPointerException("Login failed.");
+        }
+    }
+
+    //admin login
+    public User adminLogin (UserDTO userDTO){
+        User user = userRepository.findByUserName(userDTO.getUserName());
+        if ( user.getRole() == Role.ADMIN ) {
+            if (userDTO.getPassword().equals(user.getPassword())) {
+                if (user.getToken() == null) {
+                    user.setToken(UUID.randomUUID().toString());
+                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                } else {
+                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                }
+            }
+            user = userRepository.save(user);
+            User result = new User();
+            result.setId(user.getId());
+            result.setUserName(user.getUserName());
+            result.setRole(user.getRole());
+            result.setToken(user.getToken());
+            result.setStudent(user.getStudent());
+            return result;
+        }
+        else {
+            throw new NullPointerException("Account is not an admin account.");
+        }
     }
 
     //logout

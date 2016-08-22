@@ -42,6 +42,13 @@ public class UserController {
         return userService.Login(userDTO);
     }
 
+    //admin login
+    @NoAuthentication
+    @RequestMapping(value="admin/login", method = RequestMethod.POST)
+    public User adminLogin(@RequestBody UserDTO userDTO){
+        return userService.adminLogin(userDTO);
+    }
+
     //logout
     @NoAuthentication
     @RequestMapping(value="/logout", method = RequestMethod.GET)

@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="InfoBySchoolService:&#10;&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/DTO/InfoBySchoolDTO.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/DTO/InfoBySchoolDTO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/InfoBySchool.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/model/InfoBySchool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/InfoBySchoolService.class" afterPath="$PROJECT_DIR$/target/classes/uet/usercontroller/service/InfoBySchoolService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="3fc0e09e-db3e-432d-9750-e6a7067398e6" name="Default" comment="- UserController + UserService">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentInfoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentInfoService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentInfoService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" />
     </list>
     <ignored path="Qly_SV.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,32 +35,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StudentInfoController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentInfoController.java">
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="53" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="53" />
+            <state vertical-scroll-proportion="3.7894738">
+              <caret line="118" column="79" selection-start-line="118" selection-start-column="79" selection-end-line="118" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentInfoService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentInfoService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.7894737">
-              <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InfoBySchoolService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="44" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
-              <folding />
+              <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+              <folding>
+                <element signature="e#1463#1464#0" expanded="true" />
+                <element signature="e#1517#1518#0" expanded="true" />
+                <element signature="e#2310#2311#0" expanded="true" />
+                <element signature="e#2352#2353#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,9 +117,7 @@
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/csvfileimport/CSVReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/model/StudentInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/DTO/StudentInfoDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/InfoBySchoolController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/JobSkillService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
@@ -138,6 +126,8 @@
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java" />
         <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/StudentInfoService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java" />
       </list>
     </option>
   </component>
@@ -1078,7 +1068,7 @@
       <workItem from="1471762930632" duration="1218000" />
       <workItem from="1471766754662" duration="617000" />
       <workItem from="1471773536078" duration="336000" />
-      <workItem from="1471875787593" duration="1145000" />
+      <workItem from="1471875787593" duration="2325000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for develop&#10;">
       <created>1467949537855</created>
@@ -1308,11 +1298,17 @@
       <option name="project" value="LOCAL" />
       <updated>1471763591980</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="- StudentInfoController:&#10;sửa hàm show 1 student có route là studentinfo/{id} nhưng @PathVariable(infoid) dẫn đấn hàm không chạy.&#10;- StudentInfoService:&#10;sửa hàm edit bị lỗi gói json có dữ liệu null thì tự động xóa dữ liệu studentinfo đó trong database do thiếu hàm if.&#10;">
+      <created>1471877087810</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1471877087810</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="283869000" />
+    <option name="totallyTimeSpent" value="285049000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1414,7 +1410,8 @@
     <MESSAGE value="- application.properties:&#10;add lại đoạn code để kết nối vào database do hôm trước trung up file application.properties bị đè code lên. AE chú ý sau up code để ignore file workspace và application.properties." />
     <MESSAGE value="- StudentInfoController + StudentInfoService:&#10;Sửa lại 1 số đoạn trong code:&#10;+ check token hàm show thông tin 1 user&#10;+ requiredRole hàm edit thừa role ADMIN&#10; + requiredRole hàm delete thiếu role ADMIN" />
     <MESSAGE value="- model/InfoBySchool và InfoBySchoolDTO:&#10;sửa kiểu biến của GPA từ double -&gt; Double (java.lang)&#10;và studentCode từ int -&gt; Integer(java.lang)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- model/InfoBySchool và InfoBySchoolDTO:&#10;sửa kiểu biến của GPA từ double -&gt; Double (java.lang)&#10;và studentCode từ int -&gt; Integer(java.lang)" />
+    <MESSAGE value="- StudentInfoController:&#10;sửa hàm show 1 student có route là studentinfo/{id} nhưng @PathVariable(infoid) dẫn đấn hàm không chạy.&#10;- StudentInfoService:&#10;sửa hàm edit bị lỗi gói json có dữ liệu null thì tự động xóa dữ liệu studentinfo đó trong database do thiếu hàm if.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- StudentInfoController:&#10;sửa hàm show 1 student có route là studentinfo/{id} nhưng @PathVariable(infoid) dẫn đấn hàm không chạy.&#10;- StudentInfoService:&#10;sửa hàm edit bị lỗi gói json có dữ liệu null thì tự động xóa dữ liệu studentinfo đó trong database do thiếu hàm if.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1772,25 +1769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
-          <folding>
-            <element signature="e#2087#2088#0" expanded="true" />
-            <element signature="e#2129#2130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35588974">
@@ -1810,14 +1788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="53" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/service/InfoBySchoolService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1830,6 +1800,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.7894737">
           <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/StudentInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23308271">
+          <caret line="37" column="53" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+          <folding>
+            <element signature="e#1463#1464#0" expanded="true" />
+            <element signature="e#1517#1518#0" expanded="true" />
+            <element signature="e#2310#2311#0" expanded="true" />
+            <element signature="e#2352#2353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uet/usercontroller/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.7894738">
+          <caret line="118" column="79" selection-start-line="118" selection-start-column="79" selection-end-line="118" selection-end-column="79" />
           <folding />
         </state>
       </provider>
