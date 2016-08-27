@@ -34,16 +34,16 @@ public class InfoBySchoolService {
     //create info
     public InfoBySchool createInfo(int studentId, InfoBySchoolDTO infoBySchoolDTO){
         Student student = studentRepository.findOne(studentId);
-            InfoBySchool infoBySchool = new InfoBySchool();
-            infoBySchool.setStudentCode(infoBySchoolDTO.getStudentCode());
-            infoBySchool.setMajor(infoBySchoolDTO.getMajor());
-            infoBySchool.setGPA(infoBySchoolDTO.getGPA());
-            infoBySchool.setDiploma(infoBySchoolDTO.getDiploma());
-            infoBySchool.setGrade(infoBySchoolDTO.getGrade());
-            infoBySchool.setGraduationYear(infoBySchoolDTO.getGraduationYear());
-            infoBySchool.setStudentClass(infoBySchoolDTO.getStudentClass());
-            student.setInfoBySchool(infoBySchool);
-            return infoBySchoolRepository.save(infoBySchool);
+        InfoBySchool infoBySchool = new InfoBySchool();
+        infoBySchool.setStudentCode(infoBySchoolDTO.getStudentCode());
+        infoBySchool.setMajor(infoBySchoolDTO.getMajor());
+        infoBySchool.setGPA(infoBySchoolDTO.getGPA());
+        infoBySchool.setDiploma(infoBySchoolDTO.getDiploma());
+        infoBySchool.setGrade(infoBySchoolDTO.getGrade());
+        infoBySchool.setGraduationYear(infoBySchoolDTO.getGraduationYear());
+        infoBySchool.setStudentClass(infoBySchoolDTO.getStudentClass());
+        student.setInfoBySchool(infoBySchool);
+        return infoBySchoolRepository.save(infoBySchool);
     }
 
     //show info of a student

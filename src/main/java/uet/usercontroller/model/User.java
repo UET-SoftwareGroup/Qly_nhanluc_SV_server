@@ -27,6 +27,9 @@ public class User {
     @OneToOne
     Student student;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    Partner partner;
+
     public int getId() {
         return id;
     }
@@ -81,5 +84,13 @@ public class User {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
     }
 }

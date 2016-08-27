@@ -13,16 +13,14 @@ public class PartnerInfo {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-//    @Column(name = "partner_id")
-//    private int partner_id;
-    @Column(name = "partner_name")
-    private String partner_name;
-    @Column(name = "tax_code")
-    private String tax_code;
+    @Column(name = "partnerName")
+    private String partnerName;
+    @Column(name = "taxCode")
+    private String taxCode;
     @Column(name = "director")
     private String director;
-    @Column(name = "field_work")
-    private String field_work;
+    @Column(name = "fieldWork")
+    private String fieldWork;
     @Column(name = "website")
     private String website;
     @Column(name = "address")
@@ -42,65 +40,75 @@ public class PartnerInfo {
         this.id = id;
     }
 
-    public void setPartner_name(String partner_name) {
-        this.partner_name = partner_name;
+    public String getPartnerName() {
+        return partnerName;
     }
 
-    public void setTax_code(String tax_code) {
-        this.tax_code = tax_code;
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
+    }
+
+    public String getTaxCode() {
+        return taxCode;
+    }
+
+    public void setTaxCode(String taxCode) {
+        this.taxCode = taxCode;
+    }
+
+    public String getDirector() {
+        return director;
     }
 
     public void setDirector(String director) {
         this.director = director;
     }
 
-    public void setField_work(String field_work) {
-        this.field_work = field_work;
+    public String getFieldWork() {
+        return fieldWork;
+    }
+
+    public void setFieldWork(String fieldWork) {
+        this.fieldWork = fieldWork;
+    }
+
+    public String getWebsite() {
+        return website;
     }
 
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getFax() {
+        return fax;
+    }
+
     public void setFax(String fax) {
         this.fax = fax;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPartner_name() {
-        return partner_name;
-    }
-    public String getTax_code() {
-        return tax_code;
-    }
-    public String getDirector() {
-        return director;
-    }
-    public String getField_work() {
-        return field_work;
-    }
-    public String getWebsite() {
-        return website;
-    }
-    public String getAddress() {
-        return address;
-    }
-    public String getPhone() {
-        return phone;
-    }
-    public String getFax() { return fax; }
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -12,19 +12,35 @@ public class Partner {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-//    @Column(name = "user_id")
-//    private int user_id;
+    @Column(name = "partnerName")
+    private String partnerName;
+    @OneToOne(cascade = CascadeType.ALL)
+    private PartnerInfo partnerInfo;
 
+    public int getId() {
+        return id;
+    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
-        return id;
+    public String getPartnerName() {
+        return partnerName;
     }
-//    public int getUser_id() {
-//        return user_id;
-//    }
+
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
+    }
+
+    public PartnerInfo getPartnerInfo() {
+        return partnerInfo;
+    }
+
+    public void setPartnerInfo(PartnerInfo partnerInfo) {
+        this.partnerInfo = partnerInfo;
+    }
 }
+
+
 

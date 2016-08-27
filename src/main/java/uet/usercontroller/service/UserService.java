@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.*;
-import uet.usercontroller.repository.InfoBySchoolRepository;
-import uet.usercontroller.repository.StudentInfoRepository;
-import uet.usercontroller.repository.StudentRepository;
-import uet.usercontroller.repository.UserRepository;
+import uet.usercontroller.repository.*;
 
 import java.util.Date;
 import java.util.List;
@@ -26,6 +23,8 @@ public class UserService {
     StudentInfoRepository studentInfoRepository;
     @Autowired
     InfoBySchoolRepository infoBySchoolRepository;
+    @Autowired
+    PartnerRepository partnerRepository;
 
     //Show all user
     public List<User> getUsers(){
@@ -54,6 +53,11 @@ public class UserService {
                     infoBySchoolRepository.save(infoBySchool);
                     studentRepository.save(student);
                 }
+                if (user.getRole() == Role.PARTNER1) {
+                    Partner partner = new Partner();
+                    partner.setPartnerName(user.getUserName());
+                    user.setPartner(partner);
+                }
                 return userRepository.save(user);
             }
             else {
@@ -68,30 +72,27 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if ( user.getRole()==Role.STUDENT ) {
-            if (userDTO.getPassword().equals(user.getPassword())) {
-                if (user.getToken() == null) {
-                    user.setToken(UUID.randomUUID().toString());
-                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
-                } else {
-                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
-                }
+        if (userDTO.getPassword().equals(user.getPassword())) {
+            if (user.getToken() == null) {
+                user.setToken(UUID.randomUUID().toString());
+                user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+            } else {
+                user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
             }
-            user = userRepository.save(user);
-            User result = new User();
-            result.setId(user.getId());
-            result.setUserName(user.getUserName());
-            result.setRole(user.getRole());
-            result.setToken(user.getToken());
+        }
+        user = userRepository.save(user);
+        User result = new User();
+        result.setId(user.getId());
+        result.setUserName(user.getUserName());
+        result.setRole(user.getRole());
+        result.setToken(user.getToken());
+        if (result.getRole()==Role.STUDENT) {
             result.setStudent(user.getStudent());
-            return result;
         }
-        else if ( user.getRole()==Role.PARTNER1 ) {
-            throw new NullPointerException("chua viet partner");
+        if ( result.getRole()==Role.PARTNER1) {
+            result.setPartner(user.getPartner());
         }
-        else {
-            throw new NullPointerException("Login failed.");
-        }
+        return result;
     }
 
     //admin login
