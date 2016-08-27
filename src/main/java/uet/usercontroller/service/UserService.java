@@ -23,8 +23,12 @@ public class UserService {
     StudentInfoRepository studentInfoRepository;
     @Autowired
     InfoBySchoolRepository infoBySchoolRepository;
+//    @Autowired
+//    InternshipRepository internshipRepository;
     @Autowired
     PartnerRepository partnerRepository;
+    @Autowired
+    PartnerInfoRepository partnerInfoRepository;
 
     //Show all user
     public List<User> getUsers(){
@@ -45,18 +49,31 @@ public class UserService {
                     Student student = new Student();
                     student.setStudentName(user.getUserName());
                     user.setStudent(student);
+                    //create StudentInfo
                     StudentInfo studentInfo = new StudentInfo();
                     student.setStudentInfo(studentInfo);
                     studentInfoRepository.save(studentInfo);
+                    //create InfoByschool
                     InfoBySchool infoBySchool = new InfoBySchool();
                     student.setInfoBySchool(infoBySchool);
                     infoBySchoolRepository.save(infoBySchool);
+//                    //create Internship
+//                    Internship internship = new Internship();
+//                    student.setInternship(internship);
+//                    internshipRepository.save(internship);
+
                     studentRepository.save(student);
                 }
                 if (user.getRole() == Role.PARTNER1) {
                     Partner partner = new Partner();
                     partner.setPartnerName(user.getUserName());
                     user.setPartner(partner);
+                    //create PartnerInfo
+                    PartnerInfo partnerInfo = new PartnerInfo();
+                    partner.setPartnerInfo(partnerInfo);
+                    partnerInfoRepository.save(partnerInfo);
+
+                    partnerRepository.save(partner);
                 }
                 return userRepository.save(user);
             }
