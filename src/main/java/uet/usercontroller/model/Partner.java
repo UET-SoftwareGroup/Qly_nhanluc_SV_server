@@ -1,6 +1,8 @@
 package uet.usercontroller.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tu on 03-May-16.
@@ -16,6 +18,11 @@ public class Partner {
     private String partnerName;
     @OneToOne(cascade = CascadeType.ALL)
     private PartnerInfo partnerInfo;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Post> post  = new ArrayList<Post>();
+    public List<Post> getPost() {  return post; }
+
+    public void setPost(List<Post> post) {    this.post = post; }
 
     public int getId() {
         return id;
