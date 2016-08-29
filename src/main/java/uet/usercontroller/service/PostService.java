@@ -1,6 +1,7 @@
 package uet.usercontroller.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.PostDTO;
 import uet.usercontroller.model.Partner;
 import uet.usercontroller.model.Post;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by Trung on 8/29/2016.
  */
+@Service
 public class PostService {
     @Autowired
     UserRepository userRepository;
@@ -50,7 +52,7 @@ public class PostService {
             Post post = new Post();
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
-            post.setDescrible(postDTO.getDescrible());
+            post.setDescribe(postDTO.getDescribe());
             return postRepository.save(post);
         }
         else{
@@ -70,8 +72,8 @@ public class PostService {
             if (postDTO.getDatePost()!=null){
                 post.setDatePost(postDTO.getDatePost());
             }
-            if (postDTO.getDescrible()!=null){
-                post.setDescrible(postDTO.getDescrible());
+            if (postDTO.getDescribe()!=null){
+                post.setDescribe(postDTO.getDescribe());
             }
             return postRepository.save(post);
         }
@@ -88,7 +90,7 @@ public class PostService {
         if (partner.getPost().equals(post)) {
             post.setContent(null);
             post.setDatePost(null);
-            post.setDescrible(null);
+            post.setDescribe(null);
             return postRepository.save(post);
         }
         else {

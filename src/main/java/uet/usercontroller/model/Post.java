@@ -18,15 +18,15 @@ public class Post {
     private String content;
     @Column(name="datePost")
     private Date datePost;
-    @Column(name = "describle")
-    private String describle;
+    @Column(name="describe")
+    private String describe;
 
-    public String getDescrible() {
-        return describle;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setDescrible(String describle) {
-        this.describle = describle;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public Date getDatePost() {

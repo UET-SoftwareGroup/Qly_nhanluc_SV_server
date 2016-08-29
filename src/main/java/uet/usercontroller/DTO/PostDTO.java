@@ -9,7 +9,7 @@ public class PostDTO {
     private int id;
     private String content;
     private Date datePost;
-    private String describle;
+    private String describe;
 
     public int getId() {
         return id;
@@ -35,11 +35,11 @@ public class PostDTO {
         this.datePost = datePost;
     }
 
-    public String getDescrible() {
-        return describle;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setDescrible(String describle) {
-        this.describle = describle;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 }

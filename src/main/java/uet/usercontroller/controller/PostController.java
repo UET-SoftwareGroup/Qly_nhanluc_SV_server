@@ -8,7 +8,6 @@ import uet.usercontroller.model.Role;
 import uet.usercontroller.service.PostService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
