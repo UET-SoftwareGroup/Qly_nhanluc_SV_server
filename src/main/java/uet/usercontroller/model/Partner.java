@@ -21,6 +21,16 @@ public class Partner {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Post> post  = new ArrayList<Post>();
     public List<Post> getPost() {  return post; }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PartnerContact> partnerContacts = new ArrayList<PartnerContact>();
+
+    public List<PartnerContact> getPartnerContacts() {
+        return partnerContacts;
+    }
+
+    public void setPartnerContacts(List<PartnerContact> partnerContacts) {
+        this.partnerContacts = partnerContacts;
+    }
 
     public void setPost(List<Post> post) {    this.post = post; }
 
