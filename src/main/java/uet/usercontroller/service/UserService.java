@@ -64,17 +64,17 @@ public class UserService {
 
                     studentRepository.save(student);
                 }
-                if (user.getRole() == Role.PARTNER1) {
-                    Partner partner = new Partner();
-                    partner.setPartnerName(user.getUserName());
-                    user.setPartner(partner);
-                    //create PartnerInfo
-                    PartnerInfo partnerInfo = new PartnerInfo();
-                    partner.setPartnerInfo(partnerInfo);
-                    partnerInfoRepository.save(partnerInfo);
-
-                    partnerRepository.save(partner);
-                }
+//                if (user.getRole() == Role.PARTNER1) {
+//                    Partner partner = new Partner();
+//                    partner.setPartnerName(user.getUserName());
+//                    user.setPartner(partner);
+//                    //create PartnerInfo
+//                    PartnerInfo partnerInfo = new PartnerInfo();
+//                    partner.setPartnerInfo(partnerInfo);
+//                    partnerInfoRepository.save(partnerInfo);
+//
+//                    partnerRepository.save(partner);
+//                }
                 return userRepository.save(user);
             }
             else {

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.PartnerDTO;
 import uet.usercontroller.model.Partner;
+import uet.usercontroller.model.PartnerInfo;
 import uet.usercontroller.model.User;
+import uet.usercontroller.repository.PartnerInfoRepository;
 import uet.usercontroller.repository.PartnerRepository;
 import uet.usercontroller.repository.UserRepository;
 
@@ -19,6 +21,8 @@ public class PartnerService {
     UserRepository userRepository;
     @Autowired
     private PartnerRepository partnerRepository;
+    @Autowired
+    PartnerInfoRepository partnerInfoRepository;
 
     //show list all partner
     public List<Partner> getPartners(){
@@ -31,7 +35,11 @@ public class PartnerService {
         User user = userRepository.findOne(userId);
         Partner partner = new Partner();
         partner.setPartnerName(partnerDTO.getPartnerName());
-        //setPartnerInfo sau khi da noi bang PartnerInfo
+        //create partnerInfo
+        PartnerInfo partnerInfo = new PartnerInfo();
+        partner.setPartnerInfo(partnerInfo);
+        partnerInfoRepository.save(partnerInfo);
+
         user.setPartner(partner);
         return partnerRepository.save(partner);
     }
