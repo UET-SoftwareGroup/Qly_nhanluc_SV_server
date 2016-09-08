@@ -52,7 +52,7 @@ public class PostService {
             Post post = new Post();
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
-            post.setDescribe(postDTO.getDescribe());
+            post.setDescribePost(postDTO.getDescribePost());
             return postRepository.save(post);
         }
         else{
@@ -72,8 +72,8 @@ public class PostService {
             if (postDTO.getDatePost()!=null){
                 post.setDatePost(postDTO.getDatePost());
             }
-            if (postDTO.getDescribe()!=null){
-                post.setDescribe(postDTO.getDescribe());
+            if (postDTO.getDescribePost()!=null){
+                post.setDescribePost(postDTO.getDescribePost());
             }
             return postRepository.save(post);
         }
@@ -90,7 +90,7 @@ public class PostService {
         if (partner.getPost().equals(post)) {
             post.setContent(null);
             post.setDatePost(null);
-            post.setDescribe(null);
+            post.setDescribePost(null);
             return postRepository.save(post);
         }
         else {

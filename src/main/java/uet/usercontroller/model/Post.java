@@ -14,36 +14,6 @@ public class Post {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "content")
-    private String content;
-    @Column(name="datePost")
-    private Date datePost;
-    @Column(name="describe")
-    private String describe;
-
-    public String getDescribe() {
-        return describe;
-    }
-
-    public void setDescribe(String describe) {
-        this.describe = describe;
-    }
-
-    public Date getDatePost() {
-        return datePost;
-    }
-
-    public void setDatePost(Date datePost) {
-        this.datePost = datePost;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public int getId() {
         return id;
@@ -53,4 +23,36 @@ public class Post {
         this.id = id;
     }
 
+    @Column(name = "content")
+    private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Column(name="datePost")
+    private String datePost;
+
+    public String getDatePost() {
+        return datePost;
+    }
+
+    public void setDatePost(String datePost) {
+        this.datePost = datePost;
+    }
+
+    @Column(name="describePost")
+    private String describePost;
+
+    public String getDescribePost() {
+        return describePost;
+    }
+
+    public void setDescribePost(String describePost) {
+        this.describePost = describePost;
+    }
 }

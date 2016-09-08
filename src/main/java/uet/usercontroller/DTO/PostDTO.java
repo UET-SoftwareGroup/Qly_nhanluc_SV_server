@@ -8,8 +8,8 @@ import java.util.Date;
 public class PostDTO {
     private int id;
     private String content;
-    private Date datePost;
-    private String describe;
+    private String datePost;
+    private String describePost;
 
     public int getId() {
         return id;
@@ -27,19 +27,13 @@ public class PostDTO {
         this.content = content;
     }
 
-    public Date getDatePost() {
-        return datePost;
-    }
+    public String getDatePost() { return datePost; }
 
-    public void setDatePost(Date datePost) {
+    public void setDatePost(String datePost) {
         this.datePost = datePost;
     }
 
-    public String getDescribe() {
-        return describe;
-    }
+    public String getDescribePost() { return describePost; }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
-    }
+    public void setDescribePost(String describePost) { this.describePost = describePost; }
 }
