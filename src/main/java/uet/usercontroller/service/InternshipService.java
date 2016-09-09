@@ -49,16 +49,19 @@ public class InternshipService {
         }
     }
     //Delete by Id
-    public String deleteById(int id,String token){
+    public void deleteById(int id,int studentId,String token){
         User user = userRepository.findByToken(token);
-        Internship internship = internshipRepository.findById(id);
-        internship.setPartnerId(0);
-        internship.setCompany(null);
-        internship.setStartDate(null);
-        internship.setEndDate(null);
-        internship.setSupervisor(null);
-        internshipRepository.save(internship);
-        return "delete";
+        Student student = studentRepository.findOne(studentId);
+        student.setInternship(null);
+        studentRepository.save(student);
+        internshipRepository.delete(id);
+        //studentRepository.delete(internshipId);
+//        internship.setPartnerId(0);
+//        internship.setCompany(null);
+//        internship.setStartDate(null);
+//        internship.setEndDate(null);
+//        internship.setSupervisor(null);
+//        internshipRepository.save(internship);
     }
     //change 1 internship By Id
     public Internship changeById( int internId, InternshipDTO internshipDTO,String token){

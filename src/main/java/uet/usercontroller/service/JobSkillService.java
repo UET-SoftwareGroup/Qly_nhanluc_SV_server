@@ -58,25 +58,25 @@ public class JobSkillService {
     }
 
     //delete 1 jobskill by id
-    public String deleteJobSkill(int id,String token){
+    public void deleteJobSkill(int id,String token){
         User user = userRepository.findByToken(token);
         Student student = user.getStudent();
         JobSkill jobSkill = jobSkillRepository.findById(id);
         if(user.getRole()==Role.STUDENT) {
             if (student.getId() == jobSkill.getStudentId()) {
                 jobSkillRepository.delete(jobSkill);
-                return "deleted";
+                //return "deleted";
             } else {
                 throw new NullPointerException("can't delete");
             }
         }else{
             jobSkillRepository.delete(jobSkill);
-            return "deleted";
+            //return "deleted";
         }
     }
     //show 1 jobskill
     public JobSkill showJobSkill( int id){
-        JobSkill jobSkill = jobSkillRepository.findById(id);
+        JobSkill  jobSkill = jobSkillRepository.findById(id);
         return jobSkill;
     }
     //change 1 Jobskill by id

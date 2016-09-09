@@ -40,30 +40,29 @@ public class UserService {
     public User createUser(UserDTO userDTO) {
         User user1 = userRepository.findByUserName(userDTO.getUserName());
         if (user1 == null) {
-            if ( userDTO.getUserName() != null && userDTO.getPassword() != null && userDTO.getRole() != null ) {
+            if ( userDTO.getUserName() != null && userDTO.getPassword() != null) {
                 User user = new User();
                 user.setUserName(userDTO.getUserName());
                 user.setPassword(userDTO.getPassword());
-                user.setRole(userDTO.getRole());
-                if (user.getRole() == Role.STUDENT) {
-                    Student student = new Student();
-                    student.setStudentName(user.getUserName());
-                    user.setStudent(student);
-                    //create StudentInfo
-                    StudentInfo studentInfo = new StudentInfo();
-                    student.setStudentInfo(studentInfo);
-                    studentInfoRepository.save(studentInfo);
-                    //create InfoByschool
-                    InfoBySchool infoBySchool = new InfoBySchool();
-                    student.setInfoBySchool(infoBySchool);
-                    infoBySchoolRepository.save(infoBySchool);
+                user.setRole(Role.STUDENT);
+                Student student = new Student();
+                student.setStudentName(user.getUserName());
+                user.setStudent(student);
+                //create StudentInfo
+                StudentInfo studentInfo = new StudentInfo();
+                student.setStudentInfo(studentInfo);
+                studentInfoRepository.save(studentInfo);
+                //create InfoByschool
+                InfoBySchool infoBySchool = new InfoBySchool();
+                student.setInfoBySchool(infoBySchool);
+                infoBySchoolRepository.save(infoBySchool);
 //                    //create Internship
 //                    Internship internship = new Internship();
 //                    student.setInternship(internship);
 //                    internshipRepository.save(internship);
 
-                    studentRepository.save(student);
-                }
+                studentRepository.save(student);
+
 //                if (user.getRole() == Role.PARTNER1) {
 //                    Partner partner = new Partner();
 //                    partner.setPartnerName(user.getUserName());
@@ -86,6 +85,42 @@ public class UserService {
         }
     }
 
+    //createPartner
+    public User createPartner(UserDTO userDTO){
+        User user1 = userRepository.findByUserName(userDTO.getUserName());
+        if (user1 == null) {
+            if ( userDTO.getUserName() != null && userDTO.getPassword() != null && userDTO.getRole() != null ) {
+                User user = new User();
+                user.setUserName(userDTO.getUserName());
+                user.setPassword(userDTO.getPassword());
+                user.setRole(userDTO.getRole());
+                if (user.getRole() == Role.PARTNER1) {
+                    Partner partner = new Partner();
+                    partner.setPartnerName(user.getUserName());
+                    user.setPartner(partner);
+
+                    //create PartnerInfo
+                    PartnerInfo partnerInfo = new PartnerInfo();
+                    partner.setPartnerInfo(partnerInfo);
+                    partnerInfoRepository.save(partnerInfo);
+
+//                //create partnerContact
+//                PartnerContact partnerContact = new PartnerContact();
+//                partner.setPartnerContacts(partnerContact);
+//                partnerContactRepository.save(partnerContact);
+
+                    partnerRepository.save(partner);
+                }
+                return userRepository.save(user);
+            }
+            else {
+                throw new NullPointerException("Missing information.");
+            }
+        }
+        else{
+            throw new NullPointerException("User existed.");
+        }
+    }
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());

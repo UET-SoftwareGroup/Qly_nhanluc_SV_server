@@ -35,6 +35,13 @@ public class UserController {
         return userService.createUser(userDTO);
     }
 
+    //create partner
+    @RequiredRoles(Role.ADMIN)
+    @RequestMapping(value="/createPartner",method = RequestMethod.POST)
+    public User createPartner(@RequestBody UserDTO userDTO) {
+        return userService.createPartner(userDTO);
+    }
+
     //login
     @NoAuthentication
     @RequestMapping(value="/login", method = RequestMethod.POST)

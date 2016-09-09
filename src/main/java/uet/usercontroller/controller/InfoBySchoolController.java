@@ -6,7 +6,6 @@ import uet.usercontroller.DTO.InfoBySchoolDTO;
 import uet.usercontroller.model.InfoBySchool;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.service.InfoBySchoolService;
-import uet.usercontroller.stereotype.NoAuthentication;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;

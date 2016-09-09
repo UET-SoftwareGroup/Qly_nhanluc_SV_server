@@ -1,7 +1,6 @@
 package uet.usercontroller.model;
 
 import javax.persistence.*;
-import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 import java.util.List;
 

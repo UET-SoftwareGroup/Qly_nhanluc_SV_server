@@ -1,7 +1,6 @@
 package uet.usercontroller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.InternshipDTO;
 import uet.usercontroller.model.Internship;
@@ -51,9 +50,9 @@ public class InternshipController {
         return internshipService.changeById(id,internshipDTO,token);
     }
     @RequiredRoles({Role.ADMIN})
-    @RequestMapping(value="/intern/{internId}", method = RequestMethod.DELETE)
-    public String deleteById(@PathVariable("internId") int id,HttpServletRequest request){
+    @RequestMapping(value="/intern/{internId}/{studentId}", method = RequestMethod.DELETE)
+    public void deleteById(@PathVariable("internId") int id,@PathVariable("studentId") int studentId, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return internshipService.deleteById(id,token);
+        internshipService.deleteById(id,studentId,token);
     }
 }

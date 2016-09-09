@@ -1,14 +1,11 @@
 package uet.usercontroller.controller;
 
-import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.JobSkillDTO;
 import uet.usercontroller.model.JobSkill;
 import uet.usercontroller.model.Role;
-import uet.usercontroller.model.Student;
 import uet.usercontroller.service.JobSkillService;
-import uet.usercontroller.service.StudentService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,9 +57,9 @@ public class JobSkillController {
     //delete 1 jobskill
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.DELETE)
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
-    public String deleteJs(@PathVariable("jobSkillId") int id,HttpServletRequest request){
+    public void deleteJs(@PathVariable("jobSkillId") int id,HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return jobSkillService.deleteJobSkill(id,token);
+        jobSkillService.deleteJobSkill(id,token);
     }
 
 }

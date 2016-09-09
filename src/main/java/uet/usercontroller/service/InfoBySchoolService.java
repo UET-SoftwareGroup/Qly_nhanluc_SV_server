@@ -61,7 +61,7 @@ public class InfoBySchoolService {
         }
         else {
             InfoBySchool info = infoBySchoolRepository.findOne(infoId);
-            ;return info;
+            return info;
         }
     }
 
