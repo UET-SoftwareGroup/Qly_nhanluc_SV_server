@@ -1,5 +1,7 @@
 package uet.usercontroller.DTO;
 
+import uet.usercontroller.model.Partner;
+
 import java.util.Date;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Date;
 public class PostDTO {
     private int id;
     private String content;
-    private String datePost;
+    private Date datePost;
     private String describePost;
 
     public int getId() {
@@ -27,9 +29,9 @@ public class PostDTO {
         this.content = content;
     }
 
-    public String getDatePost() { return datePost; }
+    public Date getDatePost() { return datePost; }
 
-    public void setDatePost(String datePost) {
+    public void setDatePost(Date datePost) {
         this.datePost = datePost;
     }
 

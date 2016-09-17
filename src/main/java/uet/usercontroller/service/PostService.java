@@ -33,9 +33,9 @@ public class PostService {
     }
 
     //show list post of a partner
-    public Post showAllPost(int partnerId){
-        Post post = postRepository.findOne(partnerId);
-        return post;
+    public List<Post> showAllPost(int partnerId) {
+        Partner partner = partnerRepository.findById(partnerId);
+        return partner.getPost();
     }
 
     //show a post
@@ -53,7 +53,11 @@ public class PostService {
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
             post.setDescribePost(postDTO.getDescribePost());
-            return postRepository.save(post);
+            post.setPartner(partner);
+            postRepository.save(post);
+            partner.getPost().add(post);
+            partnerRepository.save(partner);
+            return post;
         }
         else{
             throw new NullPointerException("User doesn't match with Partner.");
@@ -64,8 +68,8 @@ public class PostService {
     public Post editPost(int postId, PostDTO postDTO, String token){
         User user = userRepository.findByToken(token);
         Partner partner = user.getPartner();
-        Post  post = postRepository.findOne(postId);
-        if ( partner.getPost().equals(post)){
+        Post post = postRepository.findById(postId);
+        if ( post.getPartner().equals(partner)){
             if (postDTO.getContent()!=null){
                 post.setContent(postDTO.getContent());
             }
@@ -83,18 +87,18 @@ public class PostService {
     }
 
     //delete a post
-    public Post deletePost(int postId, String token){
+    public String deletePost(int postId, String token){
         User user = userRepository.findByToken(token);
         Partner partner = user.getPartner();
         Post  post = postRepository.findOne(postId);
-        if (partner.getPost().equals(post)) {
-            post.setContent(null);
-            post.setDatePost(null);
-            post.setDescribePost(null);
-            return postRepository.save(post);
+
+        if (post.getPartner().equals(partner)) {
+            postRepository.delete(post);
+            return "delete ok";
         }
         else {
             throw new NullPointerException("User doesn't match with Partner.");
         }
     }
+
 }

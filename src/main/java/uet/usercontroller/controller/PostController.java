@@ -27,7 +27,7 @@ public class PostController {
     //Show list post of a partner
     @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
     @RequestMapping(value="/partner/{partnerId}/post",method = RequestMethod.GET)
-    public Post showAllPost(@PathVariable("partnerId") int partnerId){
+    public List<Post> showAllPost(@PathVariable("partnerId") int partnerId){
         return postService.showAllPost(partnerId);
     }
 
@@ -40,7 +40,7 @@ public class PostController {
 
     //Create post
     @RequiredRoles({Role.PARTNER1})
-    @RequestMapping(value="/partner/{partnerId}/post/",method = RequestMethod.POST)
+    @RequestMapping(value="/partner/{partnerId}/post",method = RequestMethod.POST)
     public Post createPost(@PathVariable("partnerId") int partnerId, @RequestBody PostDTO postDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return postService.createPost(partnerId, postDTO, token);
@@ -57,7 +57,7 @@ public class PostController {
     //Delete post
     @RequiredRoles(Role.PARTNER1)
     @RequestMapping(value="/post/{postId}",method = RequestMethod.DELETE)
-    public Post deletePost(@PathVariable("postId") int postId, HttpServletRequest request){
+    public String deletePost(@PathVariable("postId") int postId, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return postService.deletePost(postId, token);
     }

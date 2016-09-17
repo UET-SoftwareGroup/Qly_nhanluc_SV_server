@@ -9,5 +9,5 @@ import uet.usercontroller.model.Post;
  */
 @Repository
 public interface PostRepository extends CrudRepository<Post,Integer> {
-
+    Post findById(int id);
 }
