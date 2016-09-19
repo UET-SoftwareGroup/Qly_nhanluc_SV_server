@@ -19,22 +19,26 @@ public class Partner {
     @OneToOne(cascade = CascadeType.ALL)
     private PartnerInfo partnerInfo;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Post> post  = new ArrayList<Post>();
+    private List<Post> post;
 
-    public List<Post> getPost() { return post; }
-
-    public void setPost(List<Post> post) { this.post = post;}
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<PartnerContact> partnerContacts = new ArrayList<PartnerContact>();
-
-    public List<PartnerContact> getPartnerContacts() {
-        return partnerContacts;
+    public List<Post> getPost() {
+        return post;
     }
 
-    public void setPartnerContacts(List<PartnerContact> partnerContacts) {
-        this.partnerContacts = partnerContacts;
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
+
+    //    @OneToMany(cascade = CascadeType.ALL)
+//    private List<PartnerContact> partnerContacts = new ArrayList<PartnerContact>();
+//
+//    public List<PartnerContact> getPartnerContacts() {
+//        return partnerContacts;
+//    }
+//
+//    public void setPartnerContacts(List<PartnerContact> partnerContacts) {
+//        this.partnerContacts = partnerContacts;
+//    }
 
     public int getId() {
         return id;
@@ -59,6 +63,7 @@ public class Partner {
     public void setPartnerInfo(PartnerInfo partnerInfo) {
         this.partnerInfo = partnerInfo;
     }
+
 }
 
 

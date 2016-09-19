@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by Trung on 8/27/2016.
  */
 @Entity
+@Table(name="Post")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,8 +51,8 @@ public class Post {
         this.describePost = describePost;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "partner_id")
+    @ManyToOne
+    @JoinColumn(name="partner_id")
     private Partner partner;
 
     public Partner getPartner() {

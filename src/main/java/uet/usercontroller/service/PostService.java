@@ -53,7 +53,7 @@ public class PostService {
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
             post.setDescribePost(postDTO.getDescribePost());
-            post.setPartner(partner);
+            //post.setPartner(partner);
             postRepository.save(post);
             partner.getPost().add(post);
             partnerRepository.save(partner);
@@ -69,7 +69,8 @@ public class PostService {
         User user = userRepository.findByToken(token);
         Partner partner = user.getPartner();
         Post post = postRepository.findById(postId);
-        if ( post.getPartner().equals(partner)){
+        Partner partner1 = partnerRepository.findByPostId(postId);
+        if ( partner1.equals(partner)){
             if (postDTO.getContent()!=null){
                 post.setContent(postDTO.getContent());
             }
@@ -91,8 +92,9 @@ public class PostService {
         User user = userRepository.findByToken(token);
         Partner partner = user.getPartner();
         Post  post = postRepository.findOne(postId);
+        Partner partner1 = partnerRepository.findByPostId(postId);
+        if (partner1.equals(partner)) {
 
-        if (post.getPartner().equals(partner)) {
             postRepository.delete(post);
             return "delete ok";
         }

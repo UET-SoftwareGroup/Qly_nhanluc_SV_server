@@ -2,6 +2,7 @@ package uet.usercontroller.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import uet.usercontroller.model.Partner;
 import uet.usercontroller.model.Post;
 
 /**
@@ -10,4 +11,6 @@ import uet.usercontroller.model.Post;
 @Repository
 public interface PostRepository extends CrudRepository<Post,Integer> {
     Post findById(int id);
+
+    Post findByPartnerId(int partnerId);
 }
