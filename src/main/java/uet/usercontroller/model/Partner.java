@@ -1,5 +1,7 @@
 package uet.usercontroller.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,10 @@ public class Partner {
     private PartnerInfo partnerInfo;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Post> post;
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+            org.hibernate.annotations.CascadeType.DELETE,
+            org.hibernate.annotations.CascadeType.MERGE,
+            org.hibernate.annotations.CascadeType.PERSIST})
 
     public List<Post> getPost() {
         return post;
