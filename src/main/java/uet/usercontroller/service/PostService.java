@@ -53,7 +53,6 @@ public class PostService {
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
             post.setDescribePost(postDTO.getDescribePost());
-            //post.setPartner(partner);
             postRepository.save(post);
             partner.getPost().add(post);
             partnerRepository.save(partner);
@@ -94,7 +93,6 @@ public class PostService {
         Post  post = postRepository.findOne(postId);
         Partner partner1 = partnerRepository.findByPostId(postId);
         if (partner1.equals(partner)) {
-
             postRepository.delete(post);
             return "delete ok";
         }

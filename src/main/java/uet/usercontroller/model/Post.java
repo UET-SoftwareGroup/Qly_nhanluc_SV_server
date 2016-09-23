@@ -50,16 +50,4 @@ public class Post {
     public void setDescribePost(String describePost) {
         this.describePost = describePost;
     }
-
-    @ManyToOne
-    @JoinColumn(name="partner_id")
-    private Partner partner;
-
-    public Partner getPartner() {
-        return partner;
-    }
-
-    public void setPartner(Partner partner) {
-        this.partner = partner;
-    }
 }
