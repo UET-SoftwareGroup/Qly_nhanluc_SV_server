@@ -56,24 +56,7 @@ public class UserService {
                 InfoBySchool infoBySchool = new InfoBySchool();
                 student.setInfoBySchool(infoBySchool);
                 infoBySchoolRepository.save(infoBySchool);
-//                    //create Internship
-//                    Internship internship = new Internship();
-//                    student.setInternship(internship);
-//                    internshipRepository.save(internship);
-
                 studentRepository.save(student);
-
-//                if (user.getRole() == Role.PARTNER1) {
-//                    Partner partner = new Partner();
-//                    partner.setPartnerName(user.getUserName());
-//                    user.setPartner(partner);
-//                    //create PartnerInfo
-//                    PartnerInfo partnerInfo = new PartnerInfo();
-//                    partner.setPartnerInfo(partnerInfo);
-//                    partnerInfoRepository.save(partnerInfo);
-//
-//                    partnerRepository.save(partner);
-//                }
                 return userRepository.save(user);
             }
             else {
@@ -85,8 +68,8 @@ public class UserService {
         }
     }
 
-    //createPartner
-    public User createPartner(UserDTO userDTO){
+    //createAccount
+    public User createAccount(UserDTO userDTO){
         User user1 = userRepository.findByUserName(userDTO.getUserName());
         if (user1 == null) {
             if ( userDTO.getUserName() != null && userDTO.getPassword() != null && userDTO.getRole() != null ) {
@@ -110,6 +93,9 @@ public class UserService {
 //                partnerContactRepository.save(partnerContact);
 
                     partnerRepository.save(partner);
+                }
+                if (user.getRole() == Role.ADMIN){
+                    userRepository.save(user);
                 }
                 return userRepository.save(user);
             }

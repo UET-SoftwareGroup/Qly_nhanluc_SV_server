@@ -37,9 +37,9 @@ public class UserController {
 
     //create partner
     @RequiredRoles(Role.ADMIN)
-    @RequestMapping(value="/createPartner",method = RequestMethod.POST)
-    public User createPartner(@RequestBody UserDTO userDTO) {
-        return userService.createPartner(userDTO);
+    @RequestMapping(value="/createAccount",method = RequestMethod.POST)
+    public User createAccount(@RequestBody UserDTO userDTO) {
+        return userService.createAccount(userDTO);
     }
 
     //login
