@@ -12,8 +12,6 @@ public class PartnerContact {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name="partnerId")
-    private int partnerId;
     @Column(name="contactName")
     private String contactName;
     @Column(name = "address")
@@ -22,14 +20,6 @@ public class PartnerContact {
     private String skype;
     @Column(name = "email")
     private String email;
-
-    public int getPartnerId() {
-        return partnerId;
-    }
-
-    public void setPartnerId(int partnerId) {
-        this.partnerId = partnerId;
-    }
 
     public int getId() {
         return id;

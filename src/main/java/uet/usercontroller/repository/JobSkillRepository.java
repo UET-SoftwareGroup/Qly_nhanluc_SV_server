@@ -7,5 +7,5 @@ import uet.usercontroller.model.JobSkill;
 
 @Repository
 public interface JobSkillRepository extends CrudRepository<JobSkill,Integer> {
-    JobSkill findById(int Id);
+    JobSkill findById(int id);
 }

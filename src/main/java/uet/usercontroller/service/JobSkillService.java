@@ -37,13 +37,11 @@ public class JobSkillService {
 
     }
     //create jobskill
-    public JobSkill createJs(JobSkillDTO jobSkillDTO,String token){
+    public JobSkill createJs(int studentId,JobSkillDTO jobSkillDTO,String token){
         User user = userRepository.findByToken(token);
-        Student student = user.getStudent();
-        if(student.getId()==jobSkillDTO.getStudentId()) {
+        Student student = studentRepository.findById(studentId);
+        if(user.getStudent().equals(student)) {
             JobSkill jobSkill = new JobSkill();
-            jobSkill.setId(jobSkillDTO.getId());
-            jobSkill.setStudentId(jobSkillDTO.getStudentId());
             jobSkill.setCompany(jobSkillDTO.getCompany());
             jobSkill.setSkill(jobSkillDTO.getSkill());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
@@ -62,8 +60,9 @@ public class JobSkillService {
         User user = userRepository.findByToken(token);
         Student student = user.getStudent();
         JobSkill jobSkill = jobSkillRepository.findById(id);
+        Student student1 = studentRepository.findByJobSkillsId(id);
         if(user.getRole()==Role.STUDENT) {
-            if (student.getId() == jobSkill.getStudentId()) {
+            if (student.equals(student1)) {
                 jobSkillRepository.delete(jobSkill);
                 //return "deleted";
             } else {
@@ -84,9 +83,8 @@ public class JobSkillService {
         User user = userRepository.findByToken(token);
         JobSkill jobSkill = jobSkillRepository.findById(id);
         Student student = user.getStudent();
-        if (student.getId() == jobSkill.getStudentId()) {
-            jobSkill.setId(jobSkillDTO.getId());
-            jobSkill.setStudentId(jobSkill.getStudentId());
+        Student student1 = studentRepository.findByJobSkillsId(id);
+        if (student.equals(student1)) {
             jobSkill.setCompany(jobSkillDTO.getCompany());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
             jobSkill.setSkill(jobSkillDTO.getSkill());

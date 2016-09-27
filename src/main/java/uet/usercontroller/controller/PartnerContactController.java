@@ -28,6 +28,13 @@ public class PartnerContactController {
     public List<PartnerContact> getallPartnerContact(){
         return partnerContactService.getpartnerContacts();
     }
+
+    //Show list contact of a partner
+    @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
+    @RequestMapping(value="/partner/{partnerId}/partnerContact",method = RequestMethod.GET)
+    public List<PartnerContact> showAllContact(@PathVariable("partnerId") int partnerId){
+        return partnerContactService.showAllContact(partnerId);
+    }
     //show a partner contact
     @RequiredRoles({Role.ADMIN, Role.PARTNER1, Role.STUDENT})
     @RequestMapping(value="/partnerContact/{partnerContactId}", method = RequestMethod.GET)
@@ -53,7 +60,7 @@ public class PartnerContactController {
     //delete contact of a partner
     @RequiredRoles({Role.PARTNER1})
     @RequestMapping(value="/partnerContact/{partnerContactId}", method = RequestMethod.DELETE)
-    public PartnerContact deleteCont(@PathVariable("partnerContactId") int partnerCtId, HttpServletRequest request){
+    public String deleteCont(@PathVariable("partnerContactId") int partnerCtId, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return partnerContactService.deleteContact(partnerCtId, token);
     }

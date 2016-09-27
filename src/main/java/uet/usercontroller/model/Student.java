@@ -64,14 +64,11 @@ public class Student {
     public void setStudentInfo(StudentInfo studentInfo){
         this.studentInfo = studentInfo;
     }
+
     @OneToMany(cascade = CascadeType.ALL)
-    private List<JobSkill> jobSkills  = new ArrayList<JobSkill>();
+    private List<JobSkill> jobSkills;
 
-    public List<JobSkill> getJobSkills() {
-        return jobSkills;
-    }
+    public List<JobSkill> getJobSkills() { return jobSkills; }
 
-    public void setJobSkills(List<JobSkill> jobSkills) {
-        this.jobSkills = jobSkills;
-    }
+    public void setJobSkills(List<JobSkill> jobSkills) { this.jobSkills = jobSkills; }
 }

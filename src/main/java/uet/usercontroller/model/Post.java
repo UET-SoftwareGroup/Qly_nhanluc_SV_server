@@ -10,6 +10,7 @@ import java.util.Date;
 @Table(name="Post")
 public class Post {
     @Id
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -21,6 +22,7 @@ public class Post {
         this.id = id;
     }
 
+    @Column(name="content")
     private String content;
 
     public String getContent() {
@@ -31,6 +33,7 @@ public class Post {
         this.content = content;
     }
 
+    @Column(name="datePost")
     private Date datePost;
 
     public Date getDatePost() {
@@ -41,6 +44,7 @@ public class Post {
         this.datePost = datePost;
     }
 
+    @Column(name="describePost")
     private String describePost;
 
     public String getDescribePost() {
@@ -50,4 +54,12 @@ public class Post {
     public void setDescribePost(String describePost) {
         this.describePost = describePost;
     }
+
+    @ManyToOne
+    @Column(name="partnerId")
+    private Partner partner;
+
+    public Partner getPartner() { return partner; }
+
+    public void setPartner(Partner partner) { this.partner = partner; }
 }

@@ -15,4 +15,6 @@ public interface PartnerRepository extends CrudRepository<Partner,Integer>{
     Partner findById(int id);
 
     Partner findByPostId(int postId);
+
+    Partner findByPartnerContactsId(int partnerContactId);
 }

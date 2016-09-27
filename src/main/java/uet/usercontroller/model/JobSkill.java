@@ -14,24 +14,12 @@ public class JobSkill {
     @GeneratedValue(strategy = GenerationType.AUTO )
     @Column(name = "id")
     private int id;
-    @Column(name="StudentId")
-    private int StudentId;
     @Column(name = "skill")
     private String skill;
     @Column(name = "company")
     private String company;
     @Column(name = "updateTime")
     private Date updateTime;
-
-
-
-    public int getStudentId() {
-        return StudentId;
-    }
-
-    public void setStudentId(int studentId) {
-        StudentId = studentId;
-    }
 
     public int getId() {
         return id;

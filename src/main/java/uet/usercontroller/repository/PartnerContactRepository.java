@@ -9,5 +9,5 @@ import uet.usercontroller.model.PartnerContact;
  */
 @Repository
 public interface PartnerContactRepository extends CrudRepository<PartnerContact,Integer> {
-
+    PartnerContact findById(int id);
 }

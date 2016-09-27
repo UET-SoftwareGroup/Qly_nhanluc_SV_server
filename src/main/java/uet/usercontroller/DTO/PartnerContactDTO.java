@@ -10,7 +10,6 @@ import javax.persistence.Id;
  */
 public class PartnerContactDTO {
         private int id;
-        private int partnerId;
         private String contactName;
         private String address;
         private String skype;
@@ -55,11 +54,4 @@ public class PartnerContactDTO {
         public void setEmail(String email) {
             this.email = email;
         }
-    public int getPartnerId() {
-        return partnerId;
-    }
-
-    public void setPartnerId(int partnerId) {
-        this.partnerId = partnerId;
-    }
 }

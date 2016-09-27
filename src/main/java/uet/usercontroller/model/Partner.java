@@ -36,15 +36,11 @@ public class Partner {
     }
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<PartnerContact> partnerContacts = new ArrayList<PartnerContact>();
+    private List<PartnerContact> partnerContacts;
 
-    public List<PartnerContact> getPartnerContacts() {
-        return partnerContacts;
-    }
+    public List<PartnerContact> getPartnerContacts() { return partnerContacts; }
 
-    public void setPartnerContacts(List<PartnerContact> partnerContacts) {
-        this.partnerContacts = partnerContacts;
-    }
+    public void setPartnerContacts(List<PartnerContact> partnerContacts) { this.partnerContacts = partnerContacts; }
 
     public int getId() {
         return id;

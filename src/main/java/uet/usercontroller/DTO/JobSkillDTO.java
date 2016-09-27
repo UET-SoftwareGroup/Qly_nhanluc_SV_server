@@ -7,27 +7,9 @@ import java.util.Date;
  */
 public class JobSkillDTO {
     private int id;
-    private int studentId;
     private String company;
     private String skill;
     private Date updateTime;
-    public JobSkillDTO(){
-    }
-    public JobSkillDTO(int id, int studentId, String skill, String company, Date updateTime){
-        this.id=id;
-        this.studentId=studentId;
-        this.skill=skill;
-        this.company=company;
-        this.updateTime=updateTime;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
 
     public String getCompany() {
         return company;
@@ -53,10 +35,7 @@ public class JobSkillDTO {
         this.updateTime = updateTime;
     }
 
-    public int getId() {
-
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;

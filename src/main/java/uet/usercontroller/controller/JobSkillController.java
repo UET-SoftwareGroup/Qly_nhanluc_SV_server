@@ -29,10 +29,10 @@ public class JobSkillController {
 
     //create 1 jobskill
     @RequiredRoles({Role.STUDENT})
-    @RequestMapping(value="/jobSkill",method = RequestMethod.POST)
-    public JobSkill createJs(@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
+    @RequestMapping(value="/student/{studentId}/jobSkill",method = RequestMethod.POST)
+    public JobSkill createJs(@PathVariable("studentId") int studentId,@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
         String token =request.getHeader("auth-token");
-        return jobSkillService.createJs(jobSkillDTO,token);
+        return jobSkillService.createJs(studentId,jobSkillDTO,token);
     }
 
     //show toan bo jobskill cua 1 student
