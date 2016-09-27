@@ -53,7 +53,6 @@ public class PostService {
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
             post.setDescribePost(postDTO.getDescribePost());
-            post.setPartner(partner);
             postRepository.save(post);
             partner.getPost().add(post);
             partnerRepository.save(partner);

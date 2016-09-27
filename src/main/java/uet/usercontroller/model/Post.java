@@ -54,12 +54,4 @@ public class Post {
     public void setDescribePost(String describePost) {
         this.describePost = describePost;
     }
-
-    @ManyToOne
-    @Column(name="partnerId")
-    private Partner partner;
-
-    public Partner getPartner() { return partner; }
-
-    public void setPartner(Partner partner) { this.partner = partner; }
 }
