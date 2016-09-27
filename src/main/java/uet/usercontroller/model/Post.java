@@ -51,7 +51,5 @@ public class Post {
         return describePost;
     }
 
-    public void setDescribePost(String describePost) {
-        this.describePost = describePost;
-    }
+    public void setDescribePost(String describePost) { this.describePost = describePost; }
 }

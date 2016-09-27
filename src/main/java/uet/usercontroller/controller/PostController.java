@@ -57,8 +57,8 @@ public class PostController {
     //Delete post
     @RequiredRoles(Role.PARTNER1)
     @RequestMapping(value="/post/{postId}",method = RequestMethod.DELETE)
-    public String deletePost(@PathVariable("postId") int postId, HttpServletRequest request){
+    public void deletePost(@PathVariable("postId") int postId, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return postService.deletePost(postId, token);
+        postService.deletePost(postId, token);
     }
 }

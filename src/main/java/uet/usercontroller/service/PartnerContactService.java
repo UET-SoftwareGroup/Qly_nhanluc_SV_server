@@ -76,21 +76,20 @@ public class PartnerContactService {
             return partnerContactRepository.save(partnerContact);
         }
         else {
-            throw new NullPointerException("Can't edit contact");
+            throw new NullPointerException("User doesn't match with Partner");
         }
     }
 
     //delete contact of a partner
-    public String deleteContact(int partnerContactId, String token){
+    public void deleteContact(int partnerContactId, String token){
         User user = userRepository.findByToken(token);
         PartnerContact partnerContact = partnerContactRepository.findOne(partnerContactId);
         Partner partner = partnerRepository.findByPartnerContactsId(partnerContactId);
         if(user.getPartner().equals(partner)){
             partnerContactRepository.delete(partnerContact);
-            return "Delete OK";
         }
        else{
-            throw new NullPointerException("cant't delete");
+            throw new NullPointerException("User doesn't match with Partner");
         }
     }
 }

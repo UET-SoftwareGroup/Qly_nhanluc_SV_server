@@ -51,7 +51,7 @@ public class JobSkillService {
             return jobSkill;
         }
         else {
-            throw new NullPointerException("can't create");
+            throw new NullPointerException("User doesn't match with Student");
         }
     }
 
@@ -64,13 +64,11 @@ public class JobSkillService {
         if(user.getRole()==Role.STUDENT) {
             if (student.equals(student1)) {
                 jobSkillRepository.delete(jobSkill);
-                //return "deleted";
             } else {
-                throw new NullPointerException("can't delete");
+                throw new NullPointerException("User doesn't match with Student");
             }
         }else{
             jobSkillRepository.delete(jobSkill);
-            //return "deleted";
         }
     }
     //show 1 jobskill
@@ -91,7 +89,7 @@ public class JobSkillService {
             jobSkillRepository.save(jobSkill);
             return jobSkill;
             } else {
-                throw new NullPointerException("can't change this jobskill");
+                throw new NullPointerException("User doesn't match with Student");
             }
     }
 

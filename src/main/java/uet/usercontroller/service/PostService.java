@@ -87,15 +87,13 @@ public class PostService {
     }
 
     //delete a post
-    public String deletePost(int postId, String token){
+    public void deletePost(int postId, String token){
         User user = userRepository.findByToken(token);
         Partner partner = user.getPartner();
         Post  post = postRepository.findOne(postId);
         Partner partner1 = partnerRepository.findByPostId(postId);
         if (partner1.equals(partner)) {
-
             postRepository.delete(post);
-            return "delete ok";
         }
         else {
             throw new NullPointerException("User doesn't match with Partner.");

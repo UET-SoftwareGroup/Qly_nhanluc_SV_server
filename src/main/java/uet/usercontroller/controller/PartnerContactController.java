@@ -60,8 +60,8 @@ public class PartnerContactController {
     //delete contact of a partner
     @RequiredRoles({Role.PARTNER1})
     @RequestMapping(value="/partnerContact/{partnerContactId}", method = RequestMethod.DELETE)
-    public String deleteCont(@PathVariable("partnerContactId") int partnerCtId, HttpServletRequest request){
+    public void deleteCont(@PathVariable("partnerContactId") int partnerCtId, HttpServletRequest request){
         String token = request.getHeader("auth-token");
-        return partnerContactService.deleteContact(partnerCtId, token);
+        partnerContactService.deleteContact(partnerCtId, token);
     }
 }
