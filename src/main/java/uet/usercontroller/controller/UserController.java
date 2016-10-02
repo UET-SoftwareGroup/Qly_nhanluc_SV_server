@@ -22,6 +22,7 @@ public class UserController {
     private UserService userService;
 
     //Show all user, ham nay chi de chạy thu khi test code, khong co trong he thong
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @NoAuthentication
     @RequestMapping(value="/user",method = RequestMethod.GET)
     public List<User> getUsers() {
@@ -29,6 +30,7 @@ public class UserController {
     }
 
     //signup
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @NoAuthentication
     @RequestMapping(value="/signup",method = RequestMethod.POST)
     public User createUser(@RequestBody UserDTO userDTO){
@@ -36,6 +38,7 @@ public class UserController {
     }
 
     //create partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/createAccount",method = RequestMethod.POST)
     public User createAccount(@RequestBody UserDTO userDTO) {
@@ -43,6 +46,7 @@ public class UserController {
     }
 
     //login
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @NoAuthentication
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public User Login(@RequestBody UserDTO userDTO) {
@@ -50,6 +54,7 @@ public class UserController {
     }
 
     //admin login
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @NoAuthentication
     @RequestMapping(value="admin/login", method = RequestMethod.POST)
     public User adminLogin(@RequestBody UserDTO userDTO){
@@ -57,6 +62,7 @@ public class UserController {
     }
 
     //logout
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @NoAuthentication
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public User Logout(HttpServletRequest request){
@@ -65,6 +71,7 @@ public class UserController {
     }
 
     //editUser
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN,Role.STUDENT})
     @RequestMapping(value="user/{id}", method = RequestMethod.PUT)
     public User editUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO, HttpServletRequest request) {
@@ -73,6 +80,7 @@ public class UserController {
     }
 
     //deleteUser
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="user/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable("id") int id){

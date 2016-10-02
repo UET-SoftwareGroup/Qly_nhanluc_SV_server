@@ -20,6 +20,7 @@ public class InfoBySchoolController {
     private InfoBySchoolService infoBySchoolService;
 
     //Show all student information by school
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="/infobyschool", method = RequestMethod.GET)
     public List<InfoBySchool> getAllInfo(){
@@ -27,6 +28,7 @@ public class InfoBySchoolController {
     }
 
     //create info
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/student/{studentId}/infobyschool", method = RequestMethod.POST)
     public InfoBySchool createInfo(@PathVariable("studentId") int studentId, @RequestBody InfoBySchoolDTO infoBySchoolDTO){
@@ -34,6 +36,7 @@ public class InfoBySchoolController {
     }
 
     //show info of a student
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.GET)
     public InfoBySchool getInfo(@PathVariable("infoId") int infoId, HttpServletRequest request){
@@ -42,6 +45,7 @@ public class InfoBySchoolController {
     }
 
     //edit info of a student
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.PUT)
     public InfoBySchool editInfo(@PathVariable("infoId") int infoId,@RequestBody InfoBySchoolDTO infoBySchoolDTO){
@@ -49,6 +53,7 @@ public class InfoBySchoolController {
     }
 
     //delete info of a student
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.DELETE)
     public void deleteInfo(@PathVariable("infoId") int infoId){

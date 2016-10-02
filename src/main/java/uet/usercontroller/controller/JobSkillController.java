@@ -21,6 +21,7 @@ public class JobSkillController {
     private JobSkillService jobSkillService;
 
     //xem tat ca cac jobskill
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value = "/jobSkill",method = RequestMethod.GET)
     public List<JobSkill> getalljobskill(){
@@ -28,6 +29,7 @@ public class JobSkillController {
     }
 
     //create 1 jobskill
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT})
     @RequestMapping(value="/student/{studentId}/jobSkill",method = RequestMethod.POST)
     public JobSkill createJs(@PathVariable("studentId") int studentId,@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
@@ -36,18 +38,21 @@ public class JobSkillController {
     }
 
     //show toan bo jobskill cua 1 student
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.GET)
     public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId){
         return jobSkillService.getallInStudent(studentId);
     }
     //show 1 jobskill by id
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.GET)
     public JobSkill showById(@PathVariable("jobSkillId") int jobskillId){
         return jobSkillService.showJobSkill(jobskillId);
     }
     //thay doi 1 jobskill by id
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT})
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.PUT)
     public JobSkill ChangeJs(@PathVariable("jobSkillId") int id, @RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
@@ -55,6 +60,7 @@ public class JobSkillController {
         return jobSkillService.ChangeJsById(id,jobSkillDTO,token);
     }
     //delete 1 jobskill
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.DELETE)
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
     public void deleteJs(@PathVariable("jobSkillId") int id,HttpServletRequest request){

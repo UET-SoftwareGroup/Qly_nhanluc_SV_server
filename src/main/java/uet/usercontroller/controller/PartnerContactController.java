@@ -23,6 +23,7 @@ public class PartnerContactController {
     private PartnerContactService partnerContactService;
 
     //show all partner contact
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value="/partnerContact",method = RequestMethod.GET)
     public List<PartnerContact> getallPartnerContact(){
@@ -30,18 +31,21 @@ public class PartnerContactController {
     }
 
     //Show list contact of a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
     @RequestMapping(value="/partner/{partnerId}/partnerContact",method = RequestMethod.GET)
     public List<PartnerContact> showAllContact(@PathVariable("partnerId") int partnerId){
         return partnerContactService.showAllContact(partnerId);
     }
     //show a partner contact
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN, Role.PARTNER1, Role.STUDENT})
     @RequestMapping(value="/partnerContact/{partnerContactId}", method = RequestMethod.GET)
     public PartnerContact showCont(@PathVariable("partnerContactId") int partnerCtId){
         return partnerContactService.showContact(partnerCtId);
     }
     //create a partner contact
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.PARTNER1)
     @RequestMapping(value="/partner/{partnerId}/partnerContact", method = RequestMethod.POST)
     public PartnerContact createcontact(@PathVariable("partnerId") int partnerId, @RequestBody PartnerContactDTO partnerContactDTO, HttpServletRequest request){
@@ -50,6 +54,7 @@ public class PartnerContactController {
     }
 
     //edit contact of a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.PARTNER1)
     @RequestMapping(value="/partnerContact/{partnerContactId}", method = RequestMethod.PUT)
     public PartnerContact editcontact(@PathVariable("partnerContactId") int partnerContactId, @RequestBody PartnerContactDTO partnerContactDTO, HttpServletRequest request){
@@ -58,6 +63,7 @@ public class PartnerContactController {
     }
 
     //delete contact of a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.PARTNER1})
     @RequestMapping(value="/partnerContact/{partnerContactId}", method = RequestMethod.DELETE)
     public void deleteCont(@PathVariable("partnerContactId") int partnerCtId, HttpServletRequest request){

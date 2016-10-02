@@ -20,6 +20,7 @@ public class PartnerController {
     private PartnerService partnerService;
 
     //show all list partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value="/partner", method = RequestMethod.GET)
     public List<Partner> getPartners(){
@@ -27,6 +28,7 @@ public class PartnerController {
     }
 
     //create a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/user/{userId}/partner", method = RequestMethod.POST)
     public Partner createPartner(@PathVariable("userId") int userId, @RequestBody PartnerDTO partnerDTO){
@@ -34,6 +36,7 @@ public class PartnerController {
     }
 
     //edit a partner name
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN, Role.PARTNER1})
     @RequestMapping(value="/partner/{partnerId}", method = RequestMethod.PUT)
     public Partner editPartner(@PathVariable("partnerId") int partnerId, @RequestBody PartnerDTO partnerDTO, HttpServletRequest request){
@@ -42,6 +45,7 @@ public class PartnerController {
     }
 
     //show a partner info
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN, Role.STUDENT, Role.PARTNER1})
     @RequestMapping(value="/partner/{partnerId}", method = RequestMethod.GET)
     public Partner showPartner(@PathVariable("partnerId") int partnerId){
@@ -49,6 +53,7 @@ public class PartnerController {
     }
 
     //delete a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/partner/{partnerId}", method = RequestMethod.DELETE)
     public void deletePartner(@PathVariable("partnerId") int partnerId){

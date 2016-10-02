@@ -22,6 +22,7 @@ public class PartnerInfoController {
     private PartnerInfoService partnerInfoService;
 
     //show all partner info
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN, Role.PARTNER1, Role.STUDENT})
     @RequestMapping(value="partnerInfo", method = RequestMethod.GET)
     public List<PartnerInfo> getAllInfo(){
@@ -29,12 +30,14 @@ public class PartnerInfoController {
     }
 
     //show a partner info
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN, Role.PARTNER1, Role.STUDENT})
     @RequestMapping(value="partnerInfo/{partnerInfoId}", method = RequestMethod.GET)
     public PartnerInfo showInfo(@PathVariable("partnerInfoId") int partnerInfoId){
         return partnerInfoService.showInfo(partnerInfoId);
     }
     //create a partner info
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.PARTNER1)
     @RequestMapping(value="partner/{partnerId}/partnerInfo", method = RequestMethod.POST)
     public PartnerInfo createInfo(@PathVariable("partnerId") int partnerId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
@@ -43,6 +46,7 @@ public class PartnerInfoController {
     }
 
     //edit info of a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.PARTNER1)
     @RequestMapping(value="partnerInfo/{partnerInfoId}", method = RequestMethod.PUT)
     public PartnerInfo editInfo(@PathVariable("partnerInfoId") int partnerInfoId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
@@ -51,6 +55,7 @@ public class PartnerInfoController {
     }
 
     //delete info of a partner
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value="partner/{partnerId}/partnerInfo", method = RequestMethod.DELETE)
     public PartnerInfo deleteInfo(@PathVariable("partnerId") int partnerId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){

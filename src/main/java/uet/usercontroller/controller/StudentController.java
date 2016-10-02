@@ -20,6 +20,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     //Show all
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="/student",method = RequestMethod.GET)
     public List<Student> getStudents() { return studentService.getStudents();}
@@ -32,6 +33,7 @@ public class StudentController {
 //    }
 
     //Show student
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
     @RequestMapping(value="student/{studentId}",method = RequestMethod.GET)
     public Student findStudent(@PathVariable("studentId") int studentId, HttpServletRequest request) {
@@ -48,6 +50,7 @@ public class StudentController {
 //    }
 
     //Delete
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/student/{studentId}", method = RequestMethod.DELETE)
     public void delStudent(@PathVariable("studentId") int studentId){

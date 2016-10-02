@@ -20,6 +20,7 @@ public class InternshipController {
     private InternshipService internshipService;
 
     //show all Internships
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN,Role.PARTNER1})
     @RequestMapping(value = "/intern", method = RequestMethod.GET)
     public List<Internship> getAllInterns(HttpServletRequest request) {
@@ -28,6 +29,7 @@ public class InternshipController {
     }
 
     //Create a Internship
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN})
     @RequestMapping(value = "/student/{studentId}/intern", method = RequestMethod.POST)
     public Internship createIntern(@PathVariable("studentId") int studentId,@RequestBody InternshipDTO internshipDTO,HttpServletRequest request) {
@@ -36,6 +38,7 @@ public class InternshipController {
     }
 
     //find By Id
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
     @RequestMapping(value = "/intern/{internId}", method = RequestMethod.GET)
     public Internship findInternById(@PathVariable("internId") int id,HttpServletRequest request) {
@@ -43,12 +46,15 @@ public class InternshipController {
         return internshipService.findInternById(id,token);
     }
     //change 1 internship
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN})
     @RequestMapping(value = "/intern/{internId}", method = RequestMethod.PUT)
     public Internship changeInternById(@PathVariable("internId") int id, @RequestBody InternshipDTO internshipDTO, HttpServletRequest request) {
         String token = request.getHeader("auth-token");
         return internshipService.changeById(id,internshipDTO,token);
     }
+
+    @CrossOrigin(origins = "http://112.137.130.47:8000")
     @RequiredRoles({Role.ADMIN})
     @RequestMapping(value="/intern/{internId}/{studentId}", method = RequestMethod.DELETE)
     public void deleteById(@PathVariable("internId") int id,@PathVariable("studentId") int studentId, HttpServletRequest request){
