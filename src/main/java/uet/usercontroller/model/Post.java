@@ -2,6 +2,8 @@ package uet.usercontroller.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.sql.Blob;
+import javax.persistence.Lob;
 
 /**
  * Created by Trung on 8/27/2016.
@@ -23,15 +25,25 @@ public class Post {
     }
 
     @Column(name="content")
-    private String content;
+    @Lob
+    private byte[] content;
+    //private String content;
 
-    public String getContent() {
+    public byte[] getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(byte[] content) {
         this.content = content;
     }
+
+//    public String getContent() {
+//        return content;
+//    }
+//
+//    public void setContent(String content) {
+//        this.content = content;
+//    }
 
     @Column(name="datePost")
     private Date datePost;
