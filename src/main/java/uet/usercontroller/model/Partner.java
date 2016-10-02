@@ -1,6 +1,10 @@
 package uet.usercontroller.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tu on 03-May-16.
@@ -12,59 +16,53 @@ public class Partner {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "user_id")
-    private int user_id;
-    @Column(name = "partner_name")
-    private String partner_name;
-    @Column(name = "tax_code")
-    private String tax_code;
-    @Column(name = "director")
-    private String director;
-    @Column(name = "field_work")
-    private String field_work;
-    @Column(name = "website")
-    private String website;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "phone")
-    private String phone;
-    @Column(name = "fax")
-    private String fax;
-    @Column(name = "email")
-    private String email;
+    @Column(name = "partnerName")
+    private String partnerName;
+    @OneToOne(cascade = CascadeType.ALL)
+    private PartnerInfo partnerInfo;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Post> post;
+
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PartnerContact> partnerContacts;
+
+    public List<PartnerContact> getPartnerContacts() { return partnerContacts; }
+
+    public void setPartnerContacts(List<PartnerContact> partnerContacts) { this.partnerContacts = partnerContacts; }
 
     public int getId() {
         return id;
     }
-    public int getUser_id() {
-        return user_id;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public String getPartner_name() {
-        return partner_name;
+
+    public String getPartnerName() {
+        return partnerName;
     }
-    public String getTax_code() {
-        return tax_code;
+
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
     }
-    public String getDirector() {
-        return director;
+
+    public PartnerInfo getPartnerInfo() {
+        return partnerInfo;
     }
-    public String getField_work() {
-        return field_work;
+
+    public void setPartnerInfo(PartnerInfo partnerInfo) {
+        this.partnerInfo = partnerInfo;
     }
-    public String getWebsite() {
-        return website;
-    }
-    public String getAddress() {
-        return address;
-    }
-    public String getPhone() {
-        return phone;
-    }
-    public String getFax() {
-        return fax;
-    }
-    public String getEmail() {
-        return email;
-    }
+
 }
+
+
 

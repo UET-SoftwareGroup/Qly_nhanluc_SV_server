@@ -1,12 +1,16 @@
 package uet.usercontroller.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uet.usercontroller.model.Partner;
-import uet.usercontroller.model.Student;
+import uet.usercontroller.DTO.UserDTO;
+import uet.usercontroller.model.Role;
 import uet.usercontroller.model.User;
 import uet.usercontroller.service.UserService;
+import uet.usercontroller.stereotype.NoAuthentication;
+import uet.usercontroller.stereotype.RequiredRoles;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -16,33 +20,63 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    //Show tất cả các tài khoản người dùng(bao gồm cả sv, admin, đối tác)
-    @RequestMapping(value="/users",method = RequestMethod.GET)
-    public List<User> getUsers(){
+
+    //Show all user, ham nay chi de chạy thu khi test code, khong co trong he thong
+    @NoAuthentication
+    @RequestMapping(value="/user",method = RequestMethod.GET)
+    public List<User> getUsers() {
         return userService.getUsers();
     }
-    //Tạo 1 user mới
-    @RequestMapping(value="/users",method = RequestMethod.POST)
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+
+    //signup
+    @NoAuthentication
+    @RequestMapping(value="/signup",method = RequestMethod.POST)
+    public User createUser(@RequestBody UserDTO userDTO){
+        return userService.createUser(userDTO);
     }
-    //Tìm kiếm 1 user theo id
-    @RequestMapping(value="/users/{id}",method = RequestMethod.GET)
-    public User showUser(@PathVariable("id") int id) {
-        return userService.findUser(id);
+
+    //create partner
+    @RequiredRoles(Role.ADMIN)
+    @RequestMapping(value="/createAccount",method = RequestMethod.POST)
+    public User createAccount(@RequestBody UserDTO userDTO) {
+        return userService.createAccount(userDTO);
     }
-    //Hiển thị tất cả các thông tin về đối tác
-    @RequestMapping(value="/partners", method = RequestMethod.GET)
-    public List<Partner> getPartners(){
-        return userService.getPartners();
+
+    //login
+    @NoAuthentication
+    @RequestMapping(value="/login", method = RequestMethod.POST)
+    public User Login(@RequestBody UserDTO userDTO) {
+        return userService.Login(userDTO);
     }
-    //Hiển thị tất cả các thông tin về sinh viên
-    @RequestMapping(value="/students", method = RequestMethod.GET)
-    public List<Student> geStudents(){ return userService.getStudents(); }
-    //Kiểm tra tài khoản user đó là admin, đối tác hay sinh viên
-    @RequestMapping(value = "users/{id}/type",method = RequestMethod.GET)
-    public String checkType(@PathVariable("id") int id){
-        return userService.checkType(id);
+
+    //admin login
+    @NoAuthentication
+    @RequestMapping(value="admin/login", method = RequestMethod.POST)
+    public User adminLogin(@RequestBody UserDTO userDTO){
+        return userService.adminLogin(userDTO);
     }
-    
+
+    //logout
+    @NoAuthentication
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public User Logout(HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        return userService.Logout(token);
+    }
+
+    //editUser
+    @RequiredRoles({Role.ADMIN,Role.STUDENT})
+    @RequestMapping(value="user/{id}", method = RequestMethod.PUT)
+    public User editUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO, HttpServletRequest request) {
+        String token = request.getHeader("auth-token");
+        return userService.editUser(id, userDTO, token);
+    }
+
+    //deleteUser
+    @RequiredRoles(Role.ADMIN)
+    @RequestMapping(value="user/{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable("id") int id){
+        userService.deleteUser(id);
+    }
+
 }

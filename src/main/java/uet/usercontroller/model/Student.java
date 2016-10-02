@@ -1,10 +1,13 @@
 package uet.usercontroller.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Tu on 20-May-16.
+ * Created by Trung on 7-8-2016.
  */
+
 @Entity
 @Table(name="Student")
 public class Student {
@@ -12,32 +15,60 @@ public class Student {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "user_id")
-    private int user_id;
-    @Column(name = "student_name")
-    private String student_name;
-    @Column(name = "birthday")
-    private String birthday;
-    @Column(name = "phone_number")
-    private String phone_number;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "skype")
-    private String skype;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "desire")
-    private String desire;
+    @Column(name = "studentName")
+    private String studentName;
 
-    public int getId() { return id; }
-    public int getUser_id() { return user_id; }
-    public String getStudent_name() { return student_name; }
-    public String getBirthday() { return birthday; }
-    public String getPhone_number() { return phone_number; }
-    public String getAddress() { return address; }
-    public String getSkype() { return skype; }
-    public String getEmail() { return email; }
-    public String getDesire() { return desire; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
+    public int getId() {    return id; }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private InfoBySchool infoBySchool;
+
+    public InfoBySchool getInfoBySchool() {
+        return infoBySchool;
+    }
+
+    public void setInfoBySchool(InfoBySchool infoBySchool) {
+        this.infoBySchool = infoBySchool;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Internship internship;
+
+    public Internship getInternship() {
+        return internship;
+    }
+
+    public void setInternship(Internship internship) {
+        this.internship = internship;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private StudentInfo studentInfo;
+
+    public StudentInfo getStudentInfo() {
+        return studentInfo;
+    }
+
+    public void setStudentInfo(StudentInfo studentInfo){
+        this.studentInfo = studentInfo;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<JobSkill> jobSkills;
+
+    public List<JobSkill> getJobSkills() { return jobSkills; }
+
+    public void setJobSkills(List<JobSkill> jobSkills) { this.jobSkills = jobSkills; }
 }
