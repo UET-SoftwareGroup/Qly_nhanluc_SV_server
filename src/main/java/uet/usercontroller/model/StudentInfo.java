@@ -4,6 +4,7 @@ package uet.usercontroller.model;
 import sun.util.calendar.BaseCalendar;
 
 import javax.persistence.*;
+import java.sql.Clob;
 import java.util.Date;
 
 /**
@@ -29,6 +30,8 @@ public class StudentInfo {
     private String email;
 
     private String desire;
+
+    private Clob avatar;
 
     public int getId() {
         return id;
@@ -90,6 +93,11 @@ public class StudentInfo {
         this.desire = desire;
     }
 
+    public Clob getAvatar() {
+        return avatar;
+    }
 
-
+    public void setAvatar(Clob avatar) {
+        this.avatar = avatar;
+    }
 }

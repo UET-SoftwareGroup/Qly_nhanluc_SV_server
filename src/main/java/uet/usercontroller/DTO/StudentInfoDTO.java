@@ -1,5 +1,6 @@
 package uet.usercontroller.DTO;
 
+import java.sql.Clob;
 import java.util.Date;
 
 /**
@@ -14,6 +15,7 @@ public class StudentInfoDTO {
     private String skype;
     private String email;
     private String desire;
+    private Clob avatar;
 
     public int getId() {
         return id;
@@ -75,4 +77,11 @@ public class StudentInfoDTO {
         this.desire = desire;
     }
 
+    public Clob getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Clob avatar) {
+        this.avatar = avatar;
+    }
 }

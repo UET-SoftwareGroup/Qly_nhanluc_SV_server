@@ -79,6 +79,9 @@ public class StudentInfoService {
             if (studentInfoDTO.getDesire()!=null) {
                 studentinfo.setDesire(studentInfoDTO.getDesire());
             }
+            if (studentInfoDTO.getAvatar()!=null) {
+                studentinfo.setAvatar(studentInfoDTO.getAvatar());
+            }
             return studentInfoRepository.save(studentinfo);
         } else {
             throw new NullPointerException("Error ");
@@ -99,6 +102,7 @@ public class StudentInfoService {
                 studentinfo.setEmail(null);
                 studentinfo.setSkype(null);
                 studentinfo.setDesire(null);
+                studentinfo.setAvatar(null);
             }
         } else {
             studentinfo.setFullName(null);
@@ -108,6 +112,7 @@ public class StudentInfoService {
             studentinfo.setEmail(null);
             studentinfo.setSkype(null);
             studentinfo.setDesire(null);
+            studentinfo.setAvatar(null);
         }
         studentInfoRepository.save(studentinfo);
     }
