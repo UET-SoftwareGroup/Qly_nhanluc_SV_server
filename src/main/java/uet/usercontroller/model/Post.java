@@ -24,26 +24,12 @@ public class Post {
         this.id = id;
     }
 
-    @Column(name="content")
-    @Lob
-    private byte[] content;
-    //private String content;
+    @Column(name="content", length = 2800000)
+    private String content;
 
-    public byte[] getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
 
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-//    public String getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String content) {
-//        this.content = content;
-//    }
+    public void setContent(String content) { this.content = content; }
 
     @Column(name="datePost")
     private Date datePost;

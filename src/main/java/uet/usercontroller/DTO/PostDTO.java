@@ -10,8 +10,7 @@ import java.util.Date;
  */
 public class PostDTO {
     private int id;
-    private byte[] content;
-    //private String content;
+    private String content;
     private Date datePost;
     private String describePost;
 
@@ -23,21 +22,9 @@ public class PostDTO {
         this.id = id;
     }
 
-//    public String getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String content) {
-//        this.content = content;
-//    }
+    public String getContent() { return content; }
 
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
+    public void setContent(String content) { this.content = content; }
 
     public Date getDatePost() { return datePost; }
 
