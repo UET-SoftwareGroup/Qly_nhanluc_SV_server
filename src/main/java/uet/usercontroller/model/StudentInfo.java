@@ -2,9 +2,7 @@ package uet.usercontroller.model;
 
 
 import sun.util.calendar.BaseCalendar;
-
 import javax.persistence.*;
-import java.sql.Clob;
 import java.util.Date;
 
 /**
@@ -31,7 +29,8 @@ public class StudentInfo {
 
     private String desire;
 
-    private Clob avatar;
+    @Column(name="avatar", length = 2000000)
+    private String avatar;
 
     public int getId() {
         return id;
@@ -93,11 +92,11 @@ public class StudentInfo {
         this.desire = desire;
     }
 
-    public Clob getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Clob avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

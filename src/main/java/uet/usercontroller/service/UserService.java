@@ -6,8 +6,11 @@ import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.*;
 import uet.usercontroller.repository.*;
 
+import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -40,9 +43,13 @@ public class UserService {
     public User createUser(UserDTO userDTO) {
         User user1 = userRepository.findByUserName(userDTO.getUserName());
         if (user1 == null) {
-            if ( userDTO.getUserName() != null && userDTO.getPassword() != null) {
+            if (userDTO.getUserName() != null && userDTO.getPassword() != null) {
                 User user = new User();
                 user.setUserName(userDTO.getUserName());
+//                //Create a random password when sign up
+//                UUID uuid = UUID.randomUUID();
+//                long pwd = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
+//                user.setPassword(Long.toString(pwd, Character.MAX_RADIX));
                 user.setPassword(userDTO.getPassword());
                 user.setRole(Role.STUDENT);
                 Student student = new Student();

@@ -22,8 +22,6 @@ import java.util.List;
 public class StudentInfoController {
     @Autowired
     private StudentInfoService studentinfoService;
-    
-    
 
     //show all student information
     @RequiredRoles({Role.PARTNER1,Role.ADMIN})
