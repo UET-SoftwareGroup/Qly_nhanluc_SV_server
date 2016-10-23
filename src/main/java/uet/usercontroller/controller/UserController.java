@@ -65,7 +65,7 @@ public class UserController {
     }
 
     //editUser
-    @RequiredRoles({Role.ADMIN,Role.STUDENT})
+    @RequiredRoles({Role.ADMIN,Role.STUDENT, Role.PARTNER1})
     @RequestMapping(value="user/{id}", method = RequestMethod.PUT)
     public User editUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO, HttpServletRequest request) {
         String token = request.getHeader("auth-token");
