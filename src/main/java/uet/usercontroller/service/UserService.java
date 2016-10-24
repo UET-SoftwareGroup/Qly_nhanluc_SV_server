@@ -124,6 +124,8 @@ public class UserService {
             } else {
                 user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
             }
+        } else {
+            throw new NullPointerException("Wrong password.");
         }
         user = userRepository.save(user);
         User result = new User();
