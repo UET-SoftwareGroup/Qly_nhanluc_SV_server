@@ -14,6 +14,18 @@ public class JobSkill {
     @GeneratedValue(strategy = GenerationType.AUTO )
     @Column(name = "id")
     private int id;
+    @ManyToOne
+    @JoinColumn(name = "studentId")
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Column(name = "skill")
     private String skill;
     @Column(name = "company")

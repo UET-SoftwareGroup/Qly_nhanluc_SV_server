@@ -45,6 +45,7 @@ public class JobSkillService {
             jobSkill.setCompany(jobSkillDTO.getCompany());
             jobSkill.setSkill(jobSkillDTO.getSkill());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
+            jobSkill.setStudent(student);
             jobSkillRepository.save(jobSkill);
             student.getJobSkills().add(jobSkill);
             studentRepository.save(student);

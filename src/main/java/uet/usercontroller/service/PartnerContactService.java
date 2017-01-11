@@ -49,6 +49,7 @@ public class PartnerContactService {
         if (user.getPartner().equals(partner)){
             PartnerContact partnerContact = new PartnerContact();
             partnerContact.setAddress(partnerContactDTO.getAddress());
+            partnerContact.setPartner(partner);
             partnerContact.setContactName(partnerContactDTO.getContactName());
             partnerContact.setEmail(partnerContactDTO.getEmail());
             partnerContact.setSkype(partnerContactDTO.getSkype());

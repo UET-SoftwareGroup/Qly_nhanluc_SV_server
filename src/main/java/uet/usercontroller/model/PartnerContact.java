@@ -12,6 +12,9 @@ public class PartnerContact {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @ManyToOne
+    @JoinColumn(name= "partnerId")
+    private Partner partner;
     @Column(name="contactName")
     private String contactName;
     @Column(name = "address")
@@ -28,6 +31,10 @@ public class PartnerContact {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Partner getPartner() { return partner; }
+
+    public void setPartner(Partner partner) { this.partner = partner; }
 
     public String getContactName() {
         return contactName;

@@ -24,6 +24,18 @@ public class Post {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumn(name= "partnerId")
+    private Partner partner;
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
+    }
+
     @Column(name="content", length = 2800000)
     private String content;
 
