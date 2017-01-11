@@ -32,12 +32,12 @@ public class Partner {
         this.post = post;
     }
 
-    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
-    private List<Internship> internships;
-
-    public List<Internship> getInternships() { return internships; }
-
-    public void setInternships(List<Internship> internships) { this.internships = internships; }
+//    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
+//    private List<Internship> internships;
+//
+//    public List<Internship> getInternships() { return internships; }
+//
+//    public void setInternships(List<Internship> internships) { this.internships = internships; }
 
     @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
     private List<PartnerContact> partnerContacts;

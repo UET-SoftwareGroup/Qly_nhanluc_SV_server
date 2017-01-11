@@ -72,6 +72,13 @@ public class UserController {
         return userService.editUser(id, userDTO, token);
     }
 
+    //active/deactive
+    @RequiredRoles(Role.ADMIN)
+    @RequestMapping(value="user/{id}/status", method = RequestMethod.PUT)
+    public User changeUserStatus(@PathVariable("id") int id, @RequestBody UserDTO userDTO) {
+        return userService.changeUserStatus(id, userDTO);
+    }
+
     //deleteUser
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="user/{id}", method = RequestMethod.DELETE)

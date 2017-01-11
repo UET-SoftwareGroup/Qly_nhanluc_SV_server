@@ -51,6 +51,7 @@ public class UserService {
 //                long pwd = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
 //                user.setPassword(Long.toString(pwd, Character.MAX_RADIX));
                 user.setPassword(userDTO.getPassword());
+                user.setStatus(true);
                 user.setRole(Role.STUDENT);
                 Student student = new Student();
                 student.setStudentName(user.getUserName());
@@ -117,15 +118,19 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if (userDTO.getPassword().equals(user.getPassword())) {
-            if (user.getToken() == null) {
-                user.setToken(UUID.randomUUID().toString());
-                user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+        if (userDTO.isStatus() == true ) {
+            if (userDTO.getPassword().equals(user.getPassword())) {
+                if (user.getToken() == null) {
+                    user.setToken(UUID.randomUUID().toString());
+                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                } else {
+                    user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                }
             } else {
-                user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
+                throw new NullPointerException("Wrong password.");
             }
         } else {
-            throw new NullPointerException("Wrong password.");
+            throw new NullPointerException("Account was deactived.");
         }
         user = userRepository.save(user);
         User result = new User();
@@ -186,6 +191,17 @@ public class UserService {
                 }
             }
         }
+        return userRepository.save(user);
+    }
+
+    //active/deactive
+    public User changeUserStatus(int id, UserDTO userDTO){
+        User user = userRepository.findOne(id);
+            if(userDTO.isStatus() == true){
+                user.setStatus(false);
+            } else{
+                user.setStatus(true);
+            }
         return userRepository.save(user);
     }
 

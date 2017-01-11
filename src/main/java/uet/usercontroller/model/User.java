@@ -1,5 +1,7 @@
 package uet.usercontroller.model;
 
+import org.hibernate.sql.Select;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,6 +25,8 @@ public class User {
     private String token;
 
     private Date expiryTime;
+
+    private boolean status;
 
     @OneToOne
     Student student;
@@ -76,6 +80,14 @@ public class User {
 
     public void setExpiryTime(Date expiryTime) {
         this.expiryTime = expiryTime;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public Student getStudent() {
