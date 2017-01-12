@@ -4,13 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.PartnerDTO;
+import uet.usercontroller.DTO.PartnerInfoDTO;
 import uet.usercontroller.DTO.PostDTO;
 import uet.usercontroller.DTO.StudentDTO;
 import uet.usercontroller.model.*;
-import uet.usercontroller.repository.PartnerRepository;
-import uet.usercontroller.repository.PostRepository;
-import uet.usercontroller.repository.StudentRepository;
-import uet.usercontroller.repository.UserRepository;
+import uet.usercontroller.repository.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +29,8 @@ public class StudentService {
     PartnerRepository partnerRepository;
     @Autowired
     PostRepository postRepository;
+    @Autowired
+    PartnerInfoRepository partnerInfoRepository;
     //Show all
     public List<Student> getStudents() {
         List<Student> allStudents = (List<Student>) studentRepository.findAll();
@@ -93,18 +93,9 @@ public class StudentService {
 //    }
 
     //Student search partner
-    public List<HashMap<String, String>> searchPartner(PartnerDTO partnerDTO){
-        List<Partner> allPartnerMatched = (List<Partner>) partnerRepository.findByPartnerNameContaining(partnerDTO.getPartnerName());
-        List<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
-        for (Partner partner : allPartnerMatched){
-            HashMap<String, String> lPartner = new HashMap<String, String>();
-            String id = String.valueOf(partner.getId());
-            String partnerName = partner.getPartnerName();
-            lPartner.put("id", id);
-            lPartner.put("partnerName", partnerName);
-            searchList.add(lPartner);
-        }
-        return searchList;
+    public List<PartnerInfo> searchPartner(PartnerInfoDTO partnerInfoDTO){
+        List<PartnerInfo> allPartnerMatched = (List<PartnerInfo>) partnerInfoRepository.findByPartnerNameContaining(partnerInfoDTO.getPartnerName());
+        return allPartnerMatched;
     }
 
     //Student search post description

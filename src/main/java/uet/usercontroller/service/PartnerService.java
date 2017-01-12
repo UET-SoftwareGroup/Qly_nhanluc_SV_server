@@ -4,14 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.PartnerDTO;
 import uet.usercontroller.DTO.StudentDTO;
-import uet.usercontroller.model.Partner;
-import uet.usercontroller.model.PartnerInfo;
-import uet.usercontroller.model.Student;
-import uet.usercontroller.model.User;
-import uet.usercontroller.repository.PartnerInfoRepository;
-import uet.usercontroller.repository.PartnerRepository;
-import uet.usercontroller.repository.StudentRepository;
-import uet.usercontroller.repository.UserRepository;
+import uet.usercontroller.DTO.StudentInfoDTO;
+import uet.usercontroller.model.*;
+import uet.usercontroller.repository.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +25,8 @@ public class PartnerService {
     PartnerInfoRepository partnerInfoRepository;
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    StudentInfoRepository studentInfoRepository;
 
     //show list all partner
     public List<Partner> getPartners(){
@@ -70,18 +67,9 @@ public class PartnerService {
     }
 
     //partner search students
-    public List<HashMap<String, String>> searchStudent(StudentDTO studentDTO){
-        List<Student> allStudentMatched = (List<Student>) studentRepository.findByStudentNameContaining(studentDTO.getStudentName());
-        List<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
-        for (Student student : allStudentMatched){
-            HashMap<String, String> lStudent = new HashMap<String, String>();
-            String id = String.valueOf(student.getId());
-            String studentName = student.getStudentName();
-            lStudent.put("id", id);
-            lStudent.put("studentName", studentName);
-            searchList.add(lStudent);
-        }
-        return searchList;
+    public List<StudentInfo> searchStudent(StudentInfoDTO studentInfoDTO){
+        List<StudentInfo> allStudentMatched = (List<StudentInfo>) studentInfoRepository.findByFullNameContaining(studentInfoDTO.getFullName());
+        return allStudentMatched;
     }
 
     //delete a partner

@@ -4,12 +4,10 @@ package uet.usercontroller.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.PartnerDTO;
+import uet.usercontroller.DTO.PartnerInfoDTO;
 import uet.usercontroller.DTO.PostDTO;
 import uet.usercontroller.DTO.StudentDTO;
-import uet.usercontroller.model.Partner;
-import uet.usercontroller.model.Post;
-import uet.usercontroller.model.Role;
-import uet.usercontroller.model.Student;
+import uet.usercontroller.model.*;
 import uet.usercontroller.service.StudentService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
@@ -55,8 +53,8 @@ public class StudentController {
     //Student search partner
     @RequiredRoles({Role.STUDENT, Role.ADMIN})
     @RequestMapping(value="searchPartner", method = RequestMethod.POST)
-    public List<HashMap<String, String>> searchPartner(@RequestBody PartnerDTO partnerDTO){
-        return (List<HashMap<String, String>>) studentService.searchPartner(partnerDTO);
+    public List<PartnerInfo> searchPartner(@RequestBody PartnerInfoDTO partnerInfoDTO){
+        return studentService.searchPartner(partnerInfoDTO);
     }
 
     //Student search post description

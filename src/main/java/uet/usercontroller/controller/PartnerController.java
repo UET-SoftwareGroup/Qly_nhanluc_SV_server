@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.PartnerDTO;
 import uet.usercontroller.DTO.StudentDTO;
+import uet.usercontroller.DTO.StudentInfoDTO;
 import uet.usercontroller.model.Partner;
 import uet.usercontroller.model.Role;
+import uet.usercontroller.model.StudentInfo;
 import uet.usercontroller.service.PartnerService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
@@ -53,8 +55,8 @@ public class PartnerController {
     //partner search students
     @RequiredRoles({Role.PARTNER1, Role.ADMIN})
     @RequestMapping(value="searchStudent", method = RequestMethod.POST)
-    public List<HashMap<String, String>> searchStudent(@RequestBody StudentDTO studentDTO){
-        return (List<HashMap<String, String>>) partnerService.searchStudent(studentDTO);
+    public List<StudentInfo> searchStudent(@RequestBody StudentInfoDTO studentInfoDTO){
+        return partnerService.searchStudent(studentInfoDTO);
     }
 
     //delete a partner
