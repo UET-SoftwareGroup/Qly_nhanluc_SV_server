@@ -14,7 +14,7 @@ public class UserDTO {
     private Role role;
     private String token;
     private Date expiryTime;
-    private int status;
+    private String status;
 
     public int getId() {
         return id;
@@ -64,11 +64,11 @@ public class UserDTO {
         this.expiryTime = expiryTime;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

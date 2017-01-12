@@ -51,7 +51,7 @@ public class UserService {
 //                long pwd = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
 //                user.setPassword(Long.toString(pwd, Character.MAX_RADIX));
                 user.setPassword(userDTO.getPassword());
-                user.setStatus(1);
+                user.setStatus("A");
                 user.setRole(Role.STUDENT);
                 Student student = new Student();
                 student.setStudentName(user.getUserName());
@@ -85,6 +85,7 @@ public class UserService {
                 user.setUserName(userDTO.getUserName());
                 user.setPassword(userDTO.getPassword());
                 user.setRole(userDTO.getRole());
+                user.setStatus("A");
                 if (user.getRole() == Role.PARTNER1) {
                     Partner partner = new Partner();
                     partner.setPartnerName(user.getUserName());
@@ -118,7 +119,7 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if (userDTO.getStatus() == 1) {
+        if (userDTO.getStatus().equals("A")) {
             if (userDTO.getPassword().equals(user.getPassword())) {
                 if (user.getToken() == null) {
                     user.setToken(UUID.randomUUID().toString());
@@ -130,21 +131,9 @@ public class UserService {
                 throw new NullPointerException("Wrong password.");
             }
         } else {
-            throw new NullPointerException("Account was deactived.");
+            throw new NullPointerException("Account was deactivated.");
         }
-        user = userRepository.save(user);
-        User result = new User();
-        result.setId(user.getId());
-        result.setUserName(user.getUserName());
-        result.setRole(user.getRole());
-        result.setToken(user.getToken());
-        if (result.getRole()==Role.STUDENT) {
-            result.setStudent(user.getStudent());
-        }
-        if ( result.getRole()==Role.PARTNER1) {
-            result.setPartner(user.getPartner());
-        }
-        return result;
+        return userRepository.save(user);
     }
 
     //admin login
@@ -159,14 +148,7 @@ public class UserService {
                     user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
                 }
             }
-            user = userRepository.save(user);
-            User result = new User();
-            result.setId(user.getId());
-            result.setUserName(user.getUserName());
-            result.setRole(user.getRole());
-            result.setToken(user.getToken());
-            result.setStudent(user.getStudent());
-            return result;
+            return userRepository.save(user);
         }
         else {
             throw new NullPointerException("Account is not an admin account.");
@@ -194,14 +176,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    //active/deactive
-    public User changeUserStatus(int id, UserDTO userDTO){
+    //activate/deactivate
+    public User changeUserStatus(int id){
         User user = userRepository.findOne(id);
-            if(userDTO.getStatus() == 1){
-                user.setStatus(0);
-            }
-            if(userDTO.getStatus() == 0){
-                user.setStatus(1);
+            if(user.getStatus().equals("A")){
+                user.setStatus("D");
+            } else if(user.getStatus().equals("D")){
+                user.setStatus("A");
             }
         return userRepository.save(user);
     }
