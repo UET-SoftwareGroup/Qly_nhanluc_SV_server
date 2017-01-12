@@ -3,13 +3,18 @@ package uet.usercontroller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uet.usercontroller.DTO.PartnerDTO;
+import uet.usercontroller.DTO.PostDTO;
 import uet.usercontroller.DTO.StudentDTO;
+import uet.usercontroller.model.Partner;
+import uet.usercontroller.model.Post;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
 import uet.usercontroller.service.StudentService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,6 +51,27 @@ public class StudentController {
 //        String token = request.getHeader("auth-token");
 //        return studentService.editStudent(studentId, studentDTO, token);
 //    }
+
+    //Student search partner
+    @RequiredRoles({Role.STUDENT, Role.ADMIN})
+    @RequestMapping(value="searchPartner", method = RequestMethod.POST)
+    public List<HashMap<String, String>> searchPartner(@RequestBody PartnerDTO partnerDTO){
+        return (List<HashMap<String, String>>) studentService.searchPartner(partnerDTO);
+    }
+
+    //Student search post description
+    @RequiredRoles({Role.STUDENT, Role.ADMIN})
+    @RequestMapping(value="searchDescription", method = RequestMethod.POST)
+    public List<Post> searchDescription(@RequestBody PostDTO postDTO){
+        return studentService.searchDescription(postDTO);
+    }
+
+    //Student search post by content
+    @RequiredRoles({Role.STUDENT, Role.ADMIN})
+    @RequestMapping(value="searchContent", method = RequestMethod.POST)
+    public List<Post> searchContent(@RequestBody PostDTO postDTO){
+        return studentService.searchContent(postDTO);
+    }
 
     //Delete
     @RequiredRoles(Role.ADMIN)

@@ -1,6 +1,8 @@
 package uet.usercontroller.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import uet.usercontroller.model.Partner;
 import uet.usercontroller.model.Post;
@@ -17,4 +19,7 @@ public interface PartnerRepository extends CrudRepository<Partner,Integer>{
     Partner findByPostId(int postId);
 
     Partner findByPartnerContactsId(int partnerContactId);
+
+    List<Partner> findByPartnerNameContaining(String partnerName);
 }
+

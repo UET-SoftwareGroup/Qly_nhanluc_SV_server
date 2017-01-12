@@ -51,7 +51,7 @@ public class UserService {
 //                long pwd = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
 //                user.setPassword(Long.toString(pwd, Character.MAX_RADIX));
                 user.setPassword(userDTO.getPassword());
-                user.setStatus(true);
+                user.setStatus(1);
                 user.setRole(Role.STUDENT);
                 Student student = new Student();
                 student.setStudentName(user.getUserName());
@@ -118,7 +118,7 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if (userDTO.isStatus() == true ) {
+        if (userDTO.getStatus() == 1) {
             if (userDTO.getPassword().equals(user.getPassword())) {
                 if (user.getToken() == null) {
                     user.setToken(UUID.randomUUID().toString());
@@ -197,10 +197,11 @@ public class UserService {
     //active/deactive
     public User changeUserStatus(int id, UserDTO userDTO){
         User user = userRepository.findOne(id);
-            if(userDTO.isStatus() == true){
-                user.setStatus(false);
-            } else{
-                user.setStatus(true);
+            if(userDTO.getStatus() == 1){
+                user.setStatus(0);
+            }
+            if(userDTO.getStatus() == 0){
+                user.setStatus(1);
             }
         return userRepository.save(user);
     }

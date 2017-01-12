@@ -20,7 +20,7 @@ public class PostController {
     private PostService postService;
 
     //Show all post
-    @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
+    @RequiredRoles({Role.ADMIN,Role.STUDENT})
     @RequestMapping(value="/post",method= RequestMethod.GET)
     public List<Post> getAllPosts() { return postService.getAllPosts();}
 
