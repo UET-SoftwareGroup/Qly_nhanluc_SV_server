@@ -8,16 +8,15 @@ import java.util.Date;
 @Entity
 @Table(name="JobSkill")
 public class JobSkill{
-    private int id;
-    private String skill;
-    private String company;
-    private Date updateTime;
-    private int studentId;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO )
+    private int id;
+
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
+
+    private int studentId;
 
     public int getStudentId() {
         return studentId;
@@ -27,9 +26,7 @@ public class JobSkill{
         this.studentId = studentId;
     }
 
-    //    @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "studentId")
-
+    private String skill;
 
     public String getSkill() {
         return skill;
@@ -39,6 +36,8 @@ public class JobSkill{
         this.skill = skill;
     }
 
+    private String company;
+
     public String getCompany() {
         return company;
     }
@@ -46,6 +45,8 @@ public class JobSkill{
     public void setCompany(String company) {
         this.company = company;
     }
+
+    private Date updateTime;
 
     public Date getUpdateTime() {
         return updateTime;

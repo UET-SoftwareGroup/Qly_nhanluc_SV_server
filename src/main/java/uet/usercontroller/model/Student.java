@@ -56,7 +56,7 @@ public class Student {
         this.studentInfo = studentInfo;
     }
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL)
     private List<JobSkill> jobSkills;
 
     public List<JobSkill> getJobSkills() { return jobSkills; }
