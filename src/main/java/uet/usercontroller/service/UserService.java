@@ -118,7 +118,7 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if (userDTO.getStatus().equals("A")) {
+        if (user.getStatus().equals("A")) {
             if (userDTO.getPassword().equals(user.getPassword())) {
                 if (user.getToken() == null) {
                     user.setToken(UUID.randomUUID().toString());
@@ -126,13 +126,16 @@ public class UserService {
                 } else {
                     user.setExpiryTime(new Date(System.currentTimeMillis() + 1000 * 60 * 15));
                 }
+                return userRepository.save(user);
             } else {
                 throw new NullPointerException("Wrong password.");
             }
-        } else {
+        } else if (userDTO.getStatus() == "D" ) {
             throw new NullPointerException("Account was deactivated.");
+        } else {
+            throw new NullPointerException("Unknown Error.");
         }
-        return userRepository.save(user);
+
     }
 
     //admin login
