@@ -13,23 +13,23 @@ public class Internship {
     @GeneratedValue(strategy = GenerationType.AUTO )
     @Column(name="id")
     private int id;
-    @Column(name="partnerId")
-    private int partnerId;
-    @Column(name="company")
+    private int  partnerId;
     private String company;
-    @Column(name="startDate")
     private Date startDate;
-    @Column(name="endDate")
     private Date  endDate;
-    @Column(name="Supervisor")
     private String supervisor;
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getPartnerId() { return partnerId; }
+
+    public void setPartnerId(int partnerId) { this.partnerId = partnerId; }
 
     public String getCompany() {
         return company;
@@ -62,12 +62,4 @@ public class Internship {
     public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
-    public int getPartnerId() {
-        return partnerId;
-    }
-
-    public void setPartnerId(int partnerId) {
-        this.partnerId = partnerId;
-    }
-
 }

@@ -16,12 +16,12 @@ public class Partner {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "partnerName")
+
     private String partnerName;
     @OneToOne(cascade = CascadeType.ALL)
     private PartnerInfo partnerInfo;
 
-    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "partnerId", cascade = CascadeType.ALL)
     private List<Post> post;
 
     public List<Post> getPost() {
@@ -32,14 +32,14 @@ public class Partner {
         this.post = post;
     }
 
-//    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
-//    private List<Internship> internships;
-//
-//    public List<Internship> getInternships() { return internships; }
-//
-//    public void setInternships(List<Internship> internships) { this.internships = internships; }
+    @OneToMany(mappedBy = "partnerId", cascade = CascadeType.ALL)
+    private List<Internship> internships;
 
-    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
+    public List<Internship> getInternships() { return internships; }
+
+    public void setInternships(List<Internship> internships) { this.internships = internships; }
+
+    @OneToMany(mappedBy = "partnerId", cascade = CascadeType.ALL)
     private List<PartnerContact> partnerContacts;
 
     public List<PartnerContact> getPartnerContacts() { return partnerContacts; }

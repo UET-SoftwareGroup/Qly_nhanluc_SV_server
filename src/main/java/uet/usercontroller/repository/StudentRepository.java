@@ -16,4 +16,6 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
 
     Student findByJobSkillsId(int jobSkills);
 
+    Student findByInternshipId(int id);
+
 }

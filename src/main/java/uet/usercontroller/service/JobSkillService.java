@@ -30,12 +30,14 @@ public class JobSkillService {
         List<JobSkill> getAll = (List<JobSkill>) jobSkillRepository.findAll();
         return getAll;
     }
-//    show list jobskill cua 1 student
+
+    //show list jobskill cua 1 student
     public List<JobSkill> getallInStudent(int studentId){
-            Student student = studentRepository.findById(studentId);
-             return student.getJobSkills();
+        Student student = studentRepository.findById(studentId);
+        return student.getJobSkills();
 
     }
+
     //create jobskill
     public JobSkill createJs(int studentId,JobSkillDTO jobSkillDTO,String token){
         User user = userRepository.findByToken(token);
@@ -54,44 +56,47 @@ public class JobSkillService {
         }
     }
 
-    //delete 1 jobskill by id
-    public void deleteJobSkill(int id,String token){
-        User user = userRepository.findByToken(token);
-        Student student = user.getStudent();
-        JobSkill jobSkill = jobSkillRepository.findById(id);
-        Student student1 = studentRepository.findByJobSkillsId(id);
-        if(user.getRole()==Role.STUDENT) {
-            if (student.equals(student1)) {
-                jobSkillRepository.delete(jobSkill);
-            } else {
-                throw new NullPointerException("User doesn't match with Student");
-            }
-        }else{
-            jobSkillRepository.delete(jobSkill);
-        }
-    }
+
     //show 1 jobskill
     public JobSkill showJobSkill( int id){
         JobSkill  jobSkill = jobSkillRepository.findById(id);
         return jobSkill;
     }
-    //change 1 Jobskill by id
+
+    //Edit a Jobskill by id
     public JobSkill ChangeJsById(int id, JobSkillDTO jobSkillDTO,String token){
         User user = userRepository.findByToken(token);
         JobSkill jobSkill = jobSkillRepository.findById(id);
-        Student student = user.getStudent();
-        Student student1 = studentRepository.findByJobSkillsId(id);
-        if (student.equals(student1)) {
+        Student student = studentRepository.findByJobSkillsId(id);
+        if (user.getStudent().equals(student)) {
             jobSkill.setCompany(jobSkillDTO.getCompany());
             jobSkill.setUpdateTime(jobSkillDTO.getUpdateTime());
             jobSkill.setSkill(jobSkillDTO.getSkill());
-            jobSkillRepository.save(jobSkill);
-            return jobSkill;
+            return jobSkillRepository.save(jobSkill);
+        }
+        else {
+                throw new NullPointerException("User doesn't match with Student");
+        }
+    }
+
+    //Delete a jobskill by id
+    public void deleteJobSkill(int id,String token){
+        User user = userRepository.findByToken(token);
+        JobSkill jobSkill = jobSkillRepository.findById(id);
+        Student student = studentRepository.findByJobSkillsId(id);
+        if(user.getRole()==Role.STUDENT) {
+            if (user.getStudent().equals(student)) {
+                jobSkillRepository.delete(jobSkill);
             } else {
                 throw new NullPointerException("User doesn't match with Student");
             }
+        }
+        else if (user.getRole().equals(Role.ADMIN)){
+            jobSkillRepository.delete(jobSkill);
+        }
+        else {
+            throw new NullPointerException("You don's have permission");
+        }
     }
-
-
 }
 

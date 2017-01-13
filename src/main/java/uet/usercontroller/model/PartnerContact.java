@@ -9,19 +9,12 @@ import javax.persistence.*;
 @Table(name="partnerContact")
 public class PartnerContact {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne
-    @JoinColumn(name= "partnerId")
-    private Partner partner;
-    @Column(name="contactName")
+    private int partnerId;
     private String contactName;
-    @Column(name = "address")
     private String address;
-    @Column(name = "skype")
     private String skype;
-    @Column(name = "email")
     private String email;
 
     public int getId() {
@@ -32,9 +25,9 @@ public class PartnerContact {
         this.id = id;
     }
 
-    public Partner getPartner() { return partner; }
+    public int getPartnerId() { return partnerId; }
 
-    public void setPartner(Partner partner) { this.partner = partner; }
+    public void setPartnerId(int partnerId) { this.partnerId = partnerId; }
 
     public String getContactName() {
         return contactName;

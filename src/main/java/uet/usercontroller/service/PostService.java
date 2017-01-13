@@ -53,11 +53,8 @@ public class PostService {
             post.setContent(postDTO.getContent());
             post.setDatePost(postDTO.getDatePost());
             post.setDescribePost(postDTO.getDescribePost());
-            post.setPartner(partner);
-            postRepository.save(post);
-            partner.getPost().add(post);
-            partnerRepository.save(partner);
-            return post;
+            post.setPartnerId(partnerId);
+            return postRepository.save(post);
         }
         else{
             throw new NullPointerException("User doesn't match with Partner.");
@@ -90,10 +87,9 @@ public class PostService {
     //delete a post
     public void deletePost(int postId, String token){
         User user = userRepository.findByToken(token);
-        Partner partner = user.getPartner();
         Post  post = postRepository.findOne(postId);
-        Partner partner1 = partnerRepository.findByPostId(postId);
-        if (partner1.equals(partner)) {
+        Partner partner = partnerRepository.findByPostId(postId);
+        if (user.getPartner().equals(partner)) {
             postRepository.delete(post);
         }
         else {

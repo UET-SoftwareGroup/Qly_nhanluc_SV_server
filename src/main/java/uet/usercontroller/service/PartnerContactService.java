@@ -49,15 +49,11 @@ public class PartnerContactService {
         if (user.getPartner().equals(partner)){
             PartnerContact partnerContact = new PartnerContact();
             partnerContact.setAddress(partnerContactDTO.getAddress());
-            partnerContact.setPartner(partner);
+            partnerContact.setPartnerId(partnerId);
             partnerContact.setContactName(partnerContactDTO.getContactName());
             partnerContact.setEmail(partnerContactDTO.getEmail());
             partnerContact.setSkype(partnerContactDTO.getSkype());
-            partnerRepository.save(partner);
-            partner.getPartnerContacts().add(partnerContact);
-            partnerContactRepository.save(partnerContact);
-            return partnerContact;
-
+            return partnerContactRepository.save(partnerContact);
         }
         else{
             throw new NullPointerException("User doesn't match with Partner.");

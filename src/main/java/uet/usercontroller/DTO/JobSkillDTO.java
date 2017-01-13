@@ -29,9 +29,7 @@ public class JobSkillDTO {
         this.skill = skill;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+    public Date getUpdateTime() { return updateTime; }
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;

@@ -15,6 +15,10 @@ public class Post {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private int partnerId;
+    @Column(name="content", length = 2800000)
+    private String content;
+    private String describePost;
 
     public int getId() {
         return id;
@@ -24,26 +28,14 @@ public class Post {
         this.id = id;
     }
 
-    @ManyToOne
-    @JoinColumn(name= "partnerId")
-    private Partner partner;
+    public int getPartnerId() { return partnerId; }
 
-    public Partner getPartner() {
-        return partner;
-    }
-
-    public void setPartner(Partner partner) {
-        this.partner = partner;
-    }
-
-    @Column(name="content", length = 2800000)
-    private String content;
+    public void setPartnerId(int partnerId) { this.partnerId = partnerId; }
 
     public String getContent() { return content; }
 
     public void setContent(String content) { this.content = content; }
 
-    @Column(name="datePost")
     private Date datePost;
 
     public Date getDatePost() {
@@ -53,9 +45,6 @@ public class Post {
     public void setDatePost(Date datePost) {
         this.datePost = datePost;
     }
-
-    @Column(name="describePost")
-    private String describePost;
 
     public String getDescribePost() {
         return describePost;

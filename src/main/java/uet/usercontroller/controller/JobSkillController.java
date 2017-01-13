@@ -27,14 +27,6 @@ public class JobSkillController {
         return jobSkillService.getJobSkills();
     }
 
-    //create 1 jobskill
-    @RequiredRoles({Role.STUDENT})
-    @RequestMapping(value="/student/{studentId}/jobSkill",method = RequestMethod.POST)
-    public JobSkill createJs(@PathVariable("studentId") int studentId,@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
-        String token =request.getHeader("auth-token");
-        return jobSkillService.createJs(studentId,jobSkillDTO,token);
-    }
-
     //show toan bo jobskill cua 1 student
     @RequiredRoles({Role.STUDENT, Role.VIP_PARTNER,Role.ADMIN})
     @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.GET)
@@ -47,7 +39,16 @@ public class JobSkillController {
     public JobSkill showById(@PathVariable("jobSkillId") int jobskillId){
         return jobSkillService.showJobSkill(jobskillId);
     }
-    //thay doi 1 jobskill by id
+
+    //create 1 jobskill
+    @RequiredRoles({Role.STUDENT})
+    @RequestMapping(value="/student/{studentId}/jobSkill",method = RequestMethod.POST)
+    public JobSkill createJs(@PathVariable("studentId") int studentId,@RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
+        String token =request.getHeader("auth-token");
+        return jobSkillService.createJs(studentId,jobSkillDTO,token);
+    }
+
+    //Edit 1 jobskill by id
     @RequiredRoles({Role.STUDENT})
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.PUT)
     public JobSkill ChangeJs(@PathVariable("jobSkillId") int id, @RequestBody JobSkillDTO jobSkillDTO,HttpServletRequest request){
