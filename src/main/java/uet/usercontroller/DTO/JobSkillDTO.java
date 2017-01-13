@@ -1,5 +1,7 @@
 package uet.usercontroller.DTO;
 
+import uet.usercontroller.model.Student;
+
 import java.util.Date;
 
 /**

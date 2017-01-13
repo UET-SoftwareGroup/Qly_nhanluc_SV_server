@@ -2,44 +2,34 @@ package uet.usercontroller.model;
 
 import javax.persistence.*;
 import java.util.Date;
-
 /**
  * Created by fgv on 7/8/2016.
  */
 @Entity
 @Table(name="JobSkill")
-public class JobSkill {
-
+public class JobSkill{
+    private int id;
+    private String skill;
+    private String company;
+    private Date updateTime;
+    private int studentId;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO )
-    @Column(name = "id")
-    private int id;
-    @ManyToOne
-    @JoinColumn(name = "studentId")
-    private Student student;
+    public int getId() { return id; }
 
-    public Student getStudent() {
-        return student;
+    public void setId(int id) { this.id = id; }
+
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
-    @Column(name = "skill")
-    private String skill;
-    @Column(name = "company")
-    private String company;
-    @Column(name = "updateTime")
-    private Date updateTime;
+    //    @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "studentId")
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getSkill() {
         return skill;
