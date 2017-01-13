@@ -16,5 +16,4 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
 
     Student findByJobSkillsId(int jobSkills);
 
-    List<Student> findByStudentNameContaining(String studentName);
 }

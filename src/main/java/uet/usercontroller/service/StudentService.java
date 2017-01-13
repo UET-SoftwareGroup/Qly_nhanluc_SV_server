@@ -57,31 +57,6 @@ public class StudentService {
             }
         }
     }
-    //Edit
-    public Student editStudent(int studentId, StudentDTO studentDTO, String token){
-        User user=userRepository.findByToken(token);
-        if( user.getRole()== Role.STUDENT) {
-            Student student1 = studentRepository.findById(studentId);
-            if (user.getStudent().equals(student1)) {
-                if (studentDTO.getStudentName() != null) {
-                    student1.setStudentName(studentDTO.getStudentName());
-                }
-            }
-            return studentRepository.save(student1);
-        }
-        else {
-            Student student2 = studentRepository.findOne(studentId);
-            if(student2!=null){
-                if (studentDTO.getStudentName() != null) {
-                    student2.setStudentName(studentDTO.getStudentName());
-                }
-                    return studentRepository.save(student2);
-                }
-            else{
-                    throw new NullPointerException("Edit failed.");
-                }
-        }
-    }
 
 //    //Create
 //    public Student createStudent(int userId, StudentDTO studentDTO) {
@@ -108,16 +83,5 @@ public class StudentService {
     public List<Post> searchContent(PostDTO postDTO){
         List<Post> allPostMatched = (List<Post>) postRepository.findByContentContaining(postDTO.getContent());
         return allPostMatched;
-    }
-
-    //Delete
-    public void delStudent(int studentId) {
-        Student student = studentRepository.findOne(studentId);
-//        student.setInfoBySchool(null);
-//        student.setInternship(null);
-//        student.setStudentInfo(null);
-        student.setStudentName(null);
-        studentRepository.save(student);
-
     }
 }

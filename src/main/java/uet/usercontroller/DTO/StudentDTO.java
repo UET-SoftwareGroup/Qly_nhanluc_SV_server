@@ -9,7 +9,6 @@ public class StudentDTO {
     private InfoBySchoolDTO infoBySchoolDTO;
     private int id;
     private int userId;
-    private String studentName;
 
     public InfoBySchoolDTO getInfoBySchoolDTO1() {
         return infoBySchoolDTO1;
@@ -35,15 +34,19 @@ public class StudentDTO {
         this.infoBySchoolDTO = infoBySchoolDTO;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getUserId() { return userId; }
+    public int getUserId() {
+        return userId;
+    }
 
-    public void setUserId(int userId) {this.userId = userId; }
-
-    public String getStudentName() { return studentName; }
-
-    public void setStudentName(String studentName) { this.studentName = studentName; }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

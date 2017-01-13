@@ -1,5 +1,5 @@
 package uet.usercontroller.model;
 
 public enum Role {
-    STUDENT, PARTNER1 , PARTNER2, ADMIN
+    STUDENT, VIP_PARTNER, NORMAL_PARTNER, OTHER_PARTNER, ADMIN
 }

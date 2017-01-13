@@ -25,21 +25,21 @@ public class PostController {
     public List<Post> getAllPosts() { return postService.getAllPosts();}
 
     //Show list post of a partner
-    @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
+    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER,Role.STUDENT})
     @RequestMapping(value="/partner/{partnerId}/post",method = RequestMethod.GET)
     public List<Post> showAllPost(@PathVariable("partnerId") int partnerId){
         return postService.showAllPost(partnerId);
     }
 
     //Show a post
-    @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
+    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER,Role.STUDENT})
     @RequestMapping(value="/post/{postId}",method = RequestMethod.GET)
     public Post showPost(@PathVariable("postId") int postId){
         return postService.showPost(postId);
     }
 
     //Create post
-    @RequiredRoles({Role.PARTNER1})
+    @RequiredRoles({Role.VIP_PARTNER})
     @RequestMapping(value="/partner/{partnerId}/post",method = RequestMethod.POST)
     public Post createPost(@PathVariable("partnerId") int partnerId, @RequestBody PostDTO postDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
@@ -47,7 +47,7 @@ public class PostController {
     }
 
     //Edit post
-    @RequiredRoles(Role.PARTNER1)
+    @RequiredRoles(Role.VIP_PARTNER)
     @RequestMapping(value="/post/{postId}",method = RequestMethod.PUT)
     public Post editPost(@PathVariable("postId") int postId, @RequestBody PostDTO postDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
@@ -55,7 +55,7 @@ public class PostController {
     }
 
     //Delete post
-    @RequiredRoles(Role.PARTNER1)
+    @RequiredRoles(Role.VIP_PARTNER)
     @RequestMapping(value="/post/{postId}",method = RequestMethod.DELETE)
     public void deletePost(@PathVariable("postId") int postId, HttpServletRequest request){
         String token = request.getHeader("auth-token");

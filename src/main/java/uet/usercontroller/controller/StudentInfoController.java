@@ -1,15 +1,12 @@
 package uet.usercontroller.controller;
 
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.StudentInfoDTO;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.model.StudentInfo;
 import uet.usercontroller.service.StudentInfoService;
-import uet.usercontroller.stereotype.NoAuthentication;
 import uet.usercontroller.stereotype.RequiredRoles;
-import uet.usercontroller.model.Student;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,14 +21,14 @@ public class StudentInfoController {
     private StudentInfoService studentinfoService;
 
     //show all student information
-    @RequiredRoles({Role.PARTNER1,Role.ADMIN})
+    @RequiredRoles({Role.VIP_PARTNER,Role.ADMIN})
     @RequestMapping(value = "/studentinfo",method = RequestMethod.GET)
     public List<StudentInfo> getAllStudentInfo(){
         return studentinfoService.getAllStudentInfo();
     }
 
     //show info of a student
-    @RequiredRoles({Role.ADMIN,Role.STUDENT,Role.PARTNER1})
+    @RequiredRoles({Role.ADMIN,Role.STUDENT,Role.VIP_PARTNER})
     @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.GET)
     public StudentInfo getStudentInfo(@PathVariable("id") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");

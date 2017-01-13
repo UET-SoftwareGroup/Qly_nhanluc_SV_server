@@ -33,7 +33,7 @@ public class TokenAuthenticationInterceptor extends HandlerInterceptorAdapter {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             if (handlerMethod.getMethodAnnotation(NoAuthentication.class) != null) {
                 // No required authentication
-                return true; // by pass
+                return true; // by  ss
             } else if (token == null) {
                 throw new NullPointerException("UNAUTHORIZED");
             }

@@ -3,7 +3,6 @@ package uet.usercontroller.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.PartnerDTO;
-import uet.usercontroller.DTO.StudentDTO;
 import uet.usercontroller.DTO.StudentInfoDTO;
 import uet.usercontroller.model.Partner;
 import uet.usercontroller.model.Role;
@@ -12,7 +11,6 @@ import uet.usercontroller.service.PartnerService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,7 +22,7 @@ public class PartnerController {
     private PartnerService partnerService;
 
     //show all list partner
-    @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
+    @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.VIP_PARTNER})
     @RequestMapping(value="/partner", method = RequestMethod.GET)
     public List<Partner> getPartners(){
         return partnerService.getPartners();
@@ -38,7 +36,7 @@ public class PartnerController {
     }
 
     //edit a partner name
-    @RequiredRoles({Role.ADMIN, Role.PARTNER1})
+    @RequiredRoles({Role.ADMIN, Role.VIP_PARTNER})
     @RequestMapping(value="/partner/{partnerId}", method = RequestMethod.PUT)
     public Partner editPartner(@PathVariable("partnerId") int partnerId, @RequestBody PartnerDTO partnerDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
@@ -46,14 +44,14 @@ public class PartnerController {
     }
 
     //show a partner info
-    @RequiredRoles({Role.ADMIN, Role.STUDENT, Role.PARTNER1})
+    @RequiredRoles({Role.ADMIN, Role.STUDENT, Role.VIP_PARTNER})
     @RequestMapping(value="/partner/{partnerId}", method = RequestMethod.GET)
     public Partner showPartner(@PathVariable("partnerId") int partnerId){
         return partnerService.showPartner(partnerId);
     }
 
     //partner search students
-    @RequiredRoles({Role.PARTNER1, Role.ADMIN})
+    @RequiredRoles({Role.VIP_PARTNER, Role.ADMIN})
     @RequestMapping(value="searchStudent", method = RequestMethod.POST)
     public List<StudentInfo> searchStudent(@RequestBody StudentInfoDTO studentInfoDTO){
         return partnerService.searchStudent(studentInfoDTO);

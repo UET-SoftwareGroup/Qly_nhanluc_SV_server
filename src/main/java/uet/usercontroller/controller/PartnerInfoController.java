@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uet.usercontroller.DTO.PartnerInfoDTO;
 import uet.usercontroller.model.PartnerInfo;
 import uet.usercontroller.model.Role;
-import uet.usercontroller.repository.PartnerInfoRepository;
 import uet.usercontroller.service.PartnerInfoService;
-import uet.usercontroller.service.PartnerService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,20 +20,20 @@ public class PartnerInfoController {
     private PartnerInfoService partnerInfoService;
 
     //show all partner info
-    @RequiredRoles({Role.ADMIN, Role.PARTNER1, Role.STUDENT})
+    @RequiredRoles({Role.ADMIN, Role.VIP_PARTNER, Role.STUDENT})
     @RequestMapping(value="partnerInfo", method = RequestMethod.GET)
     public List<PartnerInfo> getAllInfo(){
         return partnerInfoService.getAllInfo();
     }
 
     //show a partner info
-    @RequiredRoles({Role.ADMIN, Role.PARTNER1, Role.STUDENT})
+    @RequiredRoles({Role.ADMIN, Role.VIP_PARTNER, Role.STUDENT})
     @RequestMapping(value="partnerInfo/{partnerInfoId}", method = RequestMethod.GET)
     public PartnerInfo showInfo(@PathVariable("partnerInfoId") int partnerInfoId){
         return partnerInfoService.showInfo(partnerInfoId);
     }
     //create a partner info
-    @RequiredRoles(Role.PARTNER1)
+    @RequiredRoles(Role.VIP_PARTNER)
     @RequestMapping(value="partner/{partnerId}/partnerInfo", method = RequestMethod.POST)
     public PartnerInfo createInfo(@PathVariable("partnerId") int partnerId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
@@ -43,7 +41,7 @@ public class PartnerInfoController {
     }
 
     //edit info of a partner
-    @RequiredRoles(Role.PARTNER1)
+    @RequiredRoles(Role.VIP_PARTNER)
     @RequestMapping(value="partnerInfo/{partnerInfoId}", method = RequestMethod.PUT)
     public PartnerInfo editInfo(@PathVariable("partnerInfoId") int partnerInfoId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
@@ -51,7 +49,7 @@ public class PartnerInfoController {
     }
 
     //delete info of a partner
-    @RequiredRoles({Role.ADMIN,Role.PARTNER1})
+    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER})
     @RequestMapping(value="partner/{partnerId}/partnerInfo", method = RequestMethod.DELETE)
     public PartnerInfo deleteInfo(@PathVariable("partnerId") int partnerId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");

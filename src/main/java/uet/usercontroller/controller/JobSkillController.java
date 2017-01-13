@@ -21,7 +21,7 @@ public class JobSkillController {
     private JobSkillService jobSkillService;
 
     //xem tat ca cac jobskill
-    @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
+    @RequiredRoles({Role.STUDENT, Role.VIP_PARTNER,Role.ADMIN})
     @RequestMapping(value = "/jobSkill",method = RequestMethod.GET)
     public List<JobSkill> getalljobskill(){
         return jobSkillService.getJobSkills();
@@ -36,13 +36,13 @@ public class JobSkillController {
     }
 
     //show toan bo jobskill cua 1 student
-    @RequiredRoles({Role.STUDENT, Role.PARTNER1,Role.ADMIN})
+    @RequiredRoles({Role.STUDENT, Role.VIP_PARTNER,Role.ADMIN})
     @RequestMapping(value="student/{studentId}/jobSkill",method = RequestMethod.GET)
     public List<JobSkill> getallInStudent(@PathVariable("studentId") int studentId){
         return jobSkillService.getallInStudent(studentId);
     }
     //show 1 jobskill by id
-    @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.PARTNER1})
+    @RequiredRoles({Role.STUDENT,Role.ADMIN,Role.VIP_PARTNER})
     @RequestMapping(value="/jobSkill/{jobSkillId}", method = RequestMethod.GET)
     public JobSkill showById(@PathVariable("jobSkillId") int jobskillId){
         return jobSkillService.showJobSkill(jobskillId);

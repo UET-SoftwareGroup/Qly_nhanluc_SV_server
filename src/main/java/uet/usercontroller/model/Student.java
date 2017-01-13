@@ -1,9 +1,6 @@
 package uet.usercontroller.model;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,25 +10,20 @@ import java.util.List;
 
 @Entity
 @Table(name="Student")
-@Transactional
-public class Student{
-
-
-
-
-
+public class Student {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     public void setId(int id) {
         this.id = id;
     }
 
+
     public int getId() {    return id; }
 
     @OneToOne(cascade = CascadeType.ALL)
-
     private InfoBySchool infoBySchool;
 
     public InfoBySchool getInfoBySchool() {
@@ -44,6 +36,7 @@ public class Student{
 
     @OneToOne(cascade = CascadeType.ALL)
     private Internship internship;
+
     public Internship getInternship() {
         return internship;
     }
@@ -54,6 +47,7 @@ public class Student{
 
     @OneToOne(cascade = CascadeType.ALL)
     private StudentInfo studentInfo;
+
     public StudentInfo getStudentInfo() {
         return studentInfo;
     }
@@ -62,8 +56,9 @@ public class Student{
         this.studentInfo = studentInfo;
     }
 
-    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL)
-    private List<JobSkill> jobSkills = new ArrayList<JobSkill>();
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<JobSkill> jobSkills;
+
     public List<JobSkill> getJobSkills() { return jobSkills; }
 
     public void setJobSkills(List<JobSkill> jobSkills) { this.jobSkills = jobSkills; }

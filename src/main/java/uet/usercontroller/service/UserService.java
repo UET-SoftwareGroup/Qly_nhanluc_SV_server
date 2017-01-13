@@ -54,7 +54,6 @@ public class UserService {
                 user.setStatus("A");
                 user.setRole(Role.STUDENT);
                 Student student = new Student();
-                student.setStudentName(user.getUserName());
                 user.setStudent(student);
                 //create StudentInfo
                 StudentInfo studentInfo = new StudentInfo();
@@ -86,7 +85,7 @@ public class UserService {
                 user.setPassword(userDTO.getPassword());
                 user.setRole(userDTO.getRole());
                 user.setStatus("A");
-                if (user.getRole() == Role.PARTNER1) {
+                if (user.getRole() == Role.VIP_PARTNER) {
                     Partner partner = new Partner();
                     partner.setPartnerName(user.getUserName());
                     user.setPartner(partner);

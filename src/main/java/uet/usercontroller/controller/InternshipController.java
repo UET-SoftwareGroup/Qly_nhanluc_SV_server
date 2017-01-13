@@ -20,7 +20,7 @@ public class InternshipController {
     private InternshipService internshipService;
 
     //show all Internships
-    @RequiredRoles({Role.ADMIN,Role.PARTNER1})
+    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER})
     @RequestMapping(value = "/intern", method = RequestMethod.GET)
     public List<Internship> getAllInterns(HttpServletRequest request) {
         String token= request.getHeader("auth-token");
@@ -36,7 +36,7 @@ public class InternshipController {
     }
 
     //find By Id
-    @RequiredRoles({Role.ADMIN,Role.PARTNER1,Role.STUDENT})
+    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER,Role.STUDENT})
     @RequestMapping(value = "/intern/{internId}", method = RequestMethod.GET)
     public Internship findInternById(@PathVariable("internId") int id,HttpServletRequest request) {
         String token = request.getHeader("auth-token");

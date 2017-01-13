@@ -20,7 +20,7 @@ public class InfoBySchoolController {
     private InfoBySchoolService infoBySchoolService;
 
     //Show all student information by school
-    @RequiredRoles({Role.PARTNER1,Role.ADMIN})
+    @RequiredRoles({Role.VIP_PARTNER,Role.ADMIN})
     @RequestMapping(value="/infobyschool", method = RequestMethod.GET)
     public List<InfoBySchool> getAllInfo(){
         return infoBySchoolService.getAllInfo();
@@ -34,7 +34,7 @@ public class InfoBySchoolController {
     }
 
     //show info of a student
-    @RequiredRoles({Role.STUDENT,Role.PARTNER1,Role.ADMIN})
+    @RequiredRoles({Role.STUDENT,Role.VIP_PARTNER,Role.ADMIN})
     @RequestMapping(value="/infobyschool/{infoId}", method = RequestMethod.GET)
     public InfoBySchool getInfo(@PathVariable("infoId") int infoId, HttpServletRequest request){
         String token = request.getHeader("auth-token");

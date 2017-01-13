@@ -104,7 +104,7 @@ public class PartnerInfoService {
         User user = userRepository.findByToken(token);
         Partner partner = user.getPartner();
         PartnerInfo  partnerInfo = partnerInfoRepository.findOne(partnerInfoId);
-        if (user.getRole()== Role.PARTNER1) {
+        if (user.getRole()== Role.VIP_PARTNER) {
             if (partner.getPartnerInfo().equals(partnerInfo)) {
                 partnerInfo.setPartnerName(null);
                 partnerInfo.setTaxCode(null);
