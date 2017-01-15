@@ -11,6 +11,8 @@ import uet.usercontroller.repository.InfoBySchoolRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,9 +28,36 @@ public class InfoBySchoolService {
     private InfoBySchoolRepository infoBySchoolRepository;
 
     //Show all student information
-    public List<InfoBySchool> getAllInfo(){
-        List<InfoBySchool> allStudents = (List<InfoBySchool>) infoBySchoolRepository.findAll();
-        return allStudents;
+    public List<HashMap<String, String>> getAllInfo(){
+        List<InfoBySchool> allInfoBySchool = (List<InfoBySchool>) infoBySchoolRepository.findAll();
+        List<HashMap<String, String>> listPartnerInfo = new ArrayList<HashMap<String, String>>();
+        for (InfoBySchool infoBySchool : allInfoBySchool){
+            HashMap<String, String> lInfoBySChool = new HashMap<String, String>();
+            Student student = studentRepository.findByStudentInfoId(infoBySchool.getId());
+            User user = userRepository.findByStudentId(student.getId());
+            String userId = String.valueOf(user.getId());
+            String status = user.getStatus();
+            String infoBySchoolId = String.valueOf(infoBySchool.getId());
+            String gpa = String.valueOf(infoBySchool.getGPA());
+            String diploma = infoBySchool.getDiploma();
+            String grade = infoBySchool.getGrade();
+            String graduationYear = infoBySchool.getGraduationYear();
+            String major = infoBySchool.getMajor();
+            String studentClass = infoBySchool.getStudentClass();
+            String studentCode = String.valueOf(infoBySchool.getStudentCode());
+            lInfoBySChool.put("userId", userId);
+            lInfoBySChool.put("status", status);
+            lInfoBySChool.put("infoBySchoolId", infoBySchoolId);
+            lInfoBySChool.put("gpa", gpa);
+            lInfoBySChool.put("diploma", diploma);
+            lInfoBySChool.put("grade", grade);
+            lInfoBySChool.put("graduationYear", graduationYear);
+            lInfoBySChool.put("major", major);
+            lInfoBySChool.put("studentClass", studentClass);
+            lInfoBySChool.put("studentCode", studentCode);
+            listPartnerInfo.add(lInfoBySChool);
+        }
+        return listPartnerInfo;
     }
 
     //create info
