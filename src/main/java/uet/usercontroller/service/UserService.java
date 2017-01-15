@@ -87,11 +87,11 @@ public class UserService {
                 user.setStatus("A");
                 if (user.getRole() == Role.VIP_PARTNER) {
                     Partner partner = new Partner();
-                    partner.setPartnerName(user.getUserName());
                     user.setPartner(partner);
 
                     //create PartnerInfo
                     PartnerInfo partnerInfo = new PartnerInfo();
+                    partnerInfo.setPartnerName(user.getUserName());
                     partner.setPartnerInfo(partnerInfo);
                     partnerInfoRepository.save(partnerInfo);
 

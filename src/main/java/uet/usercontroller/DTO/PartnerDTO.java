@@ -40,8 +40,6 @@ public class PartnerDTO {
 
     private int id;
 
-    private String partnerName;
-
     public int getId() {
         return id;
     }
@@ -50,11 +48,4 @@ public class PartnerDTO {
         this.id = id;
     }
 
-    public String getPartnerName() {
-        return partnerName;
-    }
-
-    public void setPartnerName(String partnerName) {
-        this.partnerName = partnerName;
-    }
 }
