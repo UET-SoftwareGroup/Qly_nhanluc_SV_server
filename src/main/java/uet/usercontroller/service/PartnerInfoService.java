@@ -11,6 +11,8 @@ import uet.usercontroller.repository.PartnerInfoRepository;
 import uet.usercontroller.repository.PartnerRepository;
 import uet.usercontroller.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,9 +28,40 @@ public class PartnerInfoService {
     private PartnerInfoRepository partnerInfoRepository;
 
     //show all partner info
-    public List<PartnerInfo> getAllInfo(){
+    public List<HashMap<String, String>> getAllInfo(){
         List<PartnerInfo> allPartners = (List<PartnerInfo>) partnerInfoRepository.findAll();
-        return allPartners;
+        List<HashMap<String, String>> listPartnerInfo = new ArrayList<HashMap<String, String>>();
+        for (PartnerInfo partnerInfo : allPartners){
+            HashMap<String, String> lPartnerInfo = new HashMap<String, String>();
+            Partner partner = partnerRepository.findByPartnerInfoId(partnerInfo.getId());
+            User user = userRepository.findByPartnerId(partner.getId());
+            String userId = String.valueOf(user.getId());
+            String status = user.getStatus();
+            String partnerInfoId = String.valueOf(partnerInfo.getId());
+            String address = partnerInfo.getAddress();
+            String director = partnerInfo.getDirector();
+            String email = partnerInfo.getEmail();
+            String fax = partnerInfo.getFax();
+            String fieldWork = partnerInfo.getFieldWork();
+            String partnerName = partnerInfo.getPartnerName();
+            String phone = partnerInfo.getPhone();
+            String taxCode = partnerInfo.getTaxCode();
+            String website = partnerInfo.getWebsite();
+            lPartnerInfo.put("userId", userId);
+            lPartnerInfo.put("status", status);
+            lPartnerInfo.put("partnerInfoId", partnerInfoId);
+            lPartnerInfo.put("address", address);
+            lPartnerInfo.put("director", director);
+            lPartnerInfo.put("email", email);
+            lPartnerInfo.put("fax", fax);
+            lPartnerInfo.put("fieldWork", fieldWork);
+            lPartnerInfo.put("partnerName", partnerName);
+            lPartnerInfo.put("phone", phone);
+            lPartnerInfo.put("taxCode", taxCode);
+            lPartnerInfo.put("website", website);
+            listPartnerInfo.add(lPartnerInfo);
+        }
+        return listPartnerInfo;
     }
 
     //show a partner info

@@ -9,6 +9,7 @@ import uet.usercontroller.service.PartnerInfoService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,8 +23,8 @@ public class PartnerInfoController {
     //show all partner info
     @RequiredRoles({Role.ADMIN, Role.VIP_PARTNER, Role.STUDENT})
     @RequestMapping(value="partnerInfo", method = RequestMethod.GET)
-    public List<PartnerInfo> getAllInfo(){
-        return partnerInfoService.getAllInfo();
+    public List<HashMap<String, String>> getAllInfo(){
+        return (List<HashMap<String, String>>) partnerInfoService.getAllInfo();
     }
 
     //show a partner info

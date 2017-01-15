@@ -9,6 +9,7 @@ import uet.usercontroller.service.StudentInfoService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,14 +23,14 @@ public class StudentInfoController {
 
     //show all student information
     @RequiredRoles({Role.VIP_PARTNER,Role.ADMIN})
-    @RequestMapping(value = "/studentinfo",method = RequestMethod.GET)
-    public List<StudentInfo> getAllStudentInfo(){
-        return studentinfoService.getAllStudentInfo();
+    @RequestMapping(value = "/studentInfo",method = RequestMethod.GET)
+    public List<HashMap<String, String>> getAllStudentInfo(){
+        return (List<HashMap<String, String>>) studentinfoService.getAllStudentInfo();
     }
 
     //show info of a student
     @RequiredRoles({Role.ADMIN,Role.STUDENT,Role.VIP_PARTNER})
-    @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/studentInfo/{id}",method = RequestMethod.GET)
     public StudentInfo getStudentInfo(@PathVariable("id") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return studentinfoService.getStudentInfo(id,token);
@@ -37,7 +38,7 @@ public class StudentInfoController {
 
     //edit info of a student
     @RequiredRoles(Role.STUDENT)
-    @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/studentInfo/{id}",method = RequestMethod.PUT)
     public StudentInfo editStudentInfo(@PathVariable("id") int id, @RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return studentinfoService.editStudentInfo(id,studentInfoDTO,token);
@@ -45,7 +46,7 @@ public class StudentInfoController {
 
    //delete info of a student
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
-    @RequestMapping(value = "/studentinfo/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/studentInfo/{id}",method = RequestMethod.DELETE)
     public void deleteStudentInfo(@PathVariable("id") int id, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         studentinfoService.deleteStudentInfo(id, token);

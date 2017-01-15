@@ -12,6 +12,8 @@ import uet.usercontroller.repository.StudentInfoRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,9 +31,38 @@ public class StudentInfoService {
     private UserRepository userRepository;
 
     // show all student information
-    public List<StudentInfo> getAllStudentInfo() {
+    public List<HashMap<String, String>> getAllStudentInfo() {
         List<StudentInfo> allInfo = (List<StudentInfo>) studentInfoRepository.findAll();
-        return allInfo;
+        List<HashMap<String, String>> listPartnerInfo = new ArrayList<HashMap<String, String>>();
+        for (StudentInfo studentInfo : allInfo){
+            HashMap<String, String> lStudentInfo = new HashMap<String, String>();
+            Student student = studentRepository.findByStudentInfoId(studentInfo.getId());
+            User user = userRepository.findByStudentId(student.getId());
+            String userId = String.valueOf(user.getId());
+            String status = user.getStatus();
+            String studentInfoId = String.valueOf(studentInfo.getId());
+            String address = studentInfo.getAddress();
+            String avatar = studentInfo.getAvatar();
+            String birthday = studentInfo.getEmail();
+            String desire = studentInfo.getDesire();
+            String email = studentInfo.getEmail();
+            String fullName = studentInfo.getFullName();
+            String phoneNumber = studentInfo.getPhoneNumber();
+            String skype = studentInfo.getSkype();
+            lStudentInfo.put("userId", userId);
+            lStudentInfo.put("status", status);
+            lStudentInfo.put("studentInfoId", studentInfoId);
+            lStudentInfo.put("address", address);
+            lStudentInfo.put("avatar", avatar);
+            lStudentInfo.put("birthday", birthday);
+            lStudentInfo.put("desire", desire);
+            lStudentInfo.put("email", email);
+            lStudentInfo.put("fullName", fullName);
+            lStudentInfo.put("phoneNumber", phoneNumber);
+            lStudentInfo.put("skype", skype);
+            listPartnerInfo.add(lStudentInfo);
+        }
+        return listPartnerInfo;
     }
 
     // show info of a student

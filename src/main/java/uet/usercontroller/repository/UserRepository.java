@@ -12,5 +12,6 @@ import uet.usercontroller.model.User;
 public interface UserRepository extends CrudRepository<User, Integer>{
     User findByUserName(String userName);
     User findByToken(String token);
-
+    User findByPartnerId(int id);
+    User findByStudentId(int id);
 }

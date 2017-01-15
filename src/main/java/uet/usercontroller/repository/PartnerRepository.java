@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import uet.usercontroller.model.Partner;
-import uet.usercontroller.model.Post;
+
 
 import java.util.List;
 
@@ -19,5 +19,8 @@ public interface PartnerRepository extends CrudRepository<Partner,Integer>{
     Partner findByPostId(int postId);
 
     Partner findByPartnerContactsId(int partnerContactId);
+
+    Partner findByPartnerInfoId(int partnerInfoId);
+
 }
 
