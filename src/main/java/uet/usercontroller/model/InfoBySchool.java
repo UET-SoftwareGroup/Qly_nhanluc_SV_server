@@ -27,6 +27,8 @@ public class InfoBySchool {
     private String grade;
     @Column(name="graduationYear")
     private String graduationYear;
+    @Column(name="studentName")
+    private String studentName;
 
     public int getId() {
         return id;
@@ -90,5 +92,13 @@ public class InfoBySchool {
 
     public void setStudentClass(String studentClass) {
         this.studentClass = studentClass;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }
