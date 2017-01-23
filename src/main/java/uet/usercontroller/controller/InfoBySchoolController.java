@@ -20,13 +20,6 @@ public class InfoBySchoolController {
     @Autowired
     private InfoBySchoolService infoBySchoolService;
 
-    //Show all student information by school
-    @RequiredRoles({Role.VIP_PARTNER,Role.ADMIN})
-    @RequestMapping(value="/infoBySchool", method = RequestMethod.GET)
-    public List<HashMap<String, String>> getAllInfo(){
-        return (List<HashMap<String, String>>) infoBySchoolService.getAllInfo();
-    }
-
     //create info
     @RequiredRoles(Role.ADMIN)
     @RequestMapping(value="/student/{studentId}/infoBySchool", method = RequestMethod.POST)

@@ -14,6 +14,7 @@ public class InfoBySchoolDTO {
     private String diploma;
     private String grade;
     private String graduationYear;
+    private String studentName;
 
     public int getId() {
         return id;
@@ -77,5 +78,13 @@ public class InfoBySchoolDTO {
 
     public void setGraduationYear(String graduationYear) {
         this.graduationYear = graduationYear;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }

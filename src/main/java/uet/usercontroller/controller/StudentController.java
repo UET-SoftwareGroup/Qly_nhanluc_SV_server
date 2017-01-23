@@ -10,6 +10,7 @@ import uet.usercontroller.service.StudentService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,10 +20,12 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    //Show all
-    @RequiredRoles({Role.STUDENT,Role.VIP_PARTNER,Role.ADMIN})
-    @RequestMapping(value="/student",method = RequestMethod.GET)
-    public List<Student> getStudents() { return studentService.getStudents();}
+    //Show all student information by school
+    @RequiredRoles({Role.VIP_PARTNER,Role.ADMIN})
+    @RequestMapping(value="/student", method = RequestMethod.GET)
+    public List<HashMap<String, String>> getAllInfo(){
+        return (List<HashMap<String, String>>) studentService.getAllInfo();
+    }
 
 //    //Create
 //    @RequiredRoles({Role.STUDENT,Role.ADMIN})
