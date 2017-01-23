@@ -208,6 +208,7 @@ public class UserService {
             //create InfoByschool
             InfoBySchool infoBySchool = new InfoBySchool();
             infoBySchool.setDiploma(createStudentDTO.getDiploma());
+            infoBySchool.setStudentName((createStudentDTO.getStudentName()));
             infoBySchool.setGPA(createStudentDTO.getGPA());
             infoBySchool.setGraduationYear(createStudentDTO.getGraduationYear());
             infoBySchool.setGrade(createStudentDTO.getGrade());
