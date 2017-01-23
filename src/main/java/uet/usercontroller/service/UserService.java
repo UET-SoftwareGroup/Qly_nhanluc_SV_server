@@ -191,8 +191,8 @@ public class UserService {
 
     //create multi students
     public void createStudent(List<CreateStudentDTO> List) {
-//        for(CreateStudentDTO List : createStudent) {
-        List.forEach(createStudentDTO -> {
+        for(CreateStudentDTO createStudentDTO : List) {
+//        List.forEach(createStudentDTO -> {
             User user = new User();
             user.setUserName(createStudentDTO.getUserName());
             user.setPassword(String.valueOf(createStudentDTO.getStudentCode()));
@@ -219,8 +219,8 @@ public class UserService {
             infoBySchoolRepository.save(infoBySchool);
             studentRepository.save(student);
             userRepository.save(user);
-        });
+//        });
 
-//        }
+        }
     }
 }
