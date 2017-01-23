@@ -192,7 +192,7 @@ public class UserService {
     //create multi students
     public void createStudent(List<CreateStudentDTO> List) {
 //        for(CreateStudentDTO List : createStudent) {
-        List.stream().forEach(createStudentDTO -> {
+        List.forEach(createStudentDTO -> {
             User user = new User();
             user.setUserName(createStudentDTO.getUserName());
             user.setPassword(String.valueOf(createStudentDTO.getStudentCode()));
