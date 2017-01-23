@@ -2,20 +2,19 @@ package uet.usercontroller.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uet.usercontroller.DTO.CreateStudentDTO;
 import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.*;
 import uet.usercontroller.repository.*;
 
 import java.nio.ByteBuffer;
 import java.security.SecureRandom;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by Tu on 02-May-16.
  */
+@SuppressWarnings("Since15")
 @Service
 public class UserService {
     @Autowired
@@ -46,12 +45,8 @@ public class UserService {
             if (userDTO.getUserName() != null && userDTO.getPassword() != null) {
                 User user = new User();
                 user.setUserName(userDTO.getUserName());
-//                //Create a random password when sign up
-//                UUID uuid = UUID.randomUUID();
-//                long pwd = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
-//                user.setPassword(Long.toString(pwd, Character.MAX_RADIX));
                 user.setPassword(userDTO.getPassword());
-                user.setStatus(true);
+                user.setStatus("A");
                 user.setRole(Role.STUDENT);
                 Student student = new Student();
                 user.setStudent(student);
@@ -84,7 +79,7 @@ public class UserService {
                 user.setUserName(userDTO.getUserName());
                 user.setPassword(userDTO.getPassword());
                 user.setRole(userDTO.getRole());
-                user.setStatus(true);
+                user.setStatus("A");
                 if (user.getRole() == Role.VIP_PARTNER) {
                     Partner partner = new Partner();
                     user.setPartner(partner);
@@ -118,7 +113,7 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if (user.isStatus()) {
+        if (user.getStatus().equals("A")) {
             if (userDTO.getPassword().equals(user.getPassword())) {
                 if (user.getToken() == null) {
                     user.setToken(UUID.randomUUID().toString());
@@ -130,7 +125,7 @@ public class UserService {
             } else {
                 throw new NullPointerException("Wrong password.");
             }
-        } else if (!userDTO.isStatus()) {
+        } else if (userDTO.getStatus().equals("D")) {
             throw new NullPointerException("Account was deactivated.");
         } else {
             throw new NullPointerException("Unknown Error.");
@@ -181,10 +176,10 @@ public class UserService {
     //activate/deactivate
     public User changeUserStatus(int id){
         User user = userRepository.findOne(id);
-            if(user.isStatus()){
-                user.setStatus(false);
-            } else if(!user.isStatus()){
-                user.setStatus(true);
+            if(user.getStatus().equals("A")){
+                user.setStatus("D");
+            } else if(user.getStatus().equals("D")){
+                user.setStatus("A");
             }
         return userRepository.save(user);
     }
@@ -192,5 +187,39 @@ public class UserService {
     //deleteUser (o ham nay, user co id va user co token la 2 user khac nhau.)
     public void deleteUser(int id){
             userRepository.delete(id);
+    }
+
+    //create multi students
+    public void createStudent(List<CreateStudentDTO> List) {
+//        for(CreateStudentDTO List : createStudent) {
+        List.stream().forEach(createStudentDTO -> {
+            User user = new User();
+            user.setUserName(createStudentDTO.getUserName());
+            user.setPassword(String.valueOf(createStudentDTO.getStudentCode()));
+            user.setStatus("A");
+            user.setRole(Role.STUDENT);
+            Student student = new Student();
+            user.setStudent(student);
+            //create StudentInfo
+            StudentInfo studentInfo = new StudentInfo();
+            studentInfo.setFullName(createStudentDTO.getStudentName());
+            student.setStudentInfo(studentInfo);
+            studentInfoRepository.save(studentInfo);
+            //create InfoByschool
+            InfoBySchool infoBySchool = new InfoBySchool();
+            infoBySchool.setDiploma(createStudentDTO.getDiploma());
+            infoBySchool.setGPA(createStudentDTO.getGPA());
+            infoBySchool.setGraduationYear(createStudentDTO.getGraduationYear());
+            infoBySchool.setGrade(createStudentDTO.getGrade());
+            infoBySchool.setMajor(createStudentDTO.getMajor());
+            infoBySchool.setStudentClass(createStudentDTO.getStudentClass());
+            infoBySchool.setStudentCode(createStudentDTO.getStudentCode());
+            student.setInfoBySchool(infoBySchool);
+            infoBySchoolRepository.save(infoBySchool);
+            studentRepository.save(student);
+            userRepository.save(user);
+        });
+
+//        }
     }
 }

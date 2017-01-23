@@ -3,6 +3,7 @@ package uet.usercontroller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uet.usercontroller.DTO.CreateStudentDTO;
 import uet.usercontroller.DTO.UserDTO;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.model.User;
@@ -11,6 +12,7 @@ import uet.usercontroller.stereotype.NoAuthentication;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -34,6 +36,21 @@ public class UserController {
     public User createUser(@RequestBody UserDTO userDTO){
         return userService.createUser(userDTO);
     }
+
+    //create multi student
+//    @RequiredRoles(Role.ADMIN)
+//    @RequestMapping(value="/createStudent",method = RequestMethod.POST)
+//    public createStudent(@RequestBody List<HashMap<String, String>> wrapCreateStudentDTO) {
+//        userService.createStudent(wrapCreateStudentDTO);
+//    }
+
+    //create multi student
+    @RequiredRoles(Role.ADMIN)
+    @RequestMapping(value="/createStudent", method = RequestMethod.POST)
+    public void createStudent(@RequestBody List<CreateStudentDTO> List){
+        userService.createStudent(List);
+    }
+
 
     //create partner
     @RequiredRoles(Role.ADMIN)
