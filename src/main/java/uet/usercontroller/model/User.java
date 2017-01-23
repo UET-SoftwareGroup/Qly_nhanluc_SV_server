@@ -26,7 +26,7 @@ public class User {
 
     private Date expiryTime;
 
-    private String status;
+    private boolean status;
 
     @OneToOne
     Student student;
@@ -82,13 +82,21 @@ public class User {
         this.expiryTime = expiryTime;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
+
+    //    public String getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
 
     public Student getStudent() {
         return student;

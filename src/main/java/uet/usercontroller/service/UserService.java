@@ -51,7 +51,7 @@ public class UserService {
 //                long pwd = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
 //                user.setPassword(Long.toString(pwd, Character.MAX_RADIX));
                 user.setPassword(userDTO.getPassword());
-                user.setStatus("A");
+                user.setStatus(true);
                 user.setRole(Role.STUDENT);
                 Student student = new Student();
                 user.setStudent(student);
@@ -84,7 +84,7 @@ public class UserService {
                 user.setUserName(userDTO.getUserName());
                 user.setPassword(userDTO.getPassword());
                 user.setRole(userDTO.getRole());
-                user.setStatus("A");
+                user.setStatus(true);
                 if (user.getRole() == Role.VIP_PARTNER) {
                     Partner partner = new Partner();
                     user.setPartner(partner);
@@ -118,7 +118,7 @@ public class UserService {
     //login
     public User Login(UserDTO userDTO){
         User user = userRepository.findByUserName(userDTO.getUserName());
-        if (user.getStatus().equals("A")) {
+        if (user.isStatus()) {
             if (userDTO.getPassword().equals(user.getPassword())) {
                 if (user.getToken() == null) {
                     user.setToken(UUID.randomUUID().toString());
@@ -130,7 +130,7 @@ public class UserService {
             } else {
                 throw new NullPointerException("Wrong password.");
             }
-        } else if (userDTO.getStatus() == "D" ) {
+        } else if (!userDTO.isStatus()) {
             throw new NullPointerException("Account was deactivated.");
         } else {
             throw new NullPointerException("Unknown Error.");
@@ -181,10 +181,10 @@ public class UserService {
     //activate/deactivate
     public User changeUserStatus(int id){
         User user = userRepository.findOne(id);
-            if(user.getStatus().equals("A")){
-                user.setStatus("D");
-            } else if(user.getStatus().equals("D")){
-                user.setStatus("A");
+            if(user.isStatus()){
+                user.setStatus(false);
+            } else if(!user.isStatus()){
+                user.setStatus(true);
             }
         return userRepository.save(user);
     }
