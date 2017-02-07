@@ -26,6 +26,10 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+    <configuration>
+        <executable>true</executable>
+        <jvmArguments>-Dfile.encoding=UTF8 -Dspring.profiles.active="production"</jvmArguments>
+    </configuration>
 
 <dependencies>
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
