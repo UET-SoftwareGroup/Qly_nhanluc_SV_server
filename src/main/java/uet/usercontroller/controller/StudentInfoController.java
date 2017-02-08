@@ -44,6 +44,14 @@ public class StudentInfoController {
         return studentinfoService.editStudentInfo(id,studentInfoDTO,token);
     }
 
+    //change avatar
+    @RequiredRoles(Role.STUDENT)
+    @RequestMapping(value = "changeAva", method = RequestMethod.PUT)
+    public void changeAva(@RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        studentinfoService.changeAva(studentInfoDTO, token);
+    }
+
    //delete info of a student
     @RequiredRoles({Role.STUDENT,Role.ADMIN})
     @RequestMapping(value = "/studentInfo/{id}",method = RequestMethod.DELETE)

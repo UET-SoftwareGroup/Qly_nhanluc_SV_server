@@ -29,7 +29,6 @@ public class StudentInfo {
 
     private String desire;
 
-    @Column(name="avatar", length = 2000000)
     private String avatar;
 
     public int getId() {

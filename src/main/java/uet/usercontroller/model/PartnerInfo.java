@@ -31,6 +31,8 @@ public class PartnerInfo {
     private String fax;
     @Column(name = "email")
     private String email;
+    @Column(name = "logo")
+    private String logo;
 
     public int getId() {
         return id;
@@ -110,5 +112,13 @@ public class PartnerInfo {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

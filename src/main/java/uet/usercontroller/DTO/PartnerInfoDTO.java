@@ -14,6 +14,7 @@ public class PartnerInfoDTO {
     private String phone;
     private String fax;
     private String email;
+    private String logo;
 
     public int getId() {
         return id;
@@ -93,5 +94,13 @@ public class PartnerInfoDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

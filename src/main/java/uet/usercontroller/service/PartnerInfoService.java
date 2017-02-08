@@ -47,6 +47,7 @@ public class PartnerInfoService {
             String phone = partnerInfo.getPhone();
             String taxCode = partnerInfo.getTaxCode();
             String website = partnerInfo.getWebsite();
+            String logo = partnerInfo.getLogo();
             lPartnerInfo.put("userId", userId);
             lPartnerInfo.put("status", status);
             lPartnerInfo.put("partnerInfoId", partnerInfoId);
@@ -59,6 +60,7 @@ public class PartnerInfoService {
             lPartnerInfo.put("phone", phone);
             lPartnerInfo.put("taxCode", taxCode);
             lPartnerInfo.put("website", website);
+            lPartnerInfo.put("logo", logo);
             listPartnerInfo.add(lPartnerInfo);
         }
         return listPartnerInfo;
@@ -85,6 +87,7 @@ public class PartnerInfoService {
             partnerInfo.setPhone(partnerInfoDTO.getPhone());
             partnerInfo.setFax(partnerInfoDTO.getFax());
             partnerInfo.setEmail(partnerInfoDTO.getEmail());
+            partnerInfo.setLogo(partnerInfoDTO.getLogo());
             return partnerInfoRepository.save(partnerInfo);
         }
         else{
@@ -130,6 +133,14 @@ public class PartnerInfoService {
         else {
             throw new NullPointerException("User doesn't match with Partner.");
         }
+    }
+
+    //change Logo
+    public void changeLogo (PartnerInfoDTO partnerInfoDTO, String token){
+        User user = userRepository.findByToken(token);
+        Partner partner = user.getPartner();
+        PartnerInfo partnerInfo = partner.getPartnerInfo();
+        //code đổi tên image thành partner_id.jpg và save vào database
     }
 
     //delete info of a partner

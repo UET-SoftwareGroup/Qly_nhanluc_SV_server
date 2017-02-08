@@ -110,13 +110,18 @@ public class StudentInfoService {
             if (studentInfoDTO.getDesire()!=null) {
                 studentinfo.setDesire(studentInfoDTO.getDesire());
             }
-            if (studentInfoDTO.getAvatar()!=null) {
-                studentinfo.setAvatar(studentInfoDTO.getAvatar());
-            }
             return studentInfoRepository.save(studentinfo);
         } else {
             throw new NullPointerException("Error ");
         }
+    }
+
+    //change Avatar
+    public void changeAva (StudentInfoDTO studentInfoDTO, String token){
+        User user = userRepository.findByToken(token);
+        Student student = user.getStudent();
+        StudentInfo studentInfo = student.getStudentInfo();
+        //code đổi tên image thành student_id.jpg và save vào database
     }
 
     //delete info of a student

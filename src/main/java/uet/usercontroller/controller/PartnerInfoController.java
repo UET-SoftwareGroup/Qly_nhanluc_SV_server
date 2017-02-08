@@ -42,15 +42,23 @@ public class PartnerInfoController {
     }
 
     //edit info of a partner
-    @RequiredRoles(Role.VIP_PARTNER)
+    @RequiredRoles({Role.VIP_PARTNER, Role.NORMAL_PARTNER})
     @RequestMapping(value="partnerInfo/{partnerInfoId}", method = RequestMethod.PUT)
     public PartnerInfo editInfo(@PathVariable("partnerInfoId") int partnerInfoId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
         return partnerInfoService.editInfo(partnerInfoId, partnerInfoDTO, token);
     }
 
+    //change logo
+    @RequiredRoles({Role.VIP_PARTNER, Role.NORMAL_PARTNER})
+    @RequestMapping(value="changeLogo", method = RequestMethod.PUT)
+    public void changeLogo(@RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
+        String token = request.getHeader("auth-token");
+        partnerInfoService.changeLogo(partnerInfoDTO, token);
+    }
+
     //delete info of a partner
-    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER})
+    @RequiredRoles({Role.ADMIN,Role.VIP_PARTNER, Role.NORMAL_PARTNER})
     @RequestMapping(value="partner/{partnerId}/partnerInfo", method = RequestMethod.DELETE)
     public PartnerInfo deleteInfo(@PathVariable("partnerId") int partnerId, @RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
         String token = request.getHeader("auth-token");
