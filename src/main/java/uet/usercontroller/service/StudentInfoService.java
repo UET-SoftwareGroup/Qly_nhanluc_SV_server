@@ -1,8 +1,8 @@
 package uet.usercontroller.service;
 
-import com.sun.corba.se.impl.logging.InterceptorsSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import uet.usercontroller.DTO.StudentInfoDTO;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.model.Student;
@@ -12,6 +12,10 @@ import uet.usercontroller.repository.StudentInfoRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -117,11 +121,20 @@ public class StudentInfoService {
     }
 
     //change Avatar
-    public void changeAva (StudentInfoDTO studentInfoDTO, String token){
+    public void changeAva (String token, String fileName, MultipartFile file) throws IOException {
         User user = userRepository.findByToken(token);
         Student student = user.getStudent();
         StudentInfo studentInfo = student.getStudentInfo();
         //code đổi tên image thành student_id.jpg và save vào database
+        File dir = new File("resouces/student");
+        if(dir.isDirectory()){
+            File serverFile = new File(dir, fileName);
+            BufferedOutputStream stream = new BufferedOutputStream( new FileOutputStream(serverFile) );
+            stream.write(file.getBytes());
+            stream.close();
+        } else {
+            throw new NullPointerException("Error.");
+        }
     }
 
     //delete info of a student

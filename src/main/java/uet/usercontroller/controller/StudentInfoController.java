@@ -2,6 +2,8 @@ package uet.usercontroller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import uet.usercontroller.DTO.StudentInfoDTO;
 import uet.usercontroller.model.Role;
 import uet.usercontroller.model.StudentInfo;
@@ -9,7 +11,9 @@ import uet.usercontroller.service.StudentInfoService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -47,9 +51,12 @@ public class StudentInfoController {
     //change avatar
     @RequiredRoles(Role.STUDENT)
     @RequestMapping(value = "changeAva", method = RequestMethod.PUT)
-    public void changeAva(@RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
+    public void changeAva(HttpServletRequest request, MultipartHttpServletRequest imgRequest) throws IOException {
         String token = request.getHeader("auth-token");
-        studentinfoService.changeAva(studentInfoDTO, token);
+        Iterator<String> itr = imgRequest.getFileNames();
+        MultipartFile file = imgRequest.getFile(itr.next());
+        String fileName = file.getOriginalFilename();
+        studentinfoService.changeAva(token, fileName, file);
     }
 
    //delete info of a student
