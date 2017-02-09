@@ -1,6 +1,7 @@
 package uet.usercontroller.service;
 
 import com.sun.corba.se.impl.logging.InterceptorsSystemException;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.StudentInfoDTO;
@@ -12,6 +13,10 @@ import uet.usercontroller.repository.StudentInfoRepository;
 import uet.usercontroller.repository.StudentRepository;
 import uet.usercontroller.repository.UserRepository;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,9 +89,10 @@ public class StudentInfoService {
     }
 
     //edit info of a student
-    public StudentInfo editStudentInfo(int id, StudentInfoDTO studentInfoDTO, String token) {
+    public StudentInfo editStudentInfo(int id, StudentInfoDTO studentInfoDTO, String token) throws IOException {
         User user = userRepository.findByToken(token);
         Student student = user.getStudent();
+        String username = user.getUserName();
         StudentInfo studentinfo = studentInfoRepository.findOne(id);
         if (student.getStudentInfo().equals(studentinfo)){
             if (studentInfoDTO.getFullName()!=null) {
@@ -109,6 +115,22 @@ public class StudentInfoService {
             }
             if (studentInfoDTO.getDesire()!=null) {
                 studentinfo.setDesire(studentInfoDTO.getDesire());
+            }
+            if (studentInfoDTO.getAvatar() != null) {
+                String pathname = "../Qly_SV_client/app/users_data/student/" + username + "/";
+//                String directoryName = pathname.concat(this.getClassName());
+                String directoryName = "users_data/student/" + username + "/";
+                String fileName = username + "_avatar.jpg";
+                File directory = new File(pathname);
+                if (! directory.exists()) {
+                    directory.mkdir();
+                }
+                byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(studentInfoDTO.getAvatar());
+                File of = new File( pathname + fileName);
+                FileOutputStream osf = new FileOutputStream(of);
+                osf.write(btDataFile);
+                osf.flush();
+                studentinfo.setAvatar("http://localhost:8000/" + directoryName + username + "_avatar.jpg");
             }
             return studentInfoRepository.save(studentinfo);
         } else {
