@@ -9,6 +9,7 @@ import uet.usercontroller.service.StudentInfoService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class StudentInfoController {
     //edit info of a student
     @RequiredRoles(Role.STUDENT)
     @RequestMapping(value = "/studentInfo/{id}",method = RequestMethod.PUT)
-    public StudentInfo editStudentInfo(@PathVariable("id") int id, @RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
+    public StudentInfo editStudentInfo(@PathVariable("id") int id, @RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader("auth-token");
         return studentinfoService.editStudentInfo(id,studentInfoDTO,token);
     }

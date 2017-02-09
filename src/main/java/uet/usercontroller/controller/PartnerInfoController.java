@@ -9,6 +9,7 @@ import uet.usercontroller.service.PartnerInfoService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class PartnerInfoController {
     //change logo
     @RequiredRoles({Role.VIP_PARTNER, Role.NORMAL_PARTNER})
     @RequestMapping(value="changeLogo", method = RequestMethod.PUT)
-    public void changeLogo(@RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request){
+    public void changeLogo(@RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader("auth-token");
         partnerInfoService.changeLogo(partnerInfoDTO, token);
     }
