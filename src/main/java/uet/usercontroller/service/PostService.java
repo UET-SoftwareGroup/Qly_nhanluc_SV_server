@@ -1,5 +1,6 @@
 package uet.usercontroller.service;
 
+//import com.sun.jmx.snmp.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uet.usercontroller.DTO.PostDTO;
@@ -10,6 +11,9 @@ import uet.usercontroller.repository.PartnerRepository;
 import uet.usercontroller.repository.PostRepository;
 import uet.usercontroller.repository.UserRepository;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -45,7 +49,7 @@ public class PostService {
     }
 
     //create a post
-    public Post createPost(int partnerId, PostDTO postDTO, String token){
+    public Post createPost(int partnerId, PostDTO postDTO, String token) throws IOException {
         User user = userRepository.findByToken(token);
         Partner partner = partnerRepository.findOne(partnerId);
         if (user.getPartner().equals(partner)){
@@ -54,7 +58,29 @@ public class PostService {
             post.setDatePost(postDTO.getDatePost());
             post.setDescribePost(postDTO.getDescribePost());
             post.setPartnerId(partnerId);
-            return postRepository.save(post);
+            postRepository.save(post);
+            String username = user.getUserName();
+//            String postId = f()
+            String pathname = "../Qly_SV_client/app/users_data/partner/" + username + "/post/";
+            File directory = new File(pathname);
+            if (! directory.exists()) {
+                directory.mkdir();
+            }
+            pathname = pathname + String.valueOf(post.getId()) + "/";
+            directory = new File(pathname);
+            if (! directory.exists()) {
+                directory.mkdir();
+            }
+            String directoryName = "users_data/partner/" + username + "/post/" + String.valueOf(post.getId()) + "/";
+            String fileName = username + "_" + String.valueOf(post.getId()) + ".jpg";
+            byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(postDTO.getImage());
+            File of = new File( pathname + fileName);
+            FileOutputStream osf = new FileOutputStream(of);
+            osf.write(btDataFile);
+            osf.flush();
+            String result = "http://localhost:8000/" + directoryName + fileName;
+            post.setImage(result);
+           return postRepository.save(post);
         }
         else{
             throw new NullPointerException("User doesn't match with Partner.");
@@ -97,4 +123,46 @@ public class PostService {
         }
     }
 
+    public Post uploadImage(int partnerId, PostDTO postDTO, String token) throws IOException {
+        User user = userRepository.findByToken(token);
+        Partner partner = partnerRepository.findOne(partnerId);
+        if (user.getPartner().equals(partner)){
+            Post post = new Post();
+//            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String username = user.getUserName();
+            String pathname = "../Qly_SV_client/app/users_data/tmp/";
+            String directoryName = "users_data/tmp/";
+            String fileName = username + "_" + ".jpg";
+            byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(postDTO.getImage());
+            File of = new File( pathname + fileName);
+            FileOutputStream osf = new FileOutputStream(of);
+            osf.write(btDataFile);
+            osf.flush();
+            String result = "http://localhost:8000/" + directoryName + fileName;
+            post.setImage(result);
+            return post;
+        }
+//        String pathname = "../Qly_SV_client/app/users_data/partner/" + username;
+//        File directory = new File(pathname);
+//        if (! directory.exists()) {
+//            directory.mkdir();
+//        }
+////        directory.delete();
+//        pathname = "../Qly_SV_client/app/users_data/partner/" + username + "/logo/";
+//        String directoryName = "users_data/partner/" + username + "/logo/";
+//        String fileName = username + "_logo.jpg";
+//        directory = new File(pathname);
+//        if (! directory.exists()) {
+//            directory.mkdir();
+//        }
+//        byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(partnerInfoDTO.getLogo());
+//        File of = new File( pathname + fileName);
+//        FileOutputStream osf = new FileOutputStream(of);
+//        osf.write(btDataFile);
+//        osf.flush();
+//        partnerInfo.setLogo("http://localhost:8000/" + directoryName + username + "_logo.jpg");
+        else{
+            throw new NullPointerException("User doesn't match with Partner.");
+        }
+    }
 }

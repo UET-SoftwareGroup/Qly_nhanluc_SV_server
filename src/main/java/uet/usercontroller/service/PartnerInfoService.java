@@ -167,6 +167,9 @@ public class PartnerInfoService {
         partnerInfoRepository.save(partnerInfo);
     }
 
+    //get partner vip logo
+
+
     //delete info of a partner
     public PartnerInfo deleteInfo(int partnerInfoId, PartnerInfoDTO partnerInfoDTO, String token){
         User user = userRepository.findByToken(token);
@@ -201,5 +204,24 @@ public class PartnerInfoService {
         else {
             throw new NullPointerException("User doesn't match with Partner.");
         }
+    }
+
+    public List<HashMap<String, String>> getPartnerViplogo() {
+        List<HashMap<String, String>> listPartnerInfo = new ArrayList<HashMap<String, String>>();
+//        Role role = Role.VIP_PARTNER;
+        List<User> Users = (List<User>) userRepository.findByRole(Role.VIP_PARTNER);
+        for (User user : Users){
+            HashMap<String, String> lPartnerInfo = new HashMap<String, String>();
+            Partner partner = user.getPartner();
+            String partnerName = user.getUserName();
+            PartnerInfo partnerInfo = partner.getPartnerInfo();
+            String logo = partnerInfo.getLogo();
+            int partnerInfoId = partnerInfo.getId();
+            lPartnerInfo.put("partnerName", partnerName);
+            lPartnerInfo.put("logo", logo);
+            lPartnerInfo.put("partnerInfoId",String.valueOf(partnerInfoId));
+            listPartnerInfo.add(lPartnerInfo);
+        }
+        return listPartnerInfo;
     }
 }

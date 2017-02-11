@@ -19,6 +19,7 @@ public class Post {
     @Column(name="content", length = 2800000)
     private String content;
     private String describePost;
+    private String image;
 
     public int getId() {
         return id;
@@ -51,4 +52,10 @@ public class Post {
     }
 
     public void setDescribePost(String describePost) { this.describePost = describePost; }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) { this.image = image; }
 }

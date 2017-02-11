@@ -13,6 +13,7 @@ public class PostDTO {
     private String content;
     private Date datePost;
     private String describePost;
+    private String image;
 
     public int getId() {
         return id;
@@ -35,4 +36,10 @@ public class PostDTO {
     public String getDescribePost() { return describePost; }
 
     public void setDescribePost(String describePost) { this.describePost = describePost; }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) { this.image = image; }
 }

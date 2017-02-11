@@ -116,22 +116,22 @@ public class StudentInfoService {
             if (studentInfoDTO.getDesire()!=null) {
                 studentinfo.setDesire(studentInfoDTO.getDesire());
             }
-            if (studentInfoDTO.getAvatar() != null) {
-                String pathname = "../Qly_SV_client/app/users_data/student/" + username + "/";
-//                String directoryName = pathname.concat(this.getClassName());
-                String directoryName = "users_data/student/" + username + "/";
-                String fileName = username + "_avatar.jpg";
-                File directory = new File(pathname);
-                if (! directory.exists()) {
-                    directory.mkdir();
-                }
-                byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(studentInfoDTO.getAvatar());
-                File of = new File( pathname + fileName);
-                FileOutputStream osf = new FileOutputStream(of);
-                osf.write(btDataFile);
-                osf.flush();
-                studentinfo.setAvatar("http://localhost:8000/" + directoryName + username + "_avatar.jpg");
-            }
+//            if (studentInfoDTO.getAvatar() != null) {
+//                String pathname = "../Qly_SV_client/app/users_data/student/" + username + "/";
+////                String directoryName = pathname.concat(this.getClassName());
+//                String directoryName = "users_data/student/" + username + "/";
+//                String fileName = username + "_avatar.jpg";
+//                File directory = new File(pathname);
+//                if (! directory.exists()) {
+//                    directory.mkdir();
+//                }
+//                byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(studentInfoDTO.getAvatar());
+//                File of = new File( pathname + fileName);
+//                FileOutputStream osf = new FileOutputStream(of);
+//                osf.write(btDataFile);
+//                osf.flush();
+//                studentinfo.setAvatar("http://localhost:8000/" + directoryName + username + "_avatar.jpg");
+//            }
             return studentInfoRepository.save(studentinfo);
         } else {
             throw new NullPointerException("Error ");
@@ -139,11 +139,27 @@ public class StudentInfoService {
     }
 
     //change Avatar
-    public void changeAva (StudentInfoDTO studentInfoDTO, String token){
+    public void changeAva (StudentInfoDTO studentInfoDTO, String token) throws IOException {
         User user = userRepository.findByToken(token);
         Student student = user.getStudent();
+        String username = user.getUserName();
         StudentInfo studentInfo = student.getStudentInfo();
         //code đổi tên image thành student_id.jpg và save vào database
+        String pathname = "../Qly_SV_client/app/users_data/student/" + username + "/";
+//                String directoryName = pathname.concat(this.getClassName());
+        String directoryName = "users_data/student/" + username + "/";
+        String fileName = username + "_avatar.jpg";
+        File directory = new File(pathname);
+        if (! directory.exists()) {
+            directory.mkdir();
+        }
+        byte[] btDataFile = new sun.misc.BASE64Decoder().decodeBuffer(studentInfoDTO.getAvatar());
+        File of = new File( pathname + fileName);
+        FileOutputStream osf = new FileOutputStream(of);
+        osf.write(btDataFile);
+        osf.flush();
+        studentInfo.setAvatar("http://localhost:8000/" + directoryName + username + "_avatar.jpg");
+        studentInfoRepository.save(studentInfo);
     }
 
     //delete info of a student

@@ -48,7 +48,7 @@ public class StudentInfoController {
     //change avatar
     @RequiredRoles(Role.STUDENT)
     @RequestMapping(value = "changeAva", method = RequestMethod.PUT)
-    public void changeAva(@RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request){
+    public void changeAva(@RequestBody StudentInfoDTO studentInfoDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader("auth-token");
         studentinfoService.changeAva(studentInfoDTO, token);
     }

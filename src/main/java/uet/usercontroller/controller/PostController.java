@@ -9,6 +9,7 @@ import uet.usercontroller.service.PostService;
 import uet.usercontroller.stereotype.RequiredRoles;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -41,9 +42,17 @@ public class PostController {
     //Create post
     @RequiredRoles({Role.VIP_PARTNER})
     @RequestMapping(value="/partner/{partnerId}/post",method = RequestMethod.POST)
-    public Post createPost(@PathVariable("partnerId") int partnerId, @RequestBody PostDTO postDTO, HttpServletRequest request){
+    public Post createPost(@PathVariable("partnerId") int partnerId, @RequestBody PostDTO postDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader("auth-token");
         return postService.createPost(partnerId, postDTO, token);
+    }
+
+    //upload image for post
+    @RequiredRoles({Role.VIP_PARTNER})
+    @RequestMapping(value="/partner/{partnerId}/post/image",method = RequestMethod.POST)
+    public Post uploadImage(@PathVariable("partnerId") int partnerId , @RequestBody PostDTO postDTO, HttpServletRequest request) throws IOException {
+        String token = request.getHeader("auth-token");
+        return postService.uploadImage(partnerId, postDTO, token);
     }
 
     //Edit post

@@ -34,6 +34,7 @@ public class PartnerInfoController {
     public PartnerInfo showInfo(@PathVariable("partnerInfoId") int partnerInfoId){
         return partnerInfoService.showInfo(partnerInfoId);
     }
+
     //create a partner info
     @RequiredRoles(Role.VIP_PARTNER)
     @RequestMapping(value="partner/{partnerId}/partnerInfo", method = RequestMethod.POST)
@@ -56,6 +57,13 @@ public class PartnerInfoController {
     public void changeLogo(@RequestBody PartnerInfoDTO partnerInfoDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader("auth-token");
         partnerInfoService.changeLogo(partnerInfoDTO, token);
+    }
+
+    //get partner vip logo
+    @RequiredRoles({Role.ADMIN, Role.VIP_PARTNER, Role.STUDENT})
+    @RequestMapping(value="partnerLogo", method = RequestMethod.GET)
+    public List<HashMap<String, String>> getPartnerVipLogo(){
+        return (List<HashMap<String, String>>) partnerInfoService.getPartnerViplogo();
     }
 
     //delete info of a partner
