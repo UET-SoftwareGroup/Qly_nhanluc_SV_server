@@ -62,4 +62,15 @@ public class Student {
     public List<JobSkill> getJobSkills() { return jobSkills; }
 
     public void setJobSkills(List<JobSkill> jobSkills) { this.jobSkills = jobSkills; }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Comment comment;
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
 }

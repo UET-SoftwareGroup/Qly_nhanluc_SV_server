@@ -41,6 +41,9 @@ public class Partner {
     @OneToMany(mappedBy = "partnerId", cascade = CascadeType.ALL)
     private List<PartnerContact> partnerContacts;
 
+    @OneToMany(mappedBy = "partnerId", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     public List<PartnerContact> getPartnerContacts() { return partnerContacts; }
 
     public void setPartnerContacts(List<PartnerContact> partnerContacts) { this.partnerContacts = partnerContacts; }
@@ -61,6 +64,13 @@ public class Partner {
         this.partnerInfo = partnerInfo;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
 
 
